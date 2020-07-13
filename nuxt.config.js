@@ -1,5 +1,5 @@
-
-export default {
+require('dotenv').config()
+module.exports = {
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
@@ -15,7 +15,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: process.env.npm_package_name || 'JVC - Công ty cổ phần tư vấn kết nối Việt Nhật',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -25,17 +25,31 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  loading: {
+    color: '#e8e8e8',
+    height: '2px',
+    throttle: 10
+  },
   /*
   ** Global CSS
   */
-  css: [
-  ],
+  css: ['@/assets/scss/styles.scss'],
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    { src: '~/plugins/axios' }
   ],
+  /*
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
+  axios: {
+    progress: false,
+    debug: false,
+    retry: 1
+  },
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
@@ -52,6 +66,9 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
+    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/axios',
+    'cookie-universal-nuxt'
   ],
   /*
   ** Build configuration
