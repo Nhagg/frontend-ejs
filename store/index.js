@@ -1,6 +1,6 @@
 import ApiService from '~/services/Api'
 export const state = () => ({
-  domainAPI: 'window.DOMAIN_API',
+  domainAPI: process.env.DOMAIN_API,
   sidebarShow: 'responsive',
   listCourse: [],
   listLesson: [],
@@ -23,7 +23,7 @@ export const actions = {
       return
     }
     await ApiService.get('/api/lessions').then((res) => {
-      commit('setListLesson', res.data.data)
+      commit('setListLesson', res.data)
     })
   },
   async GET_LIST_LEARN_UNIT({ commit, state }) {
@@ -57,6 +57,7 @@ export const mutations = {
     state.activeCourse = data
   },
   setListLesson(state, data) {
+    console.log('setListLesson', data)
     state.listLesson = data
   },
   setListLeanUnit(state, data) {

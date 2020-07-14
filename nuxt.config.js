@@ -40,7 +40,7 @@ module.exports = {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [{ src: '~/plugins/axios' }],
+  plugins: [{ src: '~/plugins/axios' }, { src: '~/plugins/index' }],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
