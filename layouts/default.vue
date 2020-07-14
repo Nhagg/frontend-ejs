@@ -86,42 +86,45 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex"
-import Footer from "~/components/layout/Footer"
+import { mapState } from 'vuex'
+import Footer from '~/components/layout/Footer'
 export default {
-  name: "DefaultLayout",
+  name: 'DefaultLayout',
   components: {
     Footer
   },
   computed: {
-    ...mapState(["listCourse", "activeCourse", "user"])
+    ...mapState(['listCourse', 'activeCourse', 'user'])
+  },
+  async mounted() {
+    await this.$store.dispatch('GET_LIST_COURSE')
   },
   data() {
     return {
       menus: [
         {
           id: 2,
-          title: "弊社について",
-          path: "/"
+          title: '弊社について',
+          path: '/'
         },
         {
           id: 2,
-          title: "教育センター用規則",
-          path: "/rules"
+          title: '教育センター用規則',
+          path: '/rules'
         },
         {
           id: 2,
-          title: "ニュース",
-          path: "/news"
+          title: 'ニュース',
+          path: '/news'
         },
         {
-          title: "お知らせ",
-          path: "/notifications"
+          title: 'お知らせ',
+          path: '/notifications'
         },
         {
           id: 3,
-          title: "コース一覧",
-          path: "/courses"
+          title: 'コース一覧',
+          path: '/courses'
         }
       ]
     }
@@ -154,7 +157,7 @@ export default {
       // }
     },
     logout() {
-      console.log("logout")
+      console.log('logout')
       window.deleteAllCookies()
       window.location.reload()
     }

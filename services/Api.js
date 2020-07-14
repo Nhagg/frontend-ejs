@@ -10,16 +10,16 @@ class ApiService {
   removeHeader() {
     this.axios.defaults.headers.common = {}
   }
-  get(resource = "") {
+  get(resource = '') {
     return this.axios.$get(resource)
   }
-  post(data, resource = "") {
+  post(data, resource = '') {
     return this.axios.$post(resource, data)
   }
-  put(data, resource = "", option = null) {
+  put(data, resource = '', option = null) {
     return this.axios.$put(resource, data, option)
   }
-  delete(resource = "") {
+  delete(resource = '') {
     return this.axios.$delete(resource)
   }
   customRequest(data) {
