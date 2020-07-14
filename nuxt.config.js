@@ -15,7 +15,7 @@ module.exports = {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: process.env.npm_package_name || 'JVC - Công ty cổ phần tư vấn kết nối Việt Nhật',
+    title: 'JVC - Công ty cổ phần tư vấn kết nối Việt Nhật',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -75,5 +75,17 @@ module.exports = {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-  }
+    optimization: {
+      splitChunks: {
+        chunks: 'async'
+      }
+    }
+  },
+  /*
+   ** Nuxt.js dev-modules
+   */
+  buildModules: [
+    // Doc: https://github.com/nuxt-community/eslint-module
+    '@nuxtjs/eslint-module'
+  ]
 }
