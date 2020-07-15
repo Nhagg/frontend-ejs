@@ -27,11 +27,12 @@ module.exports = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
-  loading: {
-    color: '#e8e8e8',
-    height: '2px',
-    throttle: 10
-  },
+  loading: '~/components/loading.vue',
+  // loading: {
+  //   color: '#e8e8e8',
+  //   height: '2px',
+  //   throttle: 10
+  // },
   /*
    ** Global CSS
    */
