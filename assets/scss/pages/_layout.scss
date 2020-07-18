@@ -33,20 +33,20 @@ $headerHeight: 60px;
 $footerHeight: 110px;
 .ejs-footer {
   width: 100%;
-  height: $footerHeight;
-  display: flex;
-  z-index: 10;
   margin-top: 20px;
-  background-color: $text-red;
-  color: #fff;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  color: rgba(0, 0, 0, 0.6);
   font-size: 14px;
   a {
-    color: white;
     :hover {
       color: $text-green;
     }
+  }
+  h4 {
+    color: #000;
+    margin-bottom: 15px;
+  }
+  h5 {
+    color: #000;
   }
 }
 .header-content, .footer-content {
