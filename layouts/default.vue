@@ -1,5 +1,5 @@
 <template>
-  <div class="ejs-app">
+  <div class="ejs-app home-layout">
     <header class="ejs-header">
       <div class="container">
         <ul class="nav justify-content-end" v-if="user && user.id">
@@ -97,7 +97,8 @@ export default {
     ...mapState(['listCourse', 'activeCourse', 'user'])
   },
   async mounted() {
-    await this.$store.dispatch('GET_LIST_COURSE')
+    console.log('default layout')
+    // await this.$store.dispatch('GET_LIST_COURSE')
   },
   data() {
     return {

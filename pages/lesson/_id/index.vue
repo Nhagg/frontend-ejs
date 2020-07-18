@@ -105,7 +105,8 @@ export default {
   async mounted() {
     await this.$store.dispatch('GET_LIST_LESSON')
     await this.$store.dispatch('GET_LIST_LEARN_UNIT')
-    await Api.get('/api/lessions/' + this.$route.params.id)
+    let lessonId = this.$route.params.id ? this.$route.params.id : 2
+    await Api.get('/api/lessions/' + lessonId)
       .then((res) => {
         this.lesson = res.data
         console.log('lesson', this.lesson)

@@ -45,7 +45,8 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  name: 'Home',
+  name: 'CourseDetail',
+  layout: 'course',
   components: {},
   computed: {
     ...mapState(['domainAPI', 'activeCourse', 'listCourse', 'listLesson']),
@@ -64,15 +65,15 @@ export default {
   },
   async mounted() {
     console.log('mounted')
-    await this.$store.dispatch('GET_LIST_COURSE')
+    // await this.$store.dispatch('GET_LIST_COURSE')
     console.log('mounted www')
     let course_id = this.$route.params.course_id
     course_id = course_id ? course_id : 2
     console.log('course_id', course_id)
     if (course_id) {
-      await this.$store.dispatch('SET_ACTIVE_COURSE', course_id)
+      // await this.$store.dispatch('SET_ACTIVE_COURSE', course_id)
     }
-    await this.$store.dispatch('GET_LIST_LESSON')
+    // await this.$store.dispatch('GET_LIST_LESSON')
   },
   data() {
     return {}

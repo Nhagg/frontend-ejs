@@ -1,12 +1,12 @@
 import ApiService from '~/services/Api'
-import Config from '~/helpers/Config'
 import get from 'lodash.get'
 import https from 'https'
 
-export default function({ $axios, redirect, app }) {
+export default function({ $axios, app }) {
   ApiService.setAxios($axios)
   $axios.setBaseURL(process.env.DOMAIN_API)
-
+  $axios.setHeader('Content-Type', 'application/octet-stream')
+  $axios.setHeader('Access-Control-Allow-Origin', true)
   if (process.server) {
     $axios.defaults.httpsAgent = new https.Agent({
       rejectUnauthorized: false
@@ -14,20 +14,7 @@ export default function({ $axios, redirect, app }) {
   }
 
   $axios.onError((error) => {
-    console.log(error)
-
-    const code = parseInt(error.response && error.response.status)
-    if (code === 400) {
-      redirect('/400')
-    }
-
-    if (code === 401) {
-      if (process.server) {
-        return app.context.res.redirect(Config.LINK_LOGIN)
-      } else {
-        window.location.href = `${Config.LINK_LOGIN}`
-      }
-    }
+    console.log('axios err', error)
   })
 
   $axios.onResponse((response) => {
