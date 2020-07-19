@@ -1,6 +1,9 @@
 .home-content {
   padding: 10px 0px;
 }
+.home-layout {
+  font-size: 16px;
+}
 .lesson {
   &-card {
     .ratio-4-3 :first-child {
@@ -62,4 +65,102 @@
   padding: 5px 30px;
   color: #fff;
   background-color: $text-red;
+}
+.home-new {
+  padding: 10px 80px;
+  h2 {
+    color: $text-red;
+  }
+  p {
+    font-weight: 500;
+    font-size: 18px;
+  }
+  .btn-view-more {
+    font-size: 24px;
+    padding: 10px 25px;
+    font-weight: 500;
+    color: #fff;
+    background-color: $text-red;
+    border-radius: 30px;
+  }
+}
+.home-course {
+  width: 100%;
+  position: relative;
+  img.course-bg {
+    width: 100%;
+    height: 600px;
+  }
+  h2 {
+    top: 20px;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  .home-course-content {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    color: #fff;
+    font-size: 16px;
+    .row {
+      padding: 0 50px;
+      .col-sm-4 {
+        padding: 0 50px;
+      }
+    }
+    a {
+      color: $text-red;
+    }
+  }
+}
+.home-student-card {
+  border-radius: 20px;
+  border: solid 1px #ddd;
+  position: relative;
+  padding: 30px;
+  background-color:  rgba(34, 34, 34, 0.05);
+  font-size: 20px;
+  img {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .student-quote {
+    margin-top: 60px;
+    color: $text-gray;
+    font-weight: 500;
+  }
+  .student-info {
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 22px;
+    text-align: center;
+  }
+}
+.home-partner {
+  position: relative;
+  width: 100%;
+  color: #fff;
+  img.course-bg {
+    width: 100%;
+    height: 500px;
+  }
+  .home-partner-content {
+    position: absolute;
+    width: 100%;
+    top: 30px;
+  }
+}
+.mark {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.7;
 }
