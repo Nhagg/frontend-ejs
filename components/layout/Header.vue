@@ -12,16 +12,16 @@
             <b-navbar right>
               <b-navbar-nav>
                 <b-nav-item-dropdown text="Về JVConnect" left>
-                  <b-dropdown-item href="#">
+                  <b-dropdown-item href="/about-us">
                     Giới thiệu trung tâm
                   </b-dropdown-item>
-                  <b-dropdown-item href="#">
+                  <b-dropdown-item href="/our-rule">
                     Nội quy trung tâm
                   </b-dropdown-item>
-                  <b-dropdown-item href="#">
+                  <b-dropdown-item href="/news">
                     Tin tức
                   </b-dropdown-item>
-                  <b-dropdown-item href="#">
+                  <b-dropdown-item href="/our-course">
                     Chương trình học
                   </b-dropdown-item>
                 </b-nav-item-dropdown>

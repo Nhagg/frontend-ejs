@@ -6,6 +6,9 @@ $headerHeight: 60px;
   .user-item {
     min-width: 200px;
     text-align: right;
+    a {
+      display: inline-block;
+    }
   }
 }
 $courseHeader: 100px;
