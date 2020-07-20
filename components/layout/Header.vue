@@ -1,5 +1,5 @@
 <template>
-  <header class="course-header">
+  <header class="ejs-header">
     <div class="container">
       <div class="row">
         <div class="col-sm-2">
@@ -11,22 +11,37 @@
           <div class="header-nav">
             <b-navbar right>
               <b-navbar-nav>
-                <b-nav-item-dropdown text="Về JVConnect" right>
-                  <b-dropdown-item href="#">EN</b-dropdown-item>
-                </b-nav-item-dropdown>
-                <b-nav-item-dropdown text="Khóa học tiếng Nhật" right>
+                <b-nav-item-dropdown text="Về JVConnect" left>
                   <b-dropdown-item href="#">
+                    Giới thiệu trung tâm
+                  </b-dropdown-item>
+                  <b-dropdown-item href="#">
+                    Nội quy trung tâm
+                  </b-dropdown-item>
+                  <b-dropdown-item href="#">
+                    Tin tức
+                  </b-dropdown-item>
+                  <b-dropdown-item href="#">
+                    Chương trình học
+                  </b-dropdown-item>
+                </b-nav-item-dropdown>
+                <b-nav-item-dropdown text="Khóa học tiếng Nhật" left>
+                  <b-dropdown-item href="/course/1">
                     Khóa học định hướng
                   </b-dropdown-item>
-                  <b-dropdown-item href="#">Khóa học N5</b-dropdown-item>
-                  <b-dropdown-item href="#">Khóa học N4</b-dropdown-item>
-                  <b-dropdown-item href="#">
+                  <b-dropdown-item href="/course/2">
+                    Khóa học N5
+                  </b-dropdown-item>
+                  <b-dropdown-item href="/course/3">
+                    Khóa học N4
+                  </b-dropdown-item>
+                  <b-dropdown-item href="/course/4">
                     Khóa học Chuyên nghành
                   </b-dropdown-item>
                 </b-nav-item-dropdown>
                 <b-nav-item href="/report">Thông báo</b-nav-item>
                 <b-nav-item href="/report">Liên hệ</b-nav-item>
-                <b-nav-item href="#" v-b-modal.login-modal>
+                <b-nav-item href="#" v-b-modal.login-modal class="user-item">
                   Đăng nhập
                 </b-nav-item>
               </b-navbar-nav>
@@ -52,6 +67,8 @@
 
 <script>
 import { mapState } from 'vuex'
+import Api from '~/services/Api'
+import AuthService from '~/services/Auth'
 
 export default {
   name: 'Header',
@@ -62,30 +79,28 @@ export default {
   mounted() {},
   methods: {
     async handleLoginViaGoogle() {
-      // const gData = await AuthService.authViaGoogle(this.$gAuth)
-      // this.$jquery("#loginModal").modal("hide")
-      // this.$modal.show("loading")
-      // let response = await axios
-      //   .post(window.DOMAIN_API + "/api/auth", gData)
-      //   .catch(err => {
-      //     console.log(err)
-      //   })
-      // this.$modal.hide("loading")
-      // if (!response) {
-      //   response = {
-      //     success: true,
-      //     data: {
-      //       id: 1,
-      //       name: "Nhạ",
-      //       token: "fake_token"
-      //     }
-      //   }
-      //   this.$store.commit("setUser", response.data)
-      // } else {
-      //   let data = response.data
-      //   this.$cookies.set("LEANING_TOKEN", data.data && data.token)
-      //   this.$store.commit("setUser", data.data)
-      // }
+      console.log(this.$gAuth)
+      const gData = await AuthService.authViaGoogle(this.$gAuth)
+      let response = Api.post(window.DOMAIN_API + '/api/auth', gData).catch(
+        (err) => {
+          console.log(err)
+        }
+      )
+      if (!response) {
+        response = {
+          success: true,
+          data: {
+            id: 1,
+            name: 'Nhạ',
+            token: 'fake_token'
+          }
+        }
+        this.$store.commit('setUser', response.data)
+      } else {
+        let data = response.data
+        this.$cookies.set('LEANING_TOKEN', data.data && data.token)
+        this.$store.commit('setUser', data.data)
+      }
     },
     logout() {
       console.log('logout')

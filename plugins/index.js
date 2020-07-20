@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import get from 'lodash.get'
+import Cookies from 'vue-cookies'
+Vue.use(Cookies)
+Vue.$cookies.config('1d')
+
 Vue.prototype.$_get = get
 Vue.prototype.$scrollToTop = () => window.scrollTo(0, 0)
 

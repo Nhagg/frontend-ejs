@@ -6,7 +6,6 @@
           id="carousel-fade"
           class="home-banner"
           style="text-shadow: 0px 0px 2px #000"
-          v-model="slide"
           controls
           indicators
           img-width="1024"

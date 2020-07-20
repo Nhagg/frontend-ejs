@@ -33,13 +33,13 @@
         <div class="col-sm-4">
           <h4>KHÓA HỌC TẠI JVCONNECT</h4>
           <div>
-            Học định hướng
-            <br class="mt-2" />
-            Học N5
-            <br class="mt-2" />
-            Học N4
-            <br class="mt-2" />
-            Học chuyên nghành <br />Học văn hóa Nhật bản
+            <ul class="footer-list">
+              <li>Học định hướng</li>
+              <li>Học N5</li>
+              <li>Học N4</li>
+              <li>HHọc định hướng</li>
+              <li>Học văn hóa Nhật bản</li>
+            </ul>
           </div>
         </div>
       </div>

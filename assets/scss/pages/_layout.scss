@@ -3,39 +3,49 @@ body {
 }
 $headerHeight: 60px;
 .ejs-header {
-  position: absolute;
-  width: 100%;
-  height: $headerHeight;
+  .user-item {
+    min-width: 200px;
+    text-align: right;
+  }
+}
+$courseHeader: 100px;
+.header-logo {
   display: flex;
   align-items: center;
-  z-index: 10;
-  background-color: $text-red;
-  color: #fff;
+  justify-content: center;
+  img {
+    height: $courseHeader;
+  }
+}
+.header-nav {
+  display: flex;
+  height: $courseHeader;
+  align-items: center;
+  justify-content: flex-end;
   font-size: 20px;
-  a {
-    color: white;
-    &:hover {
-      color: $text-red;
-      background-color: $bg-red;
+  font-weight: 500;
+  .nav-item {
+    &:not(:last-child) {
+      margin-right: 40px;
     }
-    &.nav-link{
-      padding: 0;
-      line-height: 60px;
-      min-width: 150px;
-      text-align: center;
-      &.active {
-        color: $text-red;
-        background-color: #f2dede;
-      }
+    .nav-link {
+      color: #000;
     }
   }
 }
+.header-user {
+  display: flex;
+  height: $courseHeader;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
 $footerHeight: 110px;
 .ejs-footer {
   width: 100%;
-  margin-top: 60px;
+  padding: 60px 0 40px;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 14px;
   a {
     :hover {
       color: $text-green;
@@ -47,6 +57,13 @@ $footerHeight: 110px;
   }
   h5 {
     color: #000;
+  }
+  .footer-list {
+    li {
+      &:not(:first-child) {
+        margin-top: 5px;
+      }
+    }
   }
 }
 .header-content, .footer-content {

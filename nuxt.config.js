@@ -41,7 +41,11 @@ module.exports = {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [{ src: '~/plugins/axios' }, { src: '~/plugins/index' }],
+  plugins: [
+    { src: '~/plugins/axios' },
+    { src: '~/plugins/index' },
+    { src: '~/plugins/google_auth', ssr: false }
+  ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
