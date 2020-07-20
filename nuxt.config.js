@@ -85,7 +85,8 @@ module.exports = {
       splitChunks: {
         chunks: 'async'
       }
-    }
+    },
+    extend(config, ctx) {}
   },
   /*
    ** Nuxt.js dev-modules
