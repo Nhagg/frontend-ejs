@@ -63,7 +63,10 @@ module.exports = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [],
+  buildModules: [
+    // Doc: https://github.com/nuxt-community/eslint-module
+    '@nuxtjs/eslint-module'
+  ],
   /*
    ** Nuxt.js modules
    */
@@ -87,12 +90,5 @@ module.exports = {
       }
     },
     extend(config, ctx) {}
-  },
-  /*
-   ** Nuxt.js dev-modules
-   */
-  buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
-  ]
+  }
 }

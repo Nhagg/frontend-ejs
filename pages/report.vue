@@ -136,16 +136,80 @@
           {{ listUnitConversation.length + '/' + maxConversation }}
         </div>
       </div>
+      <div class="report-item">
+        <div class="report-label">
+          Luyện tập
+        </div>
+        <div class="report-progress">
+          <div class="progress">
+            <div
+              v-if="getPoint('practice', 'good')"
+              class="progress-bar progress-bar-striped bg-success"
+              role="progressbar"
+              :style="`width: ${getPoint('practice', 'good')}%`"
+              :aria-valuenow="getPoint('practice', 'good')"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              {{ getPoint('practice', 'good') + '%' }}
+            </div>
+            <div
+              v-if="getPoint('practice', 'middle')"
+              class="progress-bar progress-bar-striped bg-warning"
+              role="progressbar"
+              :style="`width: ${getPoint('practice', 'middle')}%`"
+              :aria-valuenow="getPoint('practice', 'middle')"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              {{ getPoint('practice', 'middle') + '%' }}
+            </div>
+            <div
+              v-if="getPoint('practice', 'bad')"
+              class="progress-bar progress-bar-striped bg-danger"
+              role="progressbar"
+              :style="`width: ${getPoint('practice', 'bad')}%`"
+              :aria-valuenow="getPoint('practice', 'bad')"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              {{ getPoint('practice', 'bad') + '%' }}
+            </div>
+          </div>
+        </div>
+        <div class="report-result">
+          {{ listUnitConversation.length + '/' + maxPractice }}
+        </div>
+      </div>
     </div>
     <div class="work-report mt-4">
       <div class="row">
         <div
           v-for="unitType in learnUnitTypes"
           :key="unitType.type"
-          class="col-sm-4"
+          class="col-sm-3"
         >
           <div class="unit-type-header">
-            <img :src="getImgUrl(unitType.imgUrl)" alt="unitType" />
+            <img
+              v-if="unitType.type == 'new_word'"
+              src="@/assets/img/unit/new-word.png"
+              alt="unitType"
+            />
+            <img
+              v-if="unitType.type == 'conversation'"
+              src="@/assets/img/unit/conversation.png"
+              alt="unitType"
+            />
+            <img
+              v-if="unitType.type == 'grammar'"
+              src="@/assets/img/unit/grammar.png"
+              alt="unitType"
+            />
+            <img
+              v-if="unitType.type == 'practice'"
+              src="@/assets/img/unit/practice.png"
+              alt="unitType"
+            />
             <div class="">
               {{ unitType.name }}
             </div>
@@ -189,6 +253,7 @@ import mixin from '~/mixins/index'
 const maxNewWork = 200
 const maxGrammar = 25
 const maxConversation = 10
+const maxPractice = 15
 export default {
   name: 'Report',
   mixins: [mixin],
@@ -227,21 +292,23 @@ export default {
       maxNewWork,
       maxGrammar,
       maxConversation,
+      maxPractice,
       learnUnitTypes: [
         {
           type: 'new_word',
-          imgUrl: '@/assets/img/unit/new-word.png',
           name: 'Từ mới'
         },
         {
           type: 'grammar',
-          imgUrl: '~/assets/img/unit/grammar.png',
           name: 'Ngữ pháp'
         },
         {
           type: 'conversation',
-          imgUrl: '~/assets/img/unit/conversation.png',
           name: 'Phát âm'
+        },
+        {
+          type: 'practice',
+          name: 'Luyện tập'
         }
       ],
       listUnit: []
@@ -276,9 +343,6 @@ export default {
         return res + '/conversation/' + unit.learn_unit_id
       }
       return res + '/unit/' + unit.learn_unit_id
-    },
-    getImgUrl(url) {
-      return require(url)
     }
   }
 }

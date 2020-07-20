@@ -17,8 +17,13 @@
                   <b-dropdown-item href="#">Thi cuối khóa</b-dropdown-item>
                 </b-nav-item-dropdown>
                 <b-nav-item href="/report">Kết quả học tập</b-nav-item>
-                <b-nav-item href="#" class="user-item">
+                <b-nav-item href="#" class="ml-4 user-item">
                   Nguyễn Thị Duyên
+                  <img
+                    src="@/assets/img/banner/student1.png"
+                    alt=""
+                    class="user-avatar"
+                  />
                 </b-nav-item>
               </b-navbar-nav>
             </b-navbar>

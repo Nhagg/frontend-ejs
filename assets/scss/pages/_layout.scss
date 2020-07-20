@@ -28,11 +28,15 @@ $courseHeader: 100px;
   font-size: 20px;
   font-weight: 500;
   .nav-item {
+    display: flex;
+    align-items: center;
+    min-width: 100px;
     &:not(:last-child) {
       margin-right: 40px;
     }
     .nav-link {
       color: #000;
+      position: relative;
     }
   }
 }
@@ -73,9 +77,9 @@ $footerHeight: 110px;
   padding: 20px;
 }
 .ejs-content {
-  padding-top: $headerHeight;
+  //padding-top: $headerHeight;
   overflow-y: auto;
-  min-height: 90vh;
+  min-height: 70vh;
 }
 .ejs-app {
   position: relative;
@@ -103,4 +107,7 @@ $footerHeight: 110px;
       }
     }
   }
+}
+.user-avatar {
+  width: 55px;
 }

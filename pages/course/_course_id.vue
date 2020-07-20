@@ -1,5 +1,5 @@
 <template>
-  <div class="home-content">
+  <div class="container course-detail">
     <h2>{{ course.name }}</h2>
     <div class="row lesson-list custom-row">
       <div
@@ -7,7 +7,7 @@
           (s) => s.course && s.course.id == activeCourse
         )"
         :key="lesson.id"
-        class="col-sm-3"
+        class="col-sm-4"
       >
         <router-link :to="'/lesson/' + lesson.id" class="lesson-content">
           <div class="lesson-card">
