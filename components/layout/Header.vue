@@ -26,21 +26,16 @@
                   </b-dropdown-item>
                 </b-nav-item-dropdown>
                 <b-nav-item-dropdown text="Khóa học tiếng Nhật" left>
-                  <b-dropdown-item href="/course/1">
-                    Khóa học định hướng
-                  </b-dropdown-item>
-                  <b-dropdown-item href="/course/2">
-                    Khóa học N5
-                  </b-dropdown-item>
-                  <b-dropdown-item href="/course/3">
-                    Khóa học N4
-                  </b-dropdown-item>
-                  <b-dropdown-item href="/course/4">
-                    Khóa học Chuyên nghành
+                  <b-dropdown-item
+                    v-for="course in listCourse"
+                    :key="course.id"
+                    :href="'/course/' + course.id"
+                  >
+                    {{ course.name }}
                   </b-dropdown-item>
                 </b-nav-item-dropdown>
-                <b-nav-item href="/report">Thông báo</b-nav-item>
-                <b-nav-item href="/report">Liên hệ</b-nav-item>
+                <b-nav-item href="/">Thông báo</b-nav-item>
+                <b-nav-item href="/">Liên hệ</b-nav-item>
                 <b-nav-item href="#" v-b-modal.login-modal class="user-item">
                   Đăng nhập
                 </b-nav-item>
@@ -76,7 +71,9 @@ export default {
   computed: {
     ...mapState(['listCourse', 'activeCourse'])
   },
-  mounted() {},
+  mounted() {
+    this.$store.dispatch('GET_LIST_COURSE')
+  },
   methods: {
     async handleLoginViaGoogle() {
       console.log(this.$gAuth)
@@ -102,7 +99,7 @@ export default {
     },
     logout() {
       console.log('logout')
-      window.deleteAllCookies()
+      this.$cookies.keys().forEach((cookie) => this.$cookies.remove(cookie))
       window.location.reload()
     }
   }

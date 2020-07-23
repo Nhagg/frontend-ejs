@@ -284,10 +284,10 @@ export default {
       '/api/tracking?user_id=' + userId + '&type=learn_unit'
     )
     console.log(res)
-    // if (res.data.success) {
-    //   this.listUnit = res.data.data.sort((a, b) => a.progress - b.progress)
-    //   console.log('listUnit', this.listUnit)
-    // }
+    if (res && res.success) {
+      this.listUnit = res.data.sort((a, b) => a.progress - b.progress)
+      console.log('listUnit', this.listUnit)
+    }
   },
   data() {
     return {

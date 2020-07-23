@@ -2,21 +2,32 @@
   <header class="ejs-header">
     <div class="container">
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
           <nuxt-link to="/" class="header-logo">
             <img src="~/assets/img/logo.png" alt="" />
           </nuxt-link>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-10">
           <div class="header-nav">
             <b-navbar>
               <b-navbar-nav>
-                <b-nav-item href="/course/2">Học bài</b-nav-item>
+                <b-nav-item-dropdown text="Khóa học">
+                  <b-dropdown-item
+                    v-for="course in listCourse"
+                    :key="course.id"
+                    :to="'/course/' + course.id"
+                    :class="{
+                      active: activeCourse == course.id
+                    }"
+                  >
+                    {{ course.name }}
+                  </b-dropdown-item>
+                </b-nav-item-dropdown>
                 <b-nav-item-dropdown text="Thi cử">
                   <b-dropdown-item href="#">Thi hết tháng</b-dropdown-item>
                   <b-dropdown-item href="#">Thi cuối khóa</b-dropdown-item>
                 </b-nav-item-dropdown>
-                <b-nav-item href="/report">Kết quả học tập</b-nav-item>
+                <b-nav-item to="/report">Kết quả học tập</b-nav-item>
                 <b-nav-item href="#" class="ml-4 user-item">
                   Nguyễn Thị Duyên
                   <img

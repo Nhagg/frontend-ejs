@@ -1,6 +1,12 @@
 * {
   outline: none;
 }
+.border-bottom-red {
+  border-bottom: solid 2px $text-red;
+}
+h2.border-bottom-red {
+  padding-bottom: 20px;
+}
 .fw-500 {
   font-weight: 500;
 }

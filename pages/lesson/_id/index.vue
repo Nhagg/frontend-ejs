@@ -1,17 +1,16 @@
 <template>
-  <div class="detail-lesson">
+  <div class="container detail-lesson">
     <div class="detail-lesson-header">
       <div class="lesson-name">
-        <h2>
-          Bài {{ lesson.lessonIndex }}:
+        <h1>
           <span
             class="japan-name"
             v-html="$convertNameToHtml(lesson.name_native_language)"
           ></span>
-        </h2>
-        <h2 class="lesson-title-trans">
+        </h1>
+        <div class="lesson-title-trans">
           {{ lesson.name_second_language }}
-        </h2>
+        </div>
       </div>
       <div class="progress-circle" data-progress="10"></div>
     </div>
@@ -34,15 +33,14 @@
           >
             <div class="unit-type-item">
               <i class="fa fa-check-circle" :class="getClassByUnit(unit)"></i>
-              <router-link
-                :to="'/lesson/' + lesson.id + '/unit/' + unit.id"
-                :title="unit.name_forgein_language"
-              >
+              <router-link :to="'/lesson/' + lesson.id + '/unit/' + unit.id">
                 <div
-                  v-html="$convertNameToHtml(unit.name_native_language)"
-                  class="japan-name"
-                ></div>
-                <span class="one-line-text">
+                  class="one-line-text"
+                  :title="$getNativeName(unit.name_native_language)"
+                >
+                  {{ $getNativeName(unit.name_native_language) }}
+                </div>
+                <span class="one-line-text" :title="unit.name_forgein_language">
                   {{ unit.name_forgein_language }}
                 </span>
               </router-link>
@@ -71,15 +69,14 @@
               class="unit-type-item"
             >
               <i class="fa fa-check-circle" :class="getClassByUnit(unit)"></i>
-              <router-link
-                :to="getUnitLink(unit, unitType)"
-                :title="unit.name_forgein_language"
-              >
+              <router-link :to="getUnitLink(unit, unitType)">
                 <div
-                  v-html="$convertNameToHtml(unit.name_native_language)"
-                  class="japan-name"
-                ></div>
-                <span class="one-line-text">
+                  class="one-line-text"
+                  :title="$getNativeName(unit.name_native_language)"
+                >
+                  {{ $getNativeName(unit.name_native_language) }}
+                </div>
+                <span class="one-line-text" :title="unit.name_forgein_language">
                   {{ unit.name_forgein_language }}
                 </span>
               </router-link>
@@ -102,27 +99,30 @@ export default {
   computed: {
     ...mapState(['listLesson', 'listLearnUnit', 'user'])
   },
-  async mounted() {
-    await this.$store.dispatch('GET_LIST_LESSON')
-    await this.$store.dispatch('GET_LIST_LEARN_UNIT')
-    let lessonId = this.$route.params.id ? this.$route.params.id : 2
+  async asyncData({ store, route }) {
+    await store.dispatch('GET_LIST_LESSON')
+    await store.dispatch('GET_LIST_LEARN_UNIT')
+    let lessonId = route.params.id ? route.params.id : 2
+    let lesson = {}
     await Api.get('/api/lessions/' + lessonId)
       .then((res) => {
-        this.lesson = res.data
-        console.log('lesson', this.lesson)
+        lesson = res.data
       })
       .catch((e) => {
-        console.log(e)
         alert(e.message)
       })
 
-    let userId = this.user.id ? this.user.id : 18
+    let userId = store.state.user.id ? store.state.user.id : 18
     let res = await Api.get(
       '/api/tracking?user_id=' + userId + '&type=learn_unit'
     )
+    let listLearnedUnit = []
     if (res.success) {
-      this.listLearnedUnit = res.data.sort((a, b) => a.progress - b.progress)
-      console.log('listLearnedUnit', this.listLearnedUnit)
+      listLearnedUnit = res.data.sort((a, b) => a.progress - b.progress)
+    }
+    return {
+      lesson,
+      listLearnedUnit
     }
   },
   data() {

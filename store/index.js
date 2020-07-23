@@ -15,7 +15,7 @@ export const actions = {
       return
     }
     await ApiService.get('/api/courses').then((res) => {
-      commit('setListCourse', res.data.data)
+      commit('setListCourse', res.data)
     })
   },
   async GET_LIST_LESSON({ commit, state }) {
@@ -31,7 +31,7 @@ export const actions = {
       return
     }
     await ApiService.get('/api/learn_units').then((res) => {
-      commit('setListLeanUnit', res.data.data)
+      commit('setListLeanUnit', res.data)
     })
   },
   async SET_ACTIVE_COURSE({ commit }, data) {
@@ -57,7 +57,6 @@ export const mutations = {
     state.activeCourse = data
   },
   setListLesson(state, data) {
-    console.log('setListLesson', data)
     state.listLesson = data
   },
   setListLeanUnit(state, data) {

@@ -1,13 +1,13 @@
 <template>
   <div class="container course-detail">
-    <h2>{{ course.name }}</h2>
-    <div class="row lesson-list custom-row">
+    <h2 class="border-bottom-red">{{ course.name }}</h2>
+    <div class="row lesson-list custom-row mt-5">
       <div
         v-for="lesson in listLesson.filter(
           (s) => s.course && s.course.id == activeCourse
         )"
         :key="lesson.id"
-        class="col-sm-4"
+        class="col-sm-3"
       >
         <router-link :to="'/lesson/' + lesson.id" class="lesson-content">
           <div class="lesson-card">
@@ -58,22 +58,14 @@ export default {
       return res ? res : {}
     }
   },
-  watch: {
-    activeCourse(val) {
-      console.log(val)
-    }
-  },
-  async mounted() {
-    console.log('mounted')
-    // await this.$store.dispatch('GET_LIST_COURSE')
-    console.log('mounted www')
-    let course_id = this.$route.params.course_id
+  async asyncData({ store, route }) {
+    await store.dispatch('GET_LIST_COURSE')
+    let course_id = route.params.course_id
     course_id = course_id ? course_id : 2
-    console.log('course_id', course_id)
     if (course_id) {
-      // await this.$store.dispatch('SET_ACTIVE_COURSE', course_id)
+      await store.dispatch('SET_ACTIVE_COURSE', course_id)
     }
-    // await this.$store.dispatch('GET_LIST_LESSON')
+    await store.dispatch('GET_LIST_LESSON')
   },
   data() {
     return {}

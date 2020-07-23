@@ -5,7 +5,7 @@
     </span>
     <div class="study-header">
       <router-link :to="'/lesson/' + lessonID">
-        <img src="/img/ejs/logo.png" alt="" />
+        <img src="@/assets/img/logo.png" alt="" />
       </router-link>
       <div class="study-header-text">
         {{ unit.type == 'grammar' ? 'Học ngữ pháp' : 'Học từ mới' }}
@@ -135,6 +135,7 @@ import Api from '~/services/Api'
 const FREE_TYPE = ['newword_speak_1', 'grammar_speak_1', 'grammar_speak_2']
 export default {
   name: 'Unit',
+  layout: 'unit',
   components: {
     NewwordPractice1,
     NewwordPractice2,

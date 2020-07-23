@@ -55,3 +55,8 @@ Vue.prototype.$getItemImg = (unit, item = {}, i = 1) => {
   const api = window.DOMAIN_API
   return api + '/images/' + unit.type + '/' + item.content['image' + i]
 }
+Vue.prototype.$playVolume = (text) => {
+  let msg = new SpeechSynthesisUtterance(text)
+  msg.lang = 'ja-JP'
+  window.speechSynthesis.speak(msg)
+}

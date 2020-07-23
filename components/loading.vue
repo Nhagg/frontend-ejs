@@ -1,7 +1,6 @@
 <template lang="html">
   <div class="loading-box" v-if="loading">
     <div class="loading-dot">
-      loading.....
       <span class="dot"></span>
       <span class="dot"></span>
       <span class="dot"></span>
