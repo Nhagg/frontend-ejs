@@ -20,10 +20,9 @@ export default {
   },
   async mounted() {
     console.log('default layout')
-    console.log(this.$cookies.get('userCookie'))
-    if (this.$cookies.get('userCookie')) {
-      console.log('setCookie')
-      this.$store.commit('setUser', JSON.parse(this.$cookies.get('userCookie')))
+    if (this.$cookies.isKey('userCookie')) {
+      console.log('get cokkie')
+      this.$store.commit('setUser', this.$cookies.get('userCookie'))
     }
   },
   data() {
