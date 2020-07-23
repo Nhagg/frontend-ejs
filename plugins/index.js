@@ -18,6 +18,7 @@ let replaceSpecialText = (text) => {
   return text
 }
 Vue.prototype.$clearSpecialText = (text) => {
+  text = text.toString().toLowerCase()
   text = text.replace(/（/g, '')
   text = text.replace(/）/g, '')
   text = text.replace(/／/g, '')
@@ -62,6 +63,10 @@ Vue.prototype.$convertNameToHtml = (text) => {
 Vue.prototype.$getItemImg = (unit, item = {}, i = 1) => {
   const api = process.env.DOMAIN_API
   return api + '/images/' + unit.type + '/' + item.content['image' + i]
+}
+Vue.prototype.$getItemAudio = (item = { content: {} }) => {
+  const api = process.env.DOMAIN_API
+  return api + '/mp3s/' + item.content.title2
 }
 Vue.prototype.$playVolume = (text) => {
   let msg = new SpeechSynthesisUtterance(text)

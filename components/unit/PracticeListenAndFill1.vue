@@ -4,10 +4,14 @@
       <div class="col text-center">
         <div class="speak-title">
           <h2 class="mr-3">Nghe và điền câu trả lời</h2>
-          <div class="volume-icon" @click="playVolume">
+          <div class="volume-icon" @click="playAudio">
             <i class="fa fa-volume-up"></i>
           </div>
         </div>
+        <audio ref="myAudio" controls class="d-none">
+          <source :src="$getItemAudio(item)" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
       </div>
     </div>
     <div class="item-list-answer mt-5">
@@ -43,7 +47,7 @@ export default {
     }
   },
   mounted() {
-    setTimeout(this.playVolume(), 2000)
+    setTimeout(this.playAudio(), 2000)
   },
   data() {
     return {
@@ -51,9 +55,8 @@ export default {
     }
   },
   methods: {
-    playVolume() {
-      let answer = this.item.content.correct_answer.toString().split('**')[0]
-      this.$playVolume(answer)
+    playAudio() {
+      this.$refs.myAudio.play()
     },
     checkAnswer(event) {
       if (event.code == 'Enter') {

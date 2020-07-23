@@ -87,6 +87,14 @@
         :unit="unit"
         :item="activeItem"
       />
+      <PracticeListenAndChooseTrueFalse
+        v-else-if="activeItem.type == 'practice_listen_and_choose_true_false'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :resetPage="resetPage"
+        :unit="unit"
+        :item="activeItem"
+      />
       <Default
         v-else
         :key="activeItem.id"
@@ -106,6 +114,9 @@
           <span v-if="userAnswer"> Phát âm của bạn: {{ userAnswer }} </span>
           <span v-else>
             Đáp án không chính xác
+          </span>
+          <span v-if="showCorrectAnswer()">
+            Đáp án chính xác: {{ correctAnswer }}
           </span>
         </div>
       </div>
@@ -150,6 +161,7 @@ import GrammarInformation2 from '~/components/unit/GrammarInformation2'
 import GrammarSpeak2 from '~/components/unit/GrammarSpeak2'
 import PracticeListenAndFill1 from '~/components/unit/PracticeListenAndFill1'
 import PracticeListenAndChooseImage1 from '~/components/unit/PracticeListenAndChooseImage1'
+import PracticeListenAndChooseTrueFalse from '~/components/unit/PracticeListenAndChooseTrueFalse'
 import Default from '~/components/unit/Default'
 import Api from '~/services/Api'
 const FREE_TYPE = ['newword_speak_1', 'grammar_speak_1', 'grammar_speak_2']
@@ -165,35 +177,34 @@ export default {
     GrammarSpeak2,
     PracticeListenAndFill1,
     PracticeListenAndChooseImage1,
+    PracticeListenAndChooseTrueFalse,
     Default
   },
-  async mounted() {
-    let unitId = this.unitId
-    console.log(this.$route.params, '2222')
-    await this.$store.dispatch('GET_LIST_LESSON')
-    await this.$store.dispatch('GET_LIST_LEARN_UNIT')
-    if (!unitId) {
-      alert('Không tìm thấy bài học')
-      return
-    }
-    await Api.get('/api/lessions/' + this.lessonID)
+  async asyncData({ store, route }) {
+    let unitId = route.params.unit_id
+    let lessonID = route.params.lesson_id
+    await store.dispatch('GET_LIST_LESSON')
+    await store.dispatch('GET_LIST_LEARN_UNIT')
+    let lesson = {}
+    let unit = {}
+    await Api.get('/api/lessions/' + lessonID)
       .then((res) => {
-        this.lesson = res.data
-        console.log('lesson', this.lesson)
+        lesson = res.data
       })
       .catch((e) => {
         console.log(e)
-        alert(e.message)
       })
     await Api.get('/api/learn_units/' + unitId)
       .then((res) => {
-        this.unit = res.data
-        console.log('unit', this.unit)
+        unit = res.data
       })
       .catch((e) => {
         console.log(e)
-        alert(e.message)
       })
+    return {
+      lesson,
+      unit
+    }
   },
   computed: {
     ...mapState(['listLesson', 'listLearnUnit', 'user']),
@@ -213,6 +224,12 @@ export default {
         return unit.learn_items[activeItemIndex]
       }
       return {}
+    },
+    correctAnswer() {
+      return this.activeItem.content.correct_answer
+        .toString()
+        .toLowerCase()
+        .replace('**', ' / ')
     }
   },
   data() {
@@ -224,7 +241,7 @@ export default {
       resetStatus: false,
       showResult: false,
       unit: {},
-      activeItemIndex: 2
+      activeItemIndex: 0
     }
   },
   methods: {
@@ -276,6 +293,20 @@ export default {
       item.point = parseInt(point) ? parseInt(point) : 0
       this.userAnswer = userAnswer
       this.resetPage()
+    },
+    showCorrectAnswer() {
+      const listTypeShowAnswer = [
+        'practice_listen_and_fill_1',
+        'practice_listen_and_fill_1',
+        'practice_listen_and_fill_1'
+      ]
+      if (
+        this.activeItem.point != undefined &&
+        listTypeShowAnswer.find((d) => d == this.activeItem.type)
+      ) {
+        return true
+      }
+      return false
     },
     getFooterClass() {
       console.log('getFooterClass', this.activeItem)

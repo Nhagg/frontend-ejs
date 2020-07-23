@@ -69,9 +69,17 @@ $sFooterHeight: 100px;
     display: flex;
     align-items: center;
   }
-  .study-footer-left i {
-    font-size: 50px;
-    margin-right: 20px;
+  .study-footer-left {
+    i {
+      font-size: 50px;
+      margin-right: 20px;
+    }
+    > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
   }
   .btn {
     border: solid 2px $text-gray;
@@ -125,9 +133,6 @@ $sFooterHeight: 100px;
     :first-child {
       border: solid 1px #ddd;
     }
-  }
-  img {
-    width: 100%;
   }
   .item-answer {
     margin-bottom: 20px;
@@ -226,5 +231,37 @@ $sFooterHeight: 100px;
 .grammar-info-1 {
   .text-large{
     margin-top: 200px;
+  }
+}
+.list-true-false {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  margin: 20vh auto 0;
+  .item-boolean {
+    cursor: pointer;
+    font-size: 28px;
+    font-weight: 500;
+    width: 200px;
+    text-align: center;
+    color: $text-gray;
+    i {
+      color: $text-gray;
+      margin-right: 10px;
+    }
+    &:hover {
+      color: #000;
+    }
+  }
+  .item-true {
+    i {
+      color: $text-green;
+    }
+  }
+  .item-false {
+    i {
+      color: $text-red;
+    }
   }
 }
