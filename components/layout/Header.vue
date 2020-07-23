@@ -87,24 +87,14 @@ export default {
       console.log('gAuth', this.$gAuth)
       const gData = await AuthService.authViaGoogle(this.$gAuth)
       console.log('handleLoginViaGoogle', gData)
-      let response = Api.post('/api/auth', gData).catch((err) => {
-        console.log(err)
-      })
+      let response = await Api.post('/api/auth', gData)
       console.log('response', response)
       if (response && response.success) {
-        response = {
-          success: true,
-          data: {
-            id: 1,
-            name: 'Nhạ',
-            token: 'fake_token'
-          }
-        }
-        this.$store.commit('setUser', response.data)
-      } else {
         this.$cookies.set('userCookie', JSON.stringify(response.data))
         this.$cookies.set('LEANING_TOKEN', response.token)
         this.$store.commit('setUser', response.data)
+      } else {
+        alert('Can not login with your email')
       }
       this.$bvModal.hide('login-modal')
     },
