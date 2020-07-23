@@ -20,7 +20,10 @@ export default {
   },
   async mounted() {
     console.log('default layout')
-    // await this.$store.dispatch('GET_LIST_COURSE')
+    console.log(this.$cookies.get('userCookie'))
+    if (this.$cookies.get('userCookie')) {
+      this.$store.commit(JSON.parse(this.$cookies.get('userCookie')))
+    }
   },
   data() {
     return {

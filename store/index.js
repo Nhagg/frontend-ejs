@@ -63,7 +63,6 @@ export const mutations = {
     state.listLearnUnit = data
   },
   setUser(state, user) {
-    window.setCookie('userInfo', JSON.stringify(user), 1)
     console.log('setUser', user)
     state.user = user
   }

@@ -36,7 +36,15 @@
                 </b-nav-item-dropdown>
                 <b-nav-item href="/">Thông báo</b-nav-item>
                 <b-nav-item href="/">Liên hệ</b-nav-item>
-                <b-nav-item href="#" v-b-modal.login-modal class="user-item">
+                <b-nav-item v-if="user.id" @click="logout">
+                  {{ user.name }}
+                </b-nav-item>
+                <b-nav-item
+                  v-else
+                  href="#"
+                  v-b-modal.login-modal
+                  class="user-item"
+                >
                   Đăng nhập
                 </b-nav-item>
               </b-navbar-nav>
@@ -69,19 +77,21 @@ export default {
   name: 'Header',
   components: {},
   computed: {
-    ...mapState(['listCourse', 'activeCourse'])
+    ...mapState(['listCourse', 'activeCourse', 'user'])
   },
   mounted() {
     this.$store.dispatch('GET_LIST_COURSE')
   },
   methods: {
     async handleLoginViaGoogle() {
-      console.log(this.$gAuth)
+      console.log('gAuth', this.$gAuth)
       const gData = await AuthService.authViaGoogle(this.$gAuth)
+      console.log('handleLoginViaGoogle', gData)
       let response = Api.post('/api/auth', gData).catch((err) => {
         console.log(err)
       })
-      if (!response) {
+      console.log('response', response)
+      if (response && response.success) {
         response = {
           success: true,
           data: {
@@ -92,10 +102,11 @@ export default {
         }
         this.$store.commit('setUser', response.data)
       } else {
-        let data = response.data
-        this.$cookies.set('LEANING_TOKEN', data.data && data.token)
-        this.$store.commit('setUser', data.data)
+        this.$cookies.set('userCookie', JSON.stringify(response.data))
+        this.$cookies.set('LEANING_TOKEN', response.token)
+        this.$store.commit('setUser', response.data)
       }
+      this.$bvModal.hide('login-modal')
     },
     logout() {
       console.log('logout')
