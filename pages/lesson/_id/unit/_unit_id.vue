@@ -8,7 +8,9 @@
         <img src="@/assets/img/logo.png" alt="" />
       </router-link>
       <div class="study-header-text">
-        {{ unit.type == 'grammar' ? 'Học ngữ pháp' : 'Học từ mới' }}
+        {{ unit.type == 'grammar' ? 'Học ngữ pháp' : '' }}
+        {{ unit.type == 'new_word' ? 'Học từ mới' : '' }}
+        {{ unit.type == 'practice' ? 'Luyện tập' : '' }}
       </div>
     </div>
     <div class="study-content" v-if="unit.id">
@@ -66,6 +68,14 @@
         v-else-if="activeItem.type == 'grammar_speak_2'"
         :key="activeItem.id + activeItem.showText"
         :setAnswer="setAnswer"
+        :unit="unit"
+        :item="activeItem"
+      />
+      <PracticeListenAndFill1
+        v-else-if="activeItem.type == 'practice_listen_and_fill_1'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :resetPage="resetPage"
         :unit="unit"
         :item="activeItem"
       />
@@ -130,6 +140,7 @@ import NewwordSpeak1 from '~/components/unit/NewwordSpeak1'
 import NewwordPronunciation1 from '~/components/unit/NewwordPronunciation1'
 import GrammarInformation2 from '~/components/unit/GrammarInformation2'
 import GrammarSpeak2 from '~/components/unit/GrammarSpeak2'
+import PracticeListenAndFill1 from '~/components/unit/PracticeListenAndFill1'
 import Default from '~/components/unit/Default'
 import Api from '~/services/Api'
 const FREE_TYPE = ['newword_speak_1', 'grammar_speak_1', 'grammar_speak_2']
@@ -143,6 +154,7 @@ export default {
     NewwordPronunciation1,
     GrammarInformation2,
     GrammarSpeak2,
+    PracticeListenAndFill1,
     Default
   },
   async mounted() {
@@ -252,11 +264,11 @@ export default {
     setAnswer(item, point, userAnswer = '') {
       console.log('setAns', point, userAnswer)
       item.point = parseInt(point) ? parseInt(point) : 0
-      // this.activeItemIndex++
       this.userAnswer = userAnswer
       this.resetPage()
     },
     getFooterClass() {
+      console.log('getFooterClass', this.activeItem)
       if (this.activeItem.point != undefined) {
         return this.isCorrect() ? 'correct' : 'incorrect'
       }

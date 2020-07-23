@@ -17,6 +17,14 @@ let replaceSpecialText = (text) => {
   text = text.replace(/／/g, '/')
   return text
 }
+Vue.prototype.$clearSpecialText = (text) => {
+  text = text.replace(/（/g, '')
+  text = text.replace(/）/g, '')
+  text = text.replace(/／/g, '')
+  text = text.replace(/ /g, '')
+  text = text.replace(/\./g, '')
+  return text
+}
 Vue.prototype.$getNativeName = (text) => {
   if (!text) {
     return ''
