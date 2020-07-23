@@ -84,7 +84,6 @@ export default {
   },
   methods: {
     async handleLoginViaGoogle() {
-      console.log('gAuth', this.$gAuth)
       const gData = await AuthService.authViaGoogle(this.$gAuth)
       console.log('handleLoginViaGoogle', gData)
       let response = await Api.post('/api/auth', gData)

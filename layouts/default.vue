@@ -21,7 +21,7 @@ export default {
   async mounted() {
     console.log('default layout')
     console.log(this.$cookies.get('userCookie'))
-    if (this.$cookies.get('userCookie')) {
+    if (this.$cookies.get('userCookie') != undefined) {
       this.$store.commit(JSON.parse(this.$cookies.get('userCookie')))
     }
   },
