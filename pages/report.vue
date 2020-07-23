@@ -280,6 +280,7 @@ export default {
   },
   async mounted() {
     let userId = this.user.id ? this.user.id : 18
+    console.log(userId, 'userId')
     let res = await Api.get(
       '/api/tracking?user_id=' + userId + '&type=learn_unit'
     )

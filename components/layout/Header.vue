@@ -36,7 +36,7 @@
                 </b-nav-item-dropdown>
                 <b-nav-item href="/">Thông báo</b-nav-item>
                 <b-nav-item href="/">Liên hệ</b-nav-item>
-                <b-nav-item v-if="user.id" @click="logout">
+                <b-nav-item v-if="user.id" @click="logout" href="#">
                   {{ user.name }}
                 </b-nav-item>
                 <b-nav-item

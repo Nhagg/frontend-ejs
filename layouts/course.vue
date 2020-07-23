@@ -21,8 +21,11 @@ export default {
     Footer
   },
   async mounted() {
-    // await this.$store.dispatch('GET_LIST_COURSE')
-    console.log('courser layout')
+    console.log('CourseLayout layout')
+    if (this.$cookies.isKey('userCookie')) {
+      console.log('get userCookie')
+      this.$store.commit('setUser', this.$cookies.get('userCookie'))
+    }
   },
   data() {
     return {

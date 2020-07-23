@@ -21,7 +21,7 @@ export default {
   async mounted() {
     console.log('default layout')
     if (this.$cookies.isKey('userCookie')) {
-      console.log('get cokkie')
+      console.log('get userCookie')
       this.$store.commit('setUser', this.$cookies.get('userCookie'))
     }
   },
