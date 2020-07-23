@@ -60,7 +60,7 @@ Vue.prototype.$convertNameToHtml = (text) => {
   return res
 }
 Vue.prototype.$getItemImg = (unit, item = {}, i = 1) => {
-  const api = window.DOMAIN_API
+  const api = process.env.DOMAIN_API
   return api + '/images/' + unit.type + '/' + item.content['image' + i]
 }
 Vue.prototype.$playVolume = (text) => {

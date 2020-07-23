@@ -10,12 +10,13 @@
         </div>
       </div>
     </div>
-    <div class="item-list-answer pt-4">
+    <div class="item-list-answer mt-5">
       <input
         ref="inputListenAndFill1"
         type="text"
-        class="form-control"
+        class="form-control ejs-form-control"
         @keypress="checkAnswer"
+        :disabled="disabled"
       />
     </div>
   </div>
@@ -45,7 +46,9 @@ export default {
     setTimeout(this.playVolume(), 2000)
   },
   data() {
-    return {}
+    return {
+      disabled: false
+    }
   },
   methods: {
     playVolume() {
@@ -53,8 +56,8 @@ export default {
       this.$playVolume(answer)
     },
     checkAnswer(event) {
-      console.log('checkAnswer')
       if (event.code == 'Enter') {
+        this.disabled = true
         let userAnswer = this.$refs.inputListenAndFill1.value
         let listCorrectAnswers = this.item.content.correct_answer
           .toString()

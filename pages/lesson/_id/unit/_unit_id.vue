@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid unit-page">
     <span class="d-none">
       {{ resetStatus }}
     </span>
@@ -79,6 +79,14 @@
         :unit="unit"
         :item="activeItem"
       />
+      <PracticeListenAndChooseImage1
+        v-else-if="activeItem.type == 'practice_listen_and_choose_image_1'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :resetPage="resetPage"
+        :unit="unit"
+        :item="activeItem"
+      />
       <Default
         v-else
         :key="activeItem.id"
@@ -141,6 +149,7 @@ import NewwordPronunciation1 from '~/components/unit/NewwordPronunciation1'
 import GrammarInformation2 from '~/components/unit/GrammarInformation2'
 import GrammarSpeak2 from '~/components/unit/GrammarSpeak2'
 import PracticeListenAndFill1 from '~/components/unit/PracticeListenAndFill1'
+import PracticeListenAndChooseImage1 from '~/components/unit/PracticeListenAndChooseImage1'
 import Default from '~/components/unit/Default'
 import Api from '~/services/Api'
 const FREE_TYPE = ['newword_speak_1', 'grammar_speak_1', 'grammar_speak_2']
@@ -155,6 +164,7 @@ export default {
     GrammarInformation2,
     GrammarSpeak2,
     PracticeListenAndFill1,
+    PracticeListenAndChooseImage1,
     Default
   },
   async mounted() {
@@ -214,7 +224,7 @@ export default {
       resetStatus: false,
       showResult: false,
       unit: {},
-      activeItemIndex: 0
+      activeItemIndex: 2
     }
   },
   methods: {

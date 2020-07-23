@@ -1,0 +1,72 @@
+<template>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col text-center">
+        <div class="speak-title">
+          <h2 class="mr-3">Nghe và Chọn đáp án đúng</h2>
+          <div class="volume-icon" @click="playVolume">
+            <i class="fa fa-volume-up"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div v-for="i in listAnswer" :key="i" class="col-sm-4">
+        <div class="item-answer" @click="() => checkAnswer(i)">
+          <div class="item-img ratio-4-3">
+            <img :src="$getItemImg(unit, item, i)" alt="" @error="onErrorImg" />
+            <i
+              v-if="userAnswer !== null && i === 1"
+              class="fas fa-check-circle text-success"
+            />
+            <i
+              v-if="userAnswer === i && i !== 1"
+              class="fas fa-check-circle text-danger"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: 'PracticeListenAndChooseImage1',
+  props: {
+    setAnswer: {
+      type: Function,
+      default: Function
+    },
+    unit: {
+      type: Object,
+      default: Object
+    },
+    item: {
+      type: Object,
+      default: Object
+    }
+  },
+  data() {
+    return {
+      userAnswer: null,
+      listAnswer: this.$shuffler([1, 2, 3])
+    }
+  },
+  methods: {
+    onErrorImg(event) {
+      event.target.src = require('~/assets/img/default.png')
+    },
+    playVolume() {
+      let answer = this.item.content.correct_answer.toString().split('**')[0]
+      this.$playVolume(answer)
+    },
+    checkAnswer(i) {
+      if (this.userAnswer != null) {
+        return
+      }
+      this.userAnswer = i
+      this.setAnswer(this.item, i === 1 ? this.item.score : 0)
+    }
+  }
+}
+</script>
