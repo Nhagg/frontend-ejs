@@ -250,6 +250,7 @@
 <script>
 import { mapState } from 'vuex'
 import mixin from '~/mixins/index'
+import Api from '~/services/Api'
 const maxNewWork = 200
 const maxGrammar = 25
 const maxConversation = 10
@@ -278,10 +279,11 @@ export default {
     }
   },
   async mounted() {
-    // let userId = this.user.id ? this.user.id : 18
-    // let res = await axios.get(
-    //   window.DOMAIN_API + '/api/tracking?user_id=' + userId + '&type=learn_unit'
-    // )
+    let userId = this.user.id ? this.user.id : 18
+    let res = await Api.get(
+      '/api/tracking?user_id=' + userId + '&type=learn_unit'
+    )
+    console.log(res)
     // if (res.data.success) {
     //   this.listUnit = res.data.data.sort((a, b) => a.progress - b.progress)
     //   console.log('listUnit', this.listUnit)

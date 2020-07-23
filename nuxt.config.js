@@ -53,6 +53,7 @@ module.exports = {
   axios: {
     progress: false,
     debug: false,
+    proxy: false,
     retry: 1
   },
   /*
