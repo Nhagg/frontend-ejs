@@ -86,7 +86,7 @@ export default {
     async handleLoginViaGoogle() {
       const gData = await AuthService.authViaGoogle(this.$gAuth)
       console.log('handleLoginViaGoogle', gData)
-      let response = await Api.post('/api/auth', gData)
+      let response = await Api.post(gData, '/api/auth')
       console.log('response', response)
       if (response && response.success) {
         this.$cookies.set('userCookie', JSON.stringify(response.data))
