@@ -81,11 +81,9 @@ export default {
     async handleLoginViaGoogle() {
       console.log(this.$gAuth)
       const gData = await AuthService.authViaGoogle(this.$gAuth)
-      let response = Api.post(window.DOMAIN_API + '/api/auth', gData).catch(
-        (err) => {
-          console.log(err)
-        }
-      )
+      let response = Api.post('/api/auth', gData).catch((err) => {
+        console.log(err)
+      })
       if (!response) {
         response = {
           success: true,
