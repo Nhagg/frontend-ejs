@@ -65,6 +65,9 @@ Vue.prototype.$getItemImg = (unit, item = {}, i = 1) => {
   return api + '/images/' + unit.type + '/' + item.content['image' + i]
 }
 Vue.prototype.$getItemAudio = (item = { content: {} }) => {
+  if (!item || !item.content) {
+    return ''
+  }
   const api = process.env.DOMAIN_API
   return api + '/mp3s/' + item.content.title2
 }

@@ -3,32 +3,26 @@
     <div class="row">
       <div class="col text-center">
         <div class="speak-title">
-          <h2 class="mr-3">Nghe và điền câu trả lời</h2>
-          <div class="volume-icon" @click="playAudio">
-            <i class="fa fa-volume-up"></i>
-          </div>
+          <h2 class="mr-3">Điền từ thích hợp vào chỗ trống</h2>
         </div>
-        <audio ref="myAudio" controls class="d-none">
-          Your browser does not support the audio element.
-        </audio>
       </div>
     </div>
-    <div class="listen-and-fill-input">
-      <input
-        ref="inputListenAndFill1"
-        type="text"
-        class="form-control ejs-form-control"
-        v-model="userAnswer"
-        @keypress="onKeyPress"
-        :disabled="disabled"
-      />
-      <i class="fa fa-arrow-alt-to-right" @click="checkAnswer"></i>
+    <div class="mt-5 text-center">
+      <h3
+        v-for="(text, index) in $_get(item, 'content.title2', '')
+          .toString()
+          .split('**')"
+        :key="index"
+        class="mt-3"
+      >
+        {{ text }}
+      </h3>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'PracticeListenAndFill1',
+  name: 'PracticeFillContent1',
   props: {
     setAnswer: {
       type: Function,
@@ -47,9 +41,7 @@ export default {
       default: Object
     }
   },
-  mounted() {
-    setTimeout(this.playAudio(), 2000)
-  },
+  mounted() {},
   data() {
     return {
       userAnswer: '',
@@ -57,9 +49,6 @@ export default {
     }
   },
   methods: {
-    playAudio() {
-      // this.$refs.myAudio.play()
-    },
     onKeyPress(event) {
       if (event.code == 'Enter') {
         this.checkAnswer()

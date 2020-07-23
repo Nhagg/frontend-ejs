@@ -95,6 +95,14 @@
         :unit="unit"
         :item="activeItem"
       />
+      <PracticeFillContent1
+        v-else-if="activeItem.type == 'practice_fill_content_1'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :resetPage="resetPage"
+        :unit="unit"
+        :item="activeItem"
+      />
       <Default
         v-else
         :key="activeItem.id"
@@ -162,6 +170,7 @@ import GrammarSpeak2 from '~/components/unit/GrammarSpeak2'
 import PracticeListenAndFill1 from '~/components/unit/PracticeListenAndFill1'
 import PracticeListenAndChooseImage1 from '~/components/unit/PracticeListenAndChooseImage1'
 import PracticeListenAndChooseTrueFalse from '~/components/unit/PracticeListenAndChooseTrueFalse'
+import PracticeFillContent1 from '~/components/unit/PracticeFillContent1'
 import Default from '~/components/unit/Default'
 import Api from '~/services/Api'
 const FREE_TYPE = ['newword_speak_1', 'grammar_speak_1', 'grammar_speak_2']
@@ -178,11 +187,12 @@ export default {
     PracticeListenAndFill1,
     PracticeListenAndChooseImage1,
     PracticeListenAndChooseTrueFalse,
+    PracticeFillContent1,
     Default
   },
   async asyncData({ store, route }) {
     let unitId = route.params.unit_id
-    let lessonID = route.params.lesson_id
+    let lessonID = route.params.id
     await store.dispatch('GET_LIST_LESSON')
     await store.dispatch('GET_LIST_LEARN_UNIT')
     let lesson = {}
@@ -241,7 +251,7 @@ export default {
       resetStatus: false,
       showResult: false,
       unit: {},
-      activeItemIndex: 0
+      activeItemIndex: 3
     }
   },
   methods: {
