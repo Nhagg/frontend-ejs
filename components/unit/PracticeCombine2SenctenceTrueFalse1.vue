@@ -3,18 +3,20 @@
     <div class="row">
       <div class="col text-center">
         <div class="speak-title">
-          <h2 class="mr-3">Nghe và chọn đúng sai</h2>
-          <div class="volume-icon" @click="playAudio">
-            <i class="fa fa-volume-up"></i>
-          </div>
-          <audio ref="myAudio" controls class="d-none">
-            <source :src="$getItemAudio(item)" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
+          <h2 class="mr-3">
+            Cho biết các câu dưới đây được viết lại đúng hay sai
+          </h2>
         </div>
       </div>
     </div>
-    <div :class="'list-true-false ' + item.point">
+    <div class="mt-5 row">
+      <div class="col-sm-10 offset-2">
+        <div class="h2" v-for="i in listAnswer" :key="i">
+          {{ $_get(item, 'content.image_text' + i) }}
+        </div>
+      </div>
+    </div>
+    <div :class="'list-true-false mt-5'">
       <div
         @click="() => checkAnswer('true')"
         class="item-boolean"
@@ -42,7 +44,7 @@
 </template>
 <script>
 export default {
-  name: 'PracticeListenAndChooseImage1',
+  name: 'PracticeCombine2SenctenceTrueFalse1',
   props: {
     setAnswer: {
       type: Function,
@@ -71,16 +73,10 @@ export default {
       showAnswer: false,
       domainAPI: this.$store.state.domainAPI,
       userAnswer: null,
-      listAnswer: this.$shuffler([1, 2, 3])
+      listAnswer: [1, 2, 3]
     }
   },
-  mounted() {
-    setTimeout(this.playAudio(), 2000)
-  },
   methods: {
-    playAudio() {
-      this.$refs.myAudio.play()
-    },
     checkAnswer(answer) {
       if (this.showAnswer) {
         return
