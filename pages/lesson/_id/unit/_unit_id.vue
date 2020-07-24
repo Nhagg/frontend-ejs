@@ -110,6 +110,13 @@
         :unit="unit"
         :item="activeItem"
       />
+      <PracticeReadChooseTrueFalse1
+        v-else-if="activeItem.type == 'practice_read_choose_true_false_1'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :unit="unit"
+        :item="activeItem"
+      />
       <PracticeChooseWorkAndChangeFormat
         v-else-if="activeItem.type == 'practice_choose_word_and_change_fomart'"
         :key="activeItem.id"
@@ -225,6 +232,7 @@ import PracticeListenAndChooseImage1 from '~/components/unit/PracticeListenAndCh
 import PracticeListenAndChooseTrueFalse from '~/components/unit/PracticeListenAndChooseTrueFalse'
 import PracticeFillContent1 from '~/components/unit/PracticeFillContent1'
 import PracticeArrangeSentence1 from '~/components/unit/PracticeArrangeSentence1'
+import PracticeReadChooseTrueFalse1 from '~/components/unit/PracticeReadChooseTrueFalse1'
 import PracticeChooseWorkAndChangeFormat from '~/components/unit/PracticeChooseWorkAndChangeFormat'
 import PracticeReadChooseCorrectAnswer1 from '~/components/unit/PracticeReadChooseCorrectAnswer1'
 import PracticeVerbChangeFormat1 from '~/components/unit/PracticeVerbChangeFormat1'
@@ -249,6 +257,7 @@ export default {
     PracticeListenAndChooseTrueFalse,
     PracticeFillContent1,
     PracticeArrangeSentence1,
+    PracticeReadChooseTrueFalse1,
     PracticeChooseWorkAndChangeFormat,
     PracticeReadChooseCorrectAnswer1,
     PracticeVerbChangeFormat1,
@@ -318,7 +327,7 @@ export default {
       resetStatus: false,
       showResult: false,
       unit: {},
-      activeItemIndex: 11
+      activeItemIndex: 0
     }
   },
   methods: {

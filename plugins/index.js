@@ -82,5 +82,5 @@ Vue.prototype.$playVolume = (text) => {
   window.speechSynthesis.speak(msg)
 }
 Vue.prototype.$errorImage = (event) => {
-  event.target.src = require('~/assets/img/lesson.png')
+  event.target.src = require('~/assets/img/default.png')
 }

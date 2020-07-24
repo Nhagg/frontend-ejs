@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div :class="'list-true-false ' + item.point">
+    <div class="list-true-false">
       <div
         @click="() => checkAnswer('true')"
         class="item-boolean"

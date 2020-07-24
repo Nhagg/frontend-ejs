@@ -3,46 +3,53 @@
     <div class="row">
       <div class="col text-center">
         <div class="speak-title">
-          <h2 class="mr-3">Nghe và chọn đúng sai</h2>
-          <div class="volume-icon" @click="playAudio">
-            <i class="fa fa-volume-up"></i>
-          </div>
-          <audio ref="myAudio" controls class="d-none">
-            <source :src="$getItemAudio(item)" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
+          <h2>Đọc đoạn văn và trả lời đúng sai</h2>
         </div>
       </div>
     </div>
-    <div :class="'list-true-false ' + item.point">
-      <div
-        @click="() => checkAnswer('true')"
-        class="item-boolean"
-        :class="{
-          'item-true': showAnswer && correctAnswer == 'true',
-          'item-false': showAnswer && correctAnswer == 'false'
-        }"
-      >
-        <i class="fa fa-check-circle"></i>
-        Đúng
+    <div class="row mt-5">
+      <div class="col-sm-7">
+        <img
+          :src="$getItemImg(unit, item, 1)"
+          @error="$errorImage"
+          class="w-100"
+        />
       </div>
-      <div
-        @click="() => checkAnswer('false')"
-        class="item-boolean"
-        :class="{
-          'item-true': showAnswer && correctAnswer == 'false',
-          'item-false': showAnswer && correctAnswer == 'true'
-        }"
-      >
-        <i class="fa fa-times-circle"></i>
-        Sai
+      <div class="col-sm-5">
+        <div class="list-true-false list-true-false-read">
+          <h2>
+            {{ item.content.title2 }}
+          </h2>
+          <div
+            @click="() => checkAnswer('true')"
+            class="item-boolean"
+            :class="{
+              'item-true': showAnswer && correctAnswer == 'true',
+              'item-false': showAnswer && correctAnswer == 'false'
+            }"
+          >
+            <i class="fa fa-check-circle"></i>
+            Đúng
+          </div>
+          <div
+            @click="() => checkAnswer('false')"
+            class="item-boolean"
+            :class="{
+              'item-true': showAnswer && correctAnswer == 'false',
+              'item-false': showAnswer && correctAnswer == 'true'
+            }"
+          >
+            <i class="fa fa-times-circle"></i>
+            Sai
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'PracticeListenAndChooseImage1',
+  name: 'PracticeReadChooseTrueFalse1',
   props: {
     setAnswer: {
       type: Function,
@@ -69,13 +76,8 @@ export default {
   data() {
     return {
       showAnswer: false,
-      domainAPI: this.$store.state.domainAPI,
-      userAnswer: null,
-      listAnswer: this.$shuffler([1, 2, 3])
+      userAnswer: null
     }
-  },
-  mounted() {
-    setTimeout(this.playAudio(), 2000)
   },
   methods: {
     playAudio() {

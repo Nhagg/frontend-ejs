@@ -265,6 +265,21 @@ $sFooterHeight: 100px;
     }
   }
 }
+.list-true-false.list-true-false-read {
+  flex-direction: column;
+  margin: 0;
+  width: 100%;
+  align-items: flex-start;
+  h2 {
+    width: 100%;
+    text-align: center;
+  }
+  > div {
+    margin-top: 40px;
+    padding-left: 80px;
+    text-align: left;
+  }
+}
 .listen-and-fill-input {
   width: 50vw;
   margin: 20vh auto 0;
