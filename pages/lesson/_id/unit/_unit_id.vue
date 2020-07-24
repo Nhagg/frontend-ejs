@@ -251,7 +251,7 @@ export default {
       resetStatus: false,
       showResult: false,
       unit: {},
-      activeItemIndex: 3
+      activeItemIndex: 0
     }
   },
   methods: {
