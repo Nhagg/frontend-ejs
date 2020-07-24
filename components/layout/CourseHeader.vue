@@ -29,7 +29,7 @@
                 </b-nav-item-dropdown>
                 <b-nav-item to="/report">Kết quả học tập</b-nav-item>
                 <b-nav-item href="#" class="ml-4 user-item">
-                  Nguyễn Thị Duyên
+                  {{ user.name ? user.name : 'Nguyễn Hà' }}
                   <img
                     src="@/assets/img/banner/student1.png"
                     alt=""
@@ -52,7 +52,7 @@ export default {
   name: 'CourseHeader',
   components: {},
   computed: {
-    ...mapState(['listCourse', 'activeCourse'])
+    ...mapState(['listCourse', 'activeCourse', 'user'])
   },
   mounted() {
     console.log(this.$route)

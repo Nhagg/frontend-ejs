@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-2">
-          <nuxt-link to="/course/2" class="header-logo">
+          <nuxt-link to="/" class="header-logo">
             <img src="~/assets/img/logo.png" alt="" />
           </nuxt-link>
         </div>
@@ -36,7 +36,12 @@
                 </b-nav-item-dropdown>
                 <b-nav-item href="/">Thông báo</b-nav-item>
                 <b-nav-item href="/">Liên hệ</b-nav-item>
-                <b-nav-item v-if="user.id" @click="logout" href="#">
+                <b-nav-item
+                  v-if="user.id"
+                  href="#"
+                  @click="logout"
+                  class="user-item"
+                >
                   {{ user.name }}
                 </b-nav-item>
                 <b-nav-item

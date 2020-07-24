@@ -1,7 +1,7 @@
 <template>
   <div class="container course-detail">
     <h2 class="border-bottom-red">{{ course.name }}</h2>
-    <div class="row lesson-list custom-row mt-5">
+    <div class="row lesson-list custom-row mt-4">
       <div
         v-for="lesson in listLesson.filter(
           (s) => s.course && s.course.id == activeCourse

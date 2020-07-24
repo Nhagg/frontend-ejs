@@ -257,6 +257,7 @@ const maxConversation = 10
 const maxPractice = 15
 export default {
   name: 'Report',
+  layout: 'course',
   mixins: [mixin],
   components: {},
   computed: {
