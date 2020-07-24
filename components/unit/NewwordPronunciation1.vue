@@ -26,12 +26,8 @@
       </div>
     </div>
     <div class="item-list-answer">
-      <div class="row">
-        <div class="col-sm-8 offset-2">
-          <div class="item-answer">
-            <img :src="$getItemImg(unit, item, 1)" alt="" />
-          </div>
-        </div>
+      <div class="item-answer">
+        <img :src="$getItemImg(unit, item, 1)" alt="" />
       </div>
     </div>
   </div>

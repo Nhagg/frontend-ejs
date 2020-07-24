@@ -280,3 +280,31 @@ $sFooterHeight: 100px;
     font-size: 30px;
   }
 }
+.listen-item-arrange {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .item-arrange {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    min-width: 100px;
+    height: 47px;
+    text-align: center;
+    padding: 10px 20px;
+    background: $text-gray2;
+    border-radius: 5px;
+    border: none;
+    outline: none !important;
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+    &.item-selected {
+      background: $text-green;
+      color: #fff;
+    }
+    &:disabled {
+      background: $text-gray2 !important;
+    }
+  }
+}

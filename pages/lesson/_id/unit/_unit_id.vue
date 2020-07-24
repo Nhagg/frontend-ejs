@@ -103,6 +103,13 @@
         :unit="unit"
         :item="activeItem"
       />
+      <PracticeArrangeSentence1
+        v-else-if="activeItem.type == 'practice_arrange_sentence_1'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :unit="unit"
+        :item="activeItem"
+      />
       <Default
         v-else
         :key="activeItem.id"
@@ -113,7 +120,7 @@
       />
     </div>
     <div v-if="unit.id" :class="'study-footer ' + getFooterClass()">
-      <div class="study-footer-left" v-if="!showResult">
+      <div class="study-footer-left" v-if="activeItem.point != undefined">
         <i class="fa fa-check-circle"></i>
         <div v-if="isCorrect()">
           Đáp án chính xác
@@ -123,12 +130,9 @@
           <span v-else>
             Đáp án không chính xác
           </span>
-          <span v-if="showCorrectAnswer()">
-            Đáp án chính xác: {{ correctAnswer }}
-          </span>
         </div>
       </div>
-      <div v-else class="study-footer-left">
+      <div v-else-if="showResult" class="study-footer-left">
         <i class="fa fa-check-circle"></i>
         {{
           this.resultPoint() >= 80
@@ -136,6 +140,7 @@
             : 'Bạn nên học lại để có kết quả tốt hơn '
         }}
       </div>
+      <div v-else class="study-footer-left"></div>
       <div>
         <button class="btn" @click="nextPage" v-if="activeItem.id">
           Tiếp theo
@@ -171,6 +176,7 @@ import PracticeListenAndFill1 from '~/components/unit/PracticeListenAndFill1'
 import PracticeListenAndChooseImage1 from '~/components/unit/PracticeListenAndChooseImage1'
 import PracticeListenAndChooseTrueFalse from '~/components/unit/PracticeListenAndChooseTrueFalse'
 import PracticeFillContent1 from '~/components/unit/PracticeFillContent1'
+import PracticeArrangeSentence1 from '~/components/unit/PracticeArrangeSentence1'
 import Default from '~/components/unit/Default'
 import Api from '~/services/Api'
 const FREE_TYPE = ['newword_speak_1', 'grammar_speak_1', 'grammar_speak_2']
@@ -188,6 +194,7 @@ export default {
     PracticeListenAndChooseImage1,
     PracticeListenAndChooseTrueFalse,
     PracticeFillContent1,
+    PracticeArrangeSentence1,
     Default
   },
   async asyncData({ store, route }) {
@@ -303,20 +310,6 @@ export default {
       item.point = parseInt(point) ? parseInt(point) : 0
       this.userAnswer = userAnswer
       this.resetPage()
-    },
-    showCorrectAnswer() {
-      const listTypeShowAnswer = [
-        'practice_listen_and_fill_1',
-        'practice_listen_and_fill_1',
-        'practice_listen_and_fill_1'
-      ]
-      if (
-        this.activeItem.point != undefined &&
-        listTypeShowAnswer.find((d) => d == this.activeItem.type)
-      ) {
-        return true
-      }
-      return false
     },
     getFooterClass() {
       console.log('getFooterClass', this.activeItem)

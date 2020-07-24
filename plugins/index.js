@@ -12,11 +12,16 @@ Vue.prototype.$shuffler = (arr) => {
   return arr.sort(() => 0.5 - Math.random())
 }
 let replaceSpecialText = (text) => {
+  if (!text) {
+    return ''
+  }
+  text = text.toString()
   text = text.replace(/（/g, '(')
   text = text.replace(/）/g, ')')
   text = text.replace(/／/g, '/')
   return text
 }
+Vue.prototype.$replaceSpecialText = replaceSpecialText
 Vue.prototype.$clearSpecialText = (text) => {
   text = text.toString().toLowerCase()
   text = text.replace(/（/g, '')

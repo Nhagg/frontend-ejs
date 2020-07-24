@@ -22,7 +22,9 @@ h2.border-bottom-red {
 .text-red {
   color: $text-red !important;
 }
-
+.mt-20vh {
+  margin-top: 20vh;
+}
 .progress-circle {
   background-color: $text-red;
   border-radius: 50%;
@@ -454,6 +456,7 @@ $half: round($loops / 2);
   }
 }
 .btn {
+  border-radius: 5px;
   &.btn-green {
     background-color: $text-green;
     color: #fff;
@@ -483,4 +486,9 @@ $half: round($loops / 2);
     top: -1px;
     left: -1px;
   }
+}
+.btn-check-answer {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px 25px;
 }

@@ -20,9 +20,22 @@
         class="form-control ejs-form-control"
         v-model="userAnswer"
         @keypress="onKeyPress"
-        :disabled="disabled"
+        :disabled="checkedAnswer"
       />
-      <i class="fa fa-arrow-alt-to-right" @click="checkAnswer"></i>
+    </div>
+    <div
+      v-if="checkedAnswer && userPoint == false"
+      class="text-center mt-5 fs-20 fw-500"
+    >
+      Đáp án chính xác:
+    </div>
+    <h2 v-if="checkedAnswer && userPoint == false" class="text-center mt-4">
+      {{ item.content.correct_answer.toString().split('**')[0] }}
+    </h2>
+    <div v-if="!checkedAnswer" class="mt-5 text-center">
+      <button class="btn btn-check-answer btn-green" @click="checkAnswer">
+        Kiểm tra
+      </button>
     </div>
   </div>
 </template>
@@ -53,7 +66,8 @@ export default {
   data() {
     return {
       userAnswer: '',
-      disabled: false
+      userPoint: false,
+      checkedAnswer: false
     }
   },
   methods: {
@@ -69,25 +83,21 @@ export default {
       }
     },
     checkAnswer() {
-      if (this.disabled) {
+      if (this.checkedAnswer) {
         return
       }
-      this.disabled = true
+      this.checkedAnswer = true
       let userAnswer = this.userAnswer
       let listCorrectAnswers = this.item.content.correct_answer
         .toString()
         .split('**')
-      console.log(this.$clearSpecialText(listCorrectAnswers[0]))
-      console.log(
-        this.$clearSpecialText(listCorrectAnswers[1]),
-        this.$clearSpecialText(userAnswer)
-      )
       if (
         listCorrectAnswers.find(
           (a) => this.$clearSpecialText(a) == this.$clearSpecialText(userAnswer)
         )
       ) {
         this.setAnswer(this.item, this.item.score)
+        this.userPoint = true
       } else {
         this.setAnswer(this.item, 0)
       }
