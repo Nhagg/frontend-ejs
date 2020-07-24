@@ -308,3 +308,9 @@ $sFooterHeight: 100px;
     }
   }
 }
+.item-image {
+  cursor: pointer;
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
+}

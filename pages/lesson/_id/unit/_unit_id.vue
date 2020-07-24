@@ -110,6 +110,27 @@
         :unit="unit"
         :item="activeItem"
       />
+      <PracticeChooseWorkAndChangeFormat
+        v-else-if="activeItem.type == 'practice_choose_word_and_change_fomart'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :unit="unit"
+        :item="activeItem"
+      />
+      <PracticeReadChooseCorrectAnswer1
+        v-else-if="activeItem.type == 'practice_read_choose_correct_answer_1'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :unit="unit"
+        :item="activeItem"
+      />
+      <PracticeVerbChangeFormat1
+        v-else-if="activeItem.type == 'practice_verb_change_format_1'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :unit="unit"
+        :item="activeItem"
+      />
       <Default
         v-else
         :key="activeItem.id"
@@ -177,6 +198,9 @@ import PracticeListenAndChooseImage1 from '~/components/unit/PracticeListenAndCh
 import PracticeListenAndChooseTrueFalse from '~/components/unit/PracticeListenAndChooseTrueFalse'
 import PracticeFillContent1 from '~/components/unit/PracticeFillContent1'
 import PracticeArrangeSentence1 from '~/components/unit/PracticeArrangeSentence1'
+import PracticeChooseWorkAndChangeFormat from '~/components/unit/PracticeChooseWorkAndChangeFormat'
+import PracticeReadChooseCorrectAnswer1 from '~/components/unit/PracticeReadChooseCorrectAnswer1'
+import PracticeVerbChangeFormat1 from '~/components/unit/PracticeVerbChangeFormat1'
 import Default from '~/components/unit/Default'
 import Api from '~/services/Api'
 const FREE_TYPE = ['newword_speak_1', 'grammar_speak_1', 'grammar_speak_2']
@@ -195,6 +219,9 @@ export default {
     PracticeListenAndChooseTrueFalse,
     PracticeFillContent1,
     PracticeArrangeSentence1,
+    PracticeChooseWorkAndChangeFormat,
+    PracticeReadChooseCorrectAnswer1,
+    PracticeVerbChangeFormat1,
     Default
   },
   async asyncData({ store, route }) {
@@ -258,7 +285,7 @@ export default {
       resetStatus: false,
       showResult: false,
       unit: {},
-      activeItemIndex: 0
+      activeItemIndex: 8
     }
   },
   methods: {

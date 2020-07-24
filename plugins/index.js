@@ -81,3 +81,6 @@ Vue.prototype.$playVolume = (text) => {
   msg.lang = 'ja-JP'
   window.speechSynthesis.speak(msg)
 }
+Vue.prototype.$errorImage = (event) => {
+  event.target.src = require('~/assets/img/lesson.png')
+}
