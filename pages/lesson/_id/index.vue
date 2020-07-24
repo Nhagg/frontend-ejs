@@ -94,6 +94,7 @@ import mixin from '~/mixins/index'
 import Api from '~/services/Api'
 export default {
   name: 'Lesson',
+  layout: 'course',
   mixins: [mixin],
   components: {},
   computed: {
