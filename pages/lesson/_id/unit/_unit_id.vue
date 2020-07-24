@@ -149,6 +149,15 @@
         :unit="unit"
         :item="activeItem"
       />
+      <PracticeCompletedScentenceByExistingWords1
+        v-else-if="
+          activeItem.type == 'practice_completed_scentence_by_existing_words_1'
+        "
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :unit="unit"
+        :item="activeItem"
+      />
       <Default
         v-else
         :key="activeItem.id"
@@ -221,6 +230,7 @@ import PracticeReadChooseCorrectAnswer1 from '~/components/unit/PracticeReadChoo
 import PracticeVerbChangeFormat1 from '~/components/unit/PracticeVerbChangeFormat1'
 import PracticeSeePictureCompleteScentence1 from '~/components/unit/PracticeSeePictureCompleteScentence1'
 import PracticeCombine2SenctenceTrueFalse1 from '~/components/unit/PracticeCombine2SenctenceTrueFalse1'
+import PracticeCompletedScentenceByExistingWords1 from '~/components/unit/PracticeCompletedScentenceByExistingWords1'
 import Default from '~/components/unit/Default'
 import Api from '~/services/Api'
 const FREE_TYPE = ['newword_speak_1', 'grammar_speak_1', 'grammar_speak_2']
@@ -244,6 +254,7 @@ export default {
     PracticeVerbChangeFormat1,
     PracticeSeePictureCompleteScentence1,
     PracticeCombine2SenctenceTrueFalse1,
+    PracticeCompletedScentenceByExistingWords1,
     Default
   },
   async asyncData({ store, route }) {
@@ -307,7 +318,7 @@ export default {
       resetStatus: false,
       showResult: false,
       unit: {},
-      activeItemIndex: 10
+      activeItemIndex: 11
     }
   },
   methods: {
