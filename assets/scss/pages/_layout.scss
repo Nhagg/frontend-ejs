@@ -58,7 +58,7 @@ $courseHeader: 90px;
 $footerHeight: 110px;
 .ejs-footer {
   width: 100%;
-  padding: 60px 0 40px;
+  padding: 40px 0 20px;
   color: rgba(0, 0, 0, 0.6);
   a {
     :hover {
@@ -68,9 +68,6 @@ $footerHeight: 110px;
   h4 {
     color: #000;
     margin-bottom: 15px;
-  }
-  h5 {
-    color: #000;
   }
   .footer-list {
     li {

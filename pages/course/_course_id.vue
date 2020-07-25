@@ -36,8 +36,13 @@
           </div>
         </router-link>
       </div>
-      <div v-if="listLesson.length == 0" class="empty-box">
-        <h3>Coming soon. Please wait us!</h3>
+      <div
+        v-if="
+          listLesson.filter((s) => s.course && s.course.id == activeCourse) == 0
+        "
+        class="empty-box"
+      >
+        <h3>Tính năng đang được cập nhật. Anh/chị vui lòng quay lại sau</h3>
       </div>
     </div>
   </div>
@@ -57,6 +62,9 @@ export default {
       let res = this.listCourse.find((c) => c.id == this.activeCourse)
       return res ? res : {}
     }
+  },
+  mounted() {
+    this.$scrollToTop()
   },
   async asyncData({ store, route }) {
     await store.dispatch('GET_LIST_COURSE')

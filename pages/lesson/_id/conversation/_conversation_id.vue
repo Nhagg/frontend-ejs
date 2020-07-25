@@ -150,6 +150,12 @@
                     </div>
                   </div>
                 </div>
+                <div
+                  v-if="showHintMicro && checkActiveConversation(activeItem)"
+                  class="fs-16 pr-2 text-right"
+                >
+                  Anh/chị bấm nào nút Microphone để phát âm
+                </div>
               </div>
               <div
                 v-if="checkActiveConversation(activeItem)"
@@ -332,6 +338,7 @@ export default {
       resetStatus: false,
       microStatus: false,
       showResult: false,
+      showHintMicro: true,
       lesson: {},
       unit: {},
       activePersonIndex: 2,
@@ -341,7 +348,7 @@ export default {
   },
   methods: {
     toggleMicro() {
-      console.log('toggleMicro', this.microStatus)
+      this.showHintMicro = false
       if (this.microStatus) {
         recognition.stop()
       } else {
@@ -374,6 +381,7 @@ export default {
       this.userAnswer = ''
       this.compareHTML = ''
       this.activeItemIndex++
+      this.showHintMicro = true
       if (this.activeItem.type == 'conversation_context') {
         this.activeContextIndex++
       }

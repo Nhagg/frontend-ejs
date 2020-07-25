@@ -126,7 +126,7 @@
           }
           &:before {
             content: "\f053";
-            font-family: "Font Awesome 5 Free";
+            font-family: "Font Awesome 5 Pro";
             font-weight: 600;
             font-size: 20px;
             line-height: 14px;
@@ -157,17 +157,19 @@
         }
         &.conversation-item-active {
           justify-content: flex-end;
+
           .conversation-item-name {
             margin-left: 20px;
             margin-right: 0px;
           }
           .conversation-item-text {
+            background-color: $bg-green;
             &:before{
               display: none;
             }
             &:after {
               content: "\f054";
-              font-family: "Font Awesome 5 Free";
+              font-family: "Font Awesome 5 Pro";
               font-weight: 600;
               font-size: 20px;
               line-height: 14px;

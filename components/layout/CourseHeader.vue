@@ -53,9 +53,6 @@ export default {
   components: {},
   computed: {
     ...mapState(['listCourse', 'activeCourse', 'user'])
-  },
-  mounted() {
-    this.$store.dispatch('GET_LIST_COURSE')
   }
 }
 </script>

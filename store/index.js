@@ -1,8 +1,30 @@
 import ApiService from '~/services/Api'
+const listCourse = [
+  {
+    id: 1,
+    name: 'Học nhập môn'
+  },
+  {
+    id: 2,
+    name: 'Khóa N5'
+  },
+  {
+    id: 3,
+    name: 'Khóa N4'
+  },
+  {
+    id: 4,
+    name: 'Học chuyên nghành'
+  },
+  {
+    id: 5,
+    name: 'Học định hướng'
+  }
+]
 export const state = () => ({
   domainAPI: process.env.DOMAIN_API,
   sidebarShow: 'responsive',
-  listCourse: [],
+  listCourse,
   listLesson: [],
   listLearnUnit: [],
   activeCourse: 2,
