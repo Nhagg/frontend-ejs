@@ -83,11 +83,7 @@ export default {
     },
     playVolume() {
       this.compareHTML = ''
-      let msg = new SpeechSynthesisUtterance(
-        this.$getNativeName(this.unit.name_native_language)
-      )
-      msg.lang = 'ja-JP'
-      window.speechSynthesis.speak(msg)
+      this.$playVolume(this.$getNativeName(this.unit.name_native_language))
     },
     compareResult(userAnswer, correctAnswer) {
       let ans = correctAnswer.replace(/\./g, '')

@@ -105,7 +105,7 @@ export default {
     },
     checkAnswer() {
       let res = false
-      if (this.userAnswer.join() == this.correctAnswer) {
+      if (this.userAnswer.join('/') == this.correctAnswer) {
         res = true
       }
       this.setAnswer(this.item, res ? this.item.score : 0)

@@ -9,6 +9,7 @@
           </div>
         </div>
         <audio ref="myAudio" controls class="d-none">
+          <source :src="$getItemAudio(item)" type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
       </div>
@@ -72,7 +73,7 @@ export default {
   },
   methods: {
     playAudio() {
-      // this.$refs.myAudio.play()
+      this.$refs.myAudio.play()
     },
     onKeyPress(event) {
       if (event.code == 'Enter') {

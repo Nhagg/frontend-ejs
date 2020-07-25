@@ -55,7 +55,7 @@ export default {
     ...mapState(['listCourse', 'activeCourse', 'user'])
   },
   mounted() {
-    console.log(this.$route)
+    this.$store.dispatch('GET_LIST_COURSE')
   }
 }
 </script>

@@ -11,8 +11,15 @@
     </div>
     <div class="mt-5 row">
       <div class="col-sm-10 offset-2">
-        <div class="h2" v-for="i in listAnswer" :key="i">
-          {{ $_get(item, 'content.image_text' + i) }}
+        <div class="h3">
+          {{ $_get(item, 'content.image_text' + 1) }}
+        </div>
+        <div class="h3">
+          {{ $_get(item, 'content.image_text' + 2) }}
+        </div>
+        <div class="h2 mt-4">
+          <i class="fa fa-chevron-double-right mr-3 text-green"></i>
+          {{ $_get(item, 'content.image_text' + 3) }}
         </div>
       </div>
     </div>

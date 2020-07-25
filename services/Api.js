@@ -1,3 +1,10 @@
+const defaultConfig = {
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
+    'Content-Type': 'application/json'
+  }
+}
 class ApiService {
   constructor() {
     this.axios = null
@@ -14,7 +21,7 @@ class ApiService {
     return this.axios.$get(resource)
   }
   post(data, resource = '') {
-    return this.axios.$post(resource, data)
+    return this.axios.$post(resource, data, defaultConfig)
   }
   put(data, resource = '', option = null) {
     return this.axios.$put(resource, data, option)

@@ -10,7 +10,7 @@
               class="japan-name"
             ></h2>
           </div>
-          <div class="volume-icon" @click="playVolume">
+          <div class="volume-icon" @click="() => playVolume(1)">
             <i class="fa fa-volume-up"></i>
           </div>
         </div>
@@ -40,14 +40,14 @@ export default {
     }
   },
   mounted() {
-    setTimeout(this.playVolume(), 2000)
+    setTimeout(this.playVolume(0.6), 2000)
     playTimeout1 = setTimeout(() => {
       this.activeAnswer = 2
       this.playVolume()
     }, 6000)
     playTimeout2 = setTimeout(() => {
       this.activeAnswer = 3
-      this.playVolume()
+      this.playVolume(1)
     }, 9000)
   },
   beforeDestroy() {
@@ -60,16 +60,11 @@ export default {
     }
   },
   methods: {
-    playVolume() {
-      console.log(
-        'playVolume',
-        this.$getNativeName(this.unit.name_native_language)
+    playVolume(speed = 0.8) {
+      this.$playVolume(
+        this.$getNativeName(this.unit.name_native_language),
+        speed
       )
-      let msg = new SpeechSynthesisUtterance(
-        this.$getNativeName(this.unit.name_native_language)
-      )
-      msg.lang = 'ja-JP'
-      window.speechSynthesis.speak(msg)
     }
   }
 }

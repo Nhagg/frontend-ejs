@@ -437,11 +437,7 @@ export default {
       return parseInt((totalPoint * 100) / totalScore)
     },
     playVolume(text) {
-      console.log('playVolume', this.$getNativeName(text))
-      this.compareHTML = ''
-      let msg = new SpeechSynthesisUtterance(this.$getNativeName(text))
-      msg.lang = 'ja-JP'
-      window.speechSynthesis.speak(msg)
+      this.$playVolume(this.$getNativeName(text))
     },
     getSentenceText(text = '', index = 0) {
       return text.split('--')[index]

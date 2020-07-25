@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col text-center">
-        <h2>Chúc mừng bạn học được thêm 1 từ mới</h2>
+        <h2>{{ resultText }}</h2>
       </div>
     </div>
     <div class="row mt-5">
@@ -49,8 +49,16 @@ export default {
       default: 0
     }
   },
-  mounted() {
-    console.log('default', this.item)
+  computed: {
+    resultText() {
+      if (this.unit.type == 'practice') {
+        return 'Chúc mừng anh/chị hoàn thành bài luyện tập'
+      }
+      if (this.unit.type == 'grammar') {
+        return 'Chúc mừng anh/chị học được thêm 1 ngữ pháp mới'
+      }
+      return 'Chúc mừng anh/chị học được thêm 1 từ mới'
+    }
   },
   data() {
     return {

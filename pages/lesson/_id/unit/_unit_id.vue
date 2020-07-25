@@ -350,14 +350,16 @@ export default {
       this.activeItemIndex++
       //if this is last page => send pint
       if (this.activeItemIndex == this.unit.learn_items.length) {
-        console.log(Api)
-        // Api.savePoint({
-        //   lession_id: this.lessonID,
-        //   learn_unit_id: this.unitId,
-        //   learn_item_id: 0,
-        //   progress: this.resultPoint(),
-        //   user_id: this.user.id
-        // })
+        Api.post(
+          {
+            lession_id: this.lessonID,
+            learn_unit_id: this.unitId,
+            learn_item_id: 0,
+            progress: this.resultPoint(),
+            user_id: this.user.id
+          },
+          '/api/tracking'
+        )
         this.showResult = true
       }
     },

@@ -10,7 +10,10 @@
             ></h2>
             <h2>{{ item.content.title2 }}</h2>
           </div>
-          <div class="volume-icon" @click="playVolume">
+          <div
+            class="volume-icon"
+            @click="() => $playVolume($getNativeName(this.item.content.title1))"
+          >
             <i class="fa fa-volume-up"></i>
           </div>
         </div>
@@ -20,7 +23,7 @@
       <div class="row pt-4">
         <div class="col-sm-8 offset-2">
           <div class="item-answer">
-            <img :src="$getItemImg(unit, item, activeAnswer)" alt="" />
+            <img :src="$getItemImg(unit, item, 1)" alt="" />
           </div>
         </div>
       </div>
@@ -29,7 +32,7 @@
 </template>
 <script>
 export default {
-  name: 'NewworkPractice1',
+  name: 'GrammarSpeak2',
   props: {
     setAnswer: {
       type: Function,
@@ -45,21 +48,10 @@ export default {
     }
   },
   mounted() {
-    setTimeout(this.playVolume(), 2000)
-  },
-  data() {
-    return {
-      activeAnswer: 1
-    }
-  },
-  methods: {
-    playVolume() {
-      let text = this.$getNativeName(this.item.content.title1)
-      console.log('playVolume', text)
-      let msg = new SpeechSynthesisUtterance(text)
-      msg.lang = 'ja-JP'
-      window.speechSynthesis.speak(msg)
-    }
+    setTimeout(
+      () => this.$playVolume(this.$getNativeName(this.item.content.title1)),
+      2000
+    )
   }
 }
 </script>
