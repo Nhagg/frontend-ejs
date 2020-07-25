@@ -339,6 +339,9 @@ export default {
       if (wordType == 'conversation') {
         return Math.ceil((listWork.length * 100) / maxConversation)
       }
+      if (wordType == 'practice') {
+        return Math.ceil((listWork.length * 100) / maxPractice)
+      }
       return 0
     },
     getUnitLink(unit, unitType) {
