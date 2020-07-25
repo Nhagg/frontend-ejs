@@ -332,8 +332,9 @@ export default {
   },
   data() {
     return {
-      compareHTML: '',
       lessonID: this.$route.params.id,
+      unitId: this.$route.params.conversation_id,
+      compareHTML: '',
       userAnswer: '',
       resetStatus: false,
       microStatus: false,
@@ -385,12 +386,17 @@ export default {
       if (this.activeItem.type == 'conversation_context') {
         this.activeContextIndex++
       }
-      console.log(
-        'nextPage',
-        this.unit.learn_items.length,
-        this.activeItemIndex
-      )
       if (this.activeItemIndex == this.unit.learn_items.length) {
+        Api.post(
+          {
+            lession_id: this.lessonID,
+            learn_unit_id: this.unitId,
+            learn_item_id: 0,
+            progress: this.resultPoint(),
+            user_id: this.user.id
+          },
+          '/api/tracking'
+        )
         this.showResult = true
       }
     },
