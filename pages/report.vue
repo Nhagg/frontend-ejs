@@ -178,7 +178,7 @@
           </div>
         </div>
         <div class="report-result">
-          {{ listUnitConversation.length + '/' + maxPractice }}
+          {{ listUnitPractice.length + '/' + maxPractice }}
         </div>
       </div>
     </div>
@@ -272,6 +272,9 @@ export default {
     },
     listUnitConversation() {
       return this.listUnit.filter((u) => u.learn_unit.type == 'conversation')
+    },
+    listUnitPractice() {
+      return this.listUnit.filter((u) => u.learn_unit.type == 'practice')
     }
   },
   watch: {
