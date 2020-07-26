@@ -4,7 +4,10 @@
       {{ resetStatus }}
     </span>
     <div class="study-header">
-      <router-link :to="'/lesson/' + lessonID">
+      <router-link v-if="unit.type == 'policy'" :to="'/course/' + activeCourse">
+        <img src="@/assets/img/logo.png" alt="" />
+      </router-link>
+      <router-link v-else :to="'/lesson/' + lessonID">
         <img src="@/assets/img/logo.png" alt="" />
       </router-link>
       <div class="study-header-text">
@@ -165,6 +168,13 @@
         :unit="unit"
         :item="activeItem"
       />
+      <PolicyInfo1
+        v-else-if="activeItem.type == 'policy_intormation_1'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :unit="unit"
+        :item="activeItem"
+      />
       <Default
         v-else
         :key="activeItem.id"
@@ -174,7 +184,10 @@
         :item="activeItem"
       />
     </div>
-    <div v-if="unit.id" :class="'study-footer ' + getFooterClass()">
+    <div
+      v-if="unit.id && unit.type != 'policy'"
+      :class="'study-footer ' + getFooterClass()"
+    >
       <div class="study-footer-left" v-if="activeItem.point != undefined">
         <i class="fa fa-check-circle"></i>
         <div v-if="isCorrect()">
@@ -217,6 +230,15 @@
         </div>
       </div>
     </div>
+    <div v-if="activeItem.id && unit.type == 'policy'" class="study-footer">
+      <div class="study-footer-left"></div>
+      <div>
+        <button class="btn btn-green btn-rule-page" @click="nextPage">
+          Tiếp theo
+          <i class="fa fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -239,6 +261,7 @@ import PracticeVerbChangeFormat1 from '~/components/unit/PracticeVerbChangeForma
 import PracticeSeePictureCompleteScentence1 from '~/components/unit/PracticeSeePictureCompleteScentence1'
 import PracticeCombine2SenctenceTrueFalse1 from '~/components/unit/PracticeCombine2SenctenceTrueFalse1'
 import PracticeCompletedScentenceByExistingWords1 from '~/components/unit/PracticeCompletedScentenceByExistingWords1'
+import PolicyInfo1 from '~/components/unit/PolicyInfo1'
 import Default from '~/components/unit/Default'
 import Api from '~/services/Api'
 const FREE_TYPE = ['newword_speak_1', 'grammar_speak_1', 'grammar_speak_2']
@@ -264,6 +287,7 @@ export default {
     PracticeSeePictureCompleteScentence1,
     PracticeCombine2SenctenceTrueFalse1,
     PracticeCompletedScentenceByExistingWords1,
+    PolicyInfo1,
     Default
   },
   async asyncData({ store, route }) {
@@ -293,7 +317,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['listLesson', 'listLearnUnit', 'user']),
+    ...mapState(['listLesson', 'listLearnUnit', 'user', 'activeCourse']),
     nextUnit() {
       const { unit, lesson } = this
       let listActiveLearnUnit = lesson.learn_units
@@ -307,6 +331,7 @@ export default {
       let { unit, activeItemIndex } = this
       if (unit && unit.learn_items && unit.learn_items[activeItemIndex]) {
         console.log('activeItem', unit.learn_items[activeItemIndex])
+        console.log('unit', unit)
         return unit.learn_items[activeItemIndex]
       }
       return {}

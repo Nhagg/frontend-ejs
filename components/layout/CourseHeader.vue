@@ -11,7 +11,6 @@
           <div class="header-nav">
             <b-navbar>
               <b-navbar-nav>
-                <b-nav-item to="/learn-rule">Học nội quy</b-nav-item>
                 <b-nav-item-dropdown text="Khóa học">
                   <b-dropdown-item
                     v-for="course in listCourse"

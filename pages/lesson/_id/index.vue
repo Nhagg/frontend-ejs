@@ -20,13 +20,33 @@
           <img src="@/assets/img/unit/new-word.png" alt="unitType" />
           <div class="">
             {{ 'Học từ mới' }}
-            <!--                        <span class="">8/23</span>-->
+            <span class="fs-16">
+              {{
+                listLearnedUnit.filter(
+                  (learnUnit) =>
+                    learnUnitTypes.findIndex(
+                      (type) =>
+                        type.type == learnUnit.learn_unit.type &&
+                        learnUnit.lession_id
+                    ) == -1
+                ).length
+              }}
+              /
+              {{
+                lesson.learn_units.filter(
+                  (u) =>
+                    learnUnitTypes.findIndex((type) => type.type == u.type) ==
+                    -1
+                ).length
+              }}
+            </span>
           </div>
         </div>
         <div class="row custom-row list-unit">
           <div
             v-for="unit in lesson.learn_units.filter(
-              (u) => u.type == 'new_word'
+              (u) =>
+                learnUnitTypes.findIndex((type) => type.type == u.type) == -1
             )"
             :key="unit.id"
             class="col-md-4"
@@ -57,7 +77,18 @@
             />
             <div class="">
               {{ unitType.name }}
-              <!--                        <span class="">8/23</span>-->
+              <span class="fs-16">
+                {{
+                  listLearnedUnit.filter(
+                    (learnUnit) => learnUnit.learn_unit.type == unitType.type
+                  ).length
+                }}
+                /
+                {{
+                  lesson.learn_units.filter((u) => u.type == unitType.type)
+                    .length
+                }}
+              </span>
             </div>
           </div>
           <div class="list-unit">
@@ -100,7 +131,7 @@ export default {
   computed: {
     ...mapState(['listLesson', 'listLearnUnit', 'user'])
   },
-  async asyncData({ store, route }) {
+  async asyncData({ store, route, redirect }) {
     await store.dispatch('GET_LIST_LESSON')
     await store.dispatch('GET_LIST_LEARN_UNIT')
     let lessonId = route.params.id ? route.params.id : 2
@@ -112,7 +143,9 @@ export default {
       .catch((e) => {
         alert(e.message)
       })
-
+    if (lesson.learn_units.length == 1) {
+      redirect('/lesson/' + lessonId + '/unit/' + lesson.learn_units[0].id)
+    }
     let userId = store.state.user.id ? store.state.user.id : 18
     let res = await Api.get(
       '/api/tracking?user_id=' + userId + '&type=learn_unit'
@@ -121,6 +154,7 @@ export default {
     if (res.success) {
       listLearnedUnit = res.data.sort((a, b) => a.progress - b.progress)
     }
+    listLearnedUnit = listLearnedUnit.filter((u) => u.lession_id == lessonId)
     return {
       lesson,
       listLearnedUnit

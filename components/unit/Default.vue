@@ -1,11 +1,17 @@
 <template>
   <div class="container">
-    <div class="row">
+    <div v-if="unit.type == 'policy'" class="mt-20vh text-center">
+      <div class="h1">Chúc mừng bạn đã hoàn thành nội quy</div>
+      <nuxt-link to="/course/1" class="btn btn-green btn-lg mt-5">
+        Quay về bài học chính
+      </nuxt-link>
+    </div>
+    <div v-if="unit.type != 'policy'" class="row">
       <div class="col text-center">
         <h2>{{ resultText }}</h2>
       </div>
     </div>
-    <div class="row mt-5">
+    <div v-if="unit.type != 'policy'" class="row mt-5">
       <div class="col text-center">
         <div
           class="text-result-point"

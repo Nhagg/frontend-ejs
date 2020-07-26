@@ -1,10 +1,7 @@
 <template>
   <div class="container-fluid unit-page">
-    <span class="d-none">
-      {{ resetStatus }}
-    </span>
     <div class="study-header">
-      <router-link to="/">
+      <router-link :to="'/course/' + activeCourse">
         <img src="@/assets/img/logo.png" alt="" />
       </router-link>
       <div class="study-header-text">
@@ -44,6 +41,9 @@
         </button>
       </div>
     </div>
+    <span class="d-none">
+      {{ resetStatus }}
+    </span>
   </div>
 </template>
 <script>
@@ -60,6 +60,7 @@ const listData = [
     title2: '第2条：水の所有、衛生および経済的使用の維持'
   }
 ]
+import Api from '~/services/Api'
 export default {
   name: 'LearnRule',
   layout: 'unit',
@@ -68,6 +69,17 @@ export default {
       let res = this.listData[this.activeItemIndex]
       return res ? res : {}
     }
+  },
+  async mounted() {
+    let unitId = 2000100
+    await Api.get('/api/learn_units/' + unitId)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+    // return {}
   },
   data() {
     return {
