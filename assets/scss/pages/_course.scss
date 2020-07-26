@@ -1,0 +1,23 @@
+.btn-view-type {
+  background-color: $text-gray2;
+  border: solid 1px $text-gray;
+  &.active {
+    background-color: $text-green;
+    color: #fff;
+  }
+}
+.lesson-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 10px;
+  border-bottom: solid 1px #ddd;
+  color: #000;
+  &:hover {
+    color: $text-green;
+  }
+}
+.lesson-title {
+  font-size: 20px;
+  font-weight: 700;
+}

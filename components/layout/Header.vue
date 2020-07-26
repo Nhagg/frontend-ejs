@@ -11,7 +11,7 @@
           <div class="header-nav">
             <b-navbar right>
               <b-navbar-nav>
-                <b-nav-item-dropdown text="Về JVConnect" left>
+                <b-nav-item-dropdown text="Về JVConnect">
                   <b-dropdown-item href="/about-us">
                     Giới thiệu trung tâm
                   </b-dropdown-item>
@@ -25,7 +25,7 @@
                     Chương trình học
                   </b-dropdown-item>
                 </b-nav-item-dropdown>
-                <b-nav-item-dropdown text="Khóa học tiếng Nhật" left>
+                <b-nav-item-dropdown text="Khóa học tiếng Nhật">
                   <b-dropdown-item
                     v-for="course in listCourse"
                     :key="course.id"
@@ -36,19 +36,20 @@
                 </b-nav-item-dropdown>
                 <b-nav-item href="/">Thông báo</b-nav-item>
                 <b-nav-item href="/">Liên hệ</b-nav-item>
-                <b-nav-item
-                  v-if="user.id"
-                  href="#"
-                  @click="logout"
-                  class="user-item"
-                >
-                  {{ user.name }}
-                </b-nav-item>
+                <b-nav-item-dropdown v-if="user.id" class="justify-content-end">
+                  <template v-slot:button-content>
+                    <i class="far fa-user mr-1 fs-14"></i>
+                    {{ user.name ? user.name : 'Nguyễn Hà' }}
+                  </template>
+                  <b-dropdown-item href="#" @click="logout">
+                    {{ 'Đăng xuất' }}
+                  </b-dropdown-item>
+                </b-nav-item-dropdown>
                 <b-nav-item
                   v-else
                   href="#"
                   v-b-modal.login-modal
-                  class="user-item"
+                  class="justify-content-end"
                 >
                   Đăng nhập
                 </b-nav-item>

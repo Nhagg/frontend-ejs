@@ -2,19 +2,6 @@ body {
   background-color: #fff;
 }
 $headerHeight: 60px;
-.ejs-header {
-  .user-item {
-    width: 200px;
-    overflow: hidden;
-    text-align: right;
-    justify-content: flex-end;
-    a {
-      display: inline-block;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-  }
-}
 $courseHeader: 90px;
 .header-logo {
   display: flex;
@@ -40,6 +27,9 @@ $courseHeader: 90px;
     }
     &:not(:last-child) {
       margin-right: 25px;
+    }
+    &:last-child {
+      width: 170px;
     }
     .nav-link {
       color: #000;

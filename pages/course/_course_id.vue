@@ -1,7 +1,29 @@
 <template>
   <div class="container course-detail">
-    <h2 class="border-bottom-red">{{ course.name }}</h2>
-    <div class="row lesson-list custom-row mt-4">
+    <div class="row border-bottom-red pb-2">
+      <div class="col-sm-10">
+        <h2>{{ course.name }}</h2>
+      </div>
+      <div class="col-sm-2 text-right">
+        <div class="btn-group" v-if="activeCourse != 1">
+          <button
+            class="btn btn-view-type"
+            :class="{ active: viewType == 'grid' }"
+            @click="viewType = 'grid'"
+          >
+            <i class="fa fa-th-large"></i>
+          </button>
+          <button
+            class="btn btn-view-type"
+            :class="{ active: viewType == 'list' }"
+            @click="viewType = 'list'"
+          >
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div v-if="viewType == 'grid'" class="row lesson-list custom-row mt-5">
       <div
         v-for="lesson in listLesson.filter(
           (s) => s.course && s.course.id == activeCourse
@@ -9,7 +31,7 @@
         :key="lesson.id"
         class="col-sm-3"
       >
-        <router-link :to="'/lesson/' + lesson.id" class="lesson-content">
+        <nuxt-link :to="'/lesson/' + lesson.id" class="lesson-content">
           <div class="lesson-card">
             <div class="lesson-img ratio-4-3">
               <img
@@ -34,16 +56,41 @@
               </div>
             </div>
           </div>
-        </router-link>
+        </nuxt-link>
       </div>
-      <div
-        v-if="
-          listLesson.filter((s) => s.course && s.course.id == activeCourse) == 0
-        "
-        class="empty-box"
+    </div>
+    <div v-else class="list-lesson mt-5">
+      <nuxt-link
+        v-for="(lesson, index) in listLesson.filter(
+          (s) => s.course && s.course.id == activeCourse
+        )"
+        :key="lesson.id"
+        :to="'/lesson/' + lesson.id"
+        class="lesson-item"
       >
-        <h3>Tính năng đang được cập nhật. Anh/chị vui lòng quay lại sau</h3>
-      </div>
+        <div class="lesson-item-content">
+          <div class="one-line-text lesson-title">
+            {{
+              'Bài ' +
+                (index + 1) +
+                ': ' +
+                $getNativeName(lesson.name_native_language)
+            }}
+          </div>
+          <div class="one-line-text" :title="lesson.name_second_language">
+            {{ lesson.name_second_language }}
+          </div>
+        </div>
+        <div class="lesson-result">{{ 0 }}%</div>
+      </nuxt-link>
+    </div>
+    <div
+      v-if="
+        listLesson.filter((s) => s.course && s.course.id == activeCourse) == 0
+      "
+      class="empty-box"
+    >
+      <h3>Tính năng đang được cập nhật. Anh/chị vui lòng quay lại sau</h3>
     </div>
   </div>
 </template>
@@ -67,16 +114,20 @@ export default {
     this.$scrollToTop()
   },
   async asyncData({ store, route }) {
-    await store.dispatch('GET_LIST_COURSE')
     let course_id = route.params.course_id
     course_id = course_id ? course_id : 2
     if (course_id) {
       await store.dispatch('SET_ACTIVE_COURSE', course_id)
     }
     await store.dispatch('GET_LIST_LESSON')
+    return {
+      viewType: course_id == 1 ? 'list' : 'grid'
+    }
   },
   data() {
-    return {}
+    return {
+      viewType: 'list'
+    }
   },
   methods: {
     onErrorImg(event) {

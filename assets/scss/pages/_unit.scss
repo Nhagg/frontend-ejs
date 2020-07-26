@@ -91,6 +91,11 @@ $sFooterHeight: 100px;
     i {
       margin-left: 10px;
     }
+    &.btn-rule-page {
+      border: solid 2px $text-green;
+      background-color: $text-green;
+      color: #fff;
+    }
   }
 }
 .item-list-answer {
