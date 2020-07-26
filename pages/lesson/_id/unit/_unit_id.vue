@@ -14,6 +14,7 @@
         {{ unit.type == 'grammar' ? 'Học ngữ pháp' : '' }}
         {{ unit.type == 'new_word' ? 'Học từ mới' : '' }}
         {{ unit.type == 'practice' ? 'Luyện tập' : '' }}
+        {{ unit.type == 'policy' ? 'Học nội quy' : '' }}
       </div>
     </div>
     <div class="study-content" v-if="unit.id">
