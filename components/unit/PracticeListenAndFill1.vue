@@ -34,7 +34,11 @@
       {{ item.content.correct_answer.toString().split('**')[0] }}
     </h2>
     <div v-if="!checkedAnswer" class="mt-5 text-center">
-      <button class="btn btn-check-answer btn-green" @click="checkAnswer">
+      <button
+        class="btn btn-check-answer btn-green"
+        @click="checkAnswer"
+        :disabled="!userAnswer"
+      >
         Kiểm tra
       </button>
     </div>

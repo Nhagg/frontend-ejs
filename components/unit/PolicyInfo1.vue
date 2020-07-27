@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="mt-5">
+    <div v-if="unit.type == 'policy'" class="mt-20vh text-center">
       <div
         class="h1"
         v-html="item.content.title1.replace(/\*\*/g, '<br />')"
@@ -8,6 +8,12 @@
       <div class="h2 mt-4">
         {{ $getNativeName(item.content.title2) }}
       </div>
+    </div>
+    <div v-else class="mt-5">
+      <div
+        class="h1"
+        v-html="item.content.title1.replace(/\n/g, '<br />')"
+      ></div>
     </div>
   </div>
 </template>

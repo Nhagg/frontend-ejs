@@ -4,7 +4,10 @@
       {{ resetStatus }}
     </span>
     <div class="study-header">
-      <router-link v-if="unit.type == 'policy'" :to="'/course/' + activeCourse">
+      <router-link
+        v-if="unit.type == 'policy' || unit.type == 'policy_dormitory'"
+        :to="'/course/' + activeCourse"
+      >
         <img src="@/assets/img/logo.png" alt="" />
       </router-link>
       <router-link v-else :to="'/lesson/' + lessonID">
@@ -15,6 +18,7 @@
         {{ unit.type == 'new_word' ? 'Học từ mới' : '' }}
         {{ unit.type == 'practice' ? 'Luyện tập' : '' }}
         {{ unit.type == 'policy' ? 'Học nội quy' : '' }}
+        {{ unit.type == 'policy_dormitory' ? 'Học nội quy' : '' }}
       </div>
     </div>
     <div class="study-content" v-if="unit.id">
@@ -186,7 +190,7 @@
       />
     </div>
     <div
-      v-if="unit.id && unit.type != 'policy'"
+      v-if="unit.id && unit.type != 'policy' && unit.type != 'policy_dormitory'"
       :class="'study-footer ' + getFooterClass()"
     >
       <div class="study-footer-left" v-if="activeItem.point != undefined">
@@ -231,10 +235,20 @@
         </div>
       </div>
     </div>
-    <div v-if="activeItem.id && unit.type == 'policy'" class="study-footer">
+    <div
+      v-if="
+        activeItem.id &&
+          (unit.type == 'policy' || unit.type == 'policy_dormitory')
+      "
+      class="study-footer"
+    >
       <div class="study-footer-left"></div>
       <div>
-        <button class="btn btn-green btn-rule-page" @click="nextPage">
+        <button
+          class="btn btn-green btn-rule-page"
+          @click="nextPage"
+          :disabled="!isNext"
+        >
           Tiếp theo
           <i class="fa fa-arrow-right"></i>
         </button>
@@ -333,7 +347,8 @@ export default {
       if (unit && unit.learn_items && unit.learn_items[activeItemIndex]) {
         console.log('activeItem', unit.learn_items[activeItemIndex])
         console.log('unit', unit)
-        return unit.learn_items[activeItemIndex]
+        let res = unit.learn_items[activeItemIndex]
+        return res
       }
       return {}
     },
@@ -344,6 +359,21 @@ export default {
         .replace('**', ' / ')
     }
   },
+  watch: {
+    activeItem(val) {
+      console.log('activeItemwww', val)
+      if (val.type == 'policy_intormation_1') {
+        window.setTimeout(() => {
+          this.isNext = true
+        }, 5000)
+      }
+    }
+  },
+  mounted() {
+    window.setTimeout(() => {
+      this.isNext = true
+    }, 5000)
+  },
   data() {
     return {
       unitId: this.$route.params.unit_id,
@@ -353,6 +383,7 @@ export default {
       resetStatus: false,
       showResult: false,
       unit: {},
+      isNext: false,
       activeItemIndex: 0
     }
   },
@@ -360,11 +391,14 @@ export default {
     isCorrect() {
       const activeItem = this.activeItem
       return (
-        activeItem.point != undefined && activeItem.point == activeItem.score
+        activeItem.point != undefined &&
+        activeItem.point == activeItem.score &&
+        activeItem.point > 0
       )
     },
     nextPage() {
       this.userAnswer = ''
+      this.isNext = false
       if (
         this.activeItem.type == 'grammar_information_2' &&
         this.activeItem.showText != true
@@ -388,6 +422,7 @@ export default {
         )
         this.showResult = true
       }
+      // reset countDownTime
     },
     resetPage() {
       this.resetStatus = !this.resetStatus

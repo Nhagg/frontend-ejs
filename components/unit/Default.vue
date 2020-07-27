@@ -1,37 +1,42 @@
 <template>
   <div class="container">
-    <div v-if="unit.type == 'policy'" class="mt-20vh text-center">
+    <div
+      v-if="unit.type == 'policy' || unit.type == 'policy_dormitory'"
+      class="mt-20vh text-center"
+    >
       <div class="h1">Chúc mừng bạn đã hoàn thành nội quy</div>
       <nuxt-link to="/course/1" class="btn btn-green btn-lg mt-5">
         Quay về bài học chính
       </nuxt-link>
     </div>
-    <div v-if="unit.type != 'policy'" class="row">
-      <div class="col text-center">
-        <h2>{{ resultText }}</h2>
-      </div>
-    </div>
-    <div v-if="unit.type != 'policy'" class="row mt-5">
-      <div class="col text-center">
-        <div
-          class="text-result-point"
-          :class="{
-            'text-red': resultPoint <= 50,
-            'text-yellow': resultPoint > 50 && resultPoint < 80,
-            'text-green': resultPoint > 80
-          }"
-        >
-          <div>
-            <h2
-              v-html="$convertNameToHtml(unit.name_native_language)"
-              class="japan-name"
-            ></h2>
-            <h2>{{ unit.name_forgein_language }}</h2>
-          </div>
-          {{ resultPoint + ' %' }}
+    <template v-else>
+      <div class="row">
+        <div class="col text-center">
+          <h2>{{ resultText }}</h2>
         </div>
       </div>
-    </div>
+      <div class="row mt-5">
+        <div class="col text-center">
+          <div
+            class="text-result-point"
+            :class="{
+              'text-red': resultPoint <= 50,
+              'text-yellow': resultPoint > 50 && resultPoint < 80,
+              'text-green': resultPoint > 80
+            }"
+          >
+            <div>
+              <h2
+                v-html="$convertNameToHtml(unit.name_native_language)"
+                class="japan-name"
+              ></h2>
+              <h2>{{ unit.name_forgein_language }}</h2>
+            </div>
+            {{ resultPoint + ' %' }}
+          </div>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 <script>

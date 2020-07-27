@@ -268,6 +268,7 @@ export default {
       if (unitIndex == -1 || unitIndex == listActiveLearnUnit.length - 1) {
         return {}
       }
+      console.log('unitIndex', unitIndex, listActiveLearnUnit[unitIndex + 1])
       return listActiveLearnUnit[unitIndex + 1]
     },
     activeItem() {
@@ -279,6 +280,9 @@ export default {
           this.$nextTick(() => {
             $('#list-sentence').scrollTop(112000)
           })
+        }
+        if (!res.score) {
+          res.score = 10
         }
         return res
       }
@@ -383,6 +387,10 @@ export default {
       this.compareHTML = ''
       this.activeItemIndex++
       this.showHintMicro = true
+      if (this.activeItem.type == 'conversation_config') {
+        this.nextPage()
+        return
+      }
       if (this.activeItem.type == 'conversation_context') {
         this.activeContextIndex++
       }
@@ -393,7 +401,7 @@ export default {
             learn_unit_id: this.unitId,
             learn_item_id: 0,
             progress: this.resultPoint(),
-            user_id: this.user.id
+            user_id: this.user ? this.user.id : 18
           },
           '/api/tracking'
         )
@@ -447,8 +455,9 @@ export default {
           totalPoint += parseInt(item.point)
         }
       })
-      console.log('resultPoint ed')
-      return parseInt((totalPoint * 100) / totalScore)
+      console.log('resultPoint ed', totalPoint, totalScore)
+      let res = parseInt((totalPoint * 100) / totalScore)
+      return res ? res : 0
     },
     playVolume(text) {
       this.$playVolume(this.$getNativeName(text))

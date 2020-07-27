@@ -91,6 +91,9 @@ export default {
       if (userAnswer == ans) {
         return this.item.score
       }
+      if (!this.item.score) {
+        this.item.score = 10
+      }
       let compareHTML = ''
       let correctArr = ans.split('')
       let userArr = userAnswer.split('')
