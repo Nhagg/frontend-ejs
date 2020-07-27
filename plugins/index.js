@@ -77,6 +77,7 @@ Vue.prototype.$getItemAudio = (item = {}) => {
   return api + '/mp3s/' + item.content.title2
 }
 Vue.prototype.$playVolume = (text, speed = 0.8) => {
+  console.log('$playVolume', text, speed)
   let msg = new SpeechSynthesisUtterance(text)
   msg.lang = 'ja-JP'
   msg.rate = speed

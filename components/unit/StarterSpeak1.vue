@@ -4,9 +4,8 @@
       <div class="col text-center">
         <div class="speak-title">
           <div class="text-center mr-3">
-            <h2>{{ unit.name_forgein_language }}</h2>
             <h2
-              v-html="$convertNameToHtml(unit.name_native_language)"
+              v-html="$convertNameToHtml(item.content.image_text1)"
               class="japan-name"
             ></h2>
           </div>
@@ -16,15 +15,19 @@
         </div>
       </div>
     </div>
-    <div class="item-list-answer pt-4">
-      <img :src="$getItemImg(unit, item, activeAnswer)" alt="" />
+    <div class="mt-20vh text-center">
+      <div class="starter-speak-1-work">
+        {{ item.content.image_text1 }}
+      </div>
+      <div class="h1">
+        {{ item.content.title2 }}
+      </div>
     </div>
   </div>
 </template>
 <script>
-let playTimeout1, playTimeout2
 export default {
-  name: 'NewworkPractice1',
+  name: 'StarterSpeak1',
   props: {
     setAnswer: {
       type: Function,
@@ -41,18 +44,6 @@ export default {
   },
   mounted() {
     setTimeout(this.playVolume(0.6), 2000)
-    playTimeout1 = setTimeout(() => {
-      this.activeAnswer = 2
-      this.playVolume()
-    }, 6000)
-    playTimeout2 = setTimeout(() => {
-      this.activeAnswer = 3
-      this.playVolume(1)
-    }, 9000)
-  },
-  beforeDestroy() {
-    clearTimeout(playTimeout1)
-    clearTimeout(playTimeout2)
   },
   data() {
     return {
@@ -61,8 +52,12 @@ export default {
   },
   methods: {
     playVolume(speed = 0.8) {
+      console.log(
+        this.$getNativeName(this.item.content.image_text1),
+        this.item.content.image_text1
+      )
       this.$playVolume(
-        this.$getNativeName(this.unit.name_native_language),
+        this.$getNativeName(this.item.content.image_text1),
         speed
       )
     }

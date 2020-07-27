@@ -5,7 +5,11 @@
     </span>
     <div class="study-header">
       <router-link
-        v-if="unit.type == 'policy' || unit.type == 'policy_dormitory'"
+        v-if="
+          unit.type == 'policy' ||
+            unit.type == 'policy_dormitory' ||
+            unit.type == 'starter'
+        "
         :to="'/course/' + activeCourse"
       >
         <img src="@/assets/img/logo.png" alt="" />
@@ -19,6 +23,7 @@
         {{ unit.type == 'practice' ? 'Luyện tập' : '' }}
         {{ unit.type == 'policy' ? 'Học nội quy' : '' }}
         {{ unit.type == 'policy_dormitory' ? 'Học nội quy' : '' }}
+        {{ unit.type == 'starter' ? 'Học chữ cái' : '' }}
       </div>
     </div>
     <div class="study-content" v-if="unit.id">
@@ -180,6 +185,34 @@
         :unit="unit"
         :item="activeItem"
       />
+      <StarterSpeak1
+        v-else-if="activeItem.type == 'starter_speak_1'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :unit="unit"
+        :item="activeItem"
+      />
+      <StarterExample1
+        v-else-if="activeItem.type == 'starter_example_1'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :unit="unit"
+        :item="activeItem"
+      />
+      <StarterPractice1
+        v-else-if="activeItem.type == 'starter_practice_1'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :unit="unit"
+        :item="activeItem"
+      />
+      <StarterPronunciation1
+        v-else-if="activeItem.type == 'starter_pronounciation_1'"
+        :key="activeItem.id"
+        :setAnswer="setAnswer"
+        :unit="unit"
+        :item="activeItem"
+      />
       <Default
         v-else
         :key="activeItem.id"
@@ -277,9 +310,19 @@ import PracticeSeePictureCompleteScentence1 from '~/components/unit/PracticeSeeP
 import PracticeCombine2SenctenceTrueFalse1 from '~/components/unit/PracticeCombine2SenctenceTrueFalse1'
 import PracticeCompletedScentenceByExistingWords1 from '~/components/unit/PracticeCompletedScentenceByExistingWords1'
 import PolicyInfo1 from '~/components/unit/PolicyInfo1'
+import StarterSpeak1 from '~/components/unit/StarterSpeak1'
+import StarterExample1 from '~/components/unit/StarterExample1'
+import StarterPractice1 from '~/components/unit/StarterPractice1'
+import StarterPronunciation1 from '~/components/unit/StarterPronunciation1'
 import Default from '~/components/unit/Default'
 import Api from '~/services/Api'
-const FREE_TYPE = ['newword_speak_1', 'grammar_speak_1', 'grammar_speak_2']
+const FREE_TYPE = [
+  'newword_speak_1',
+  'grammar_speak_1',
+  'grammar_speak_2',
+  'starter_speak_1',
+  'starter_example_1'
+]
 export default {
   name: 'Unit',
   layout: 'unit',
@@ -303,6 +346,10 @@ export default {
     PracticeCombine2SenctenceTrueFalse1,
     PracticeCompletedScentenceByExistingWords1,
     PolicyInfo1,
+    StarterSpeak1,
+    StarterExample1,
+    StarterPractice1,
+    StarterPronunciation1,
     Default
   },
   async asyncData({ store, route }) {

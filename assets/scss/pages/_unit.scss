@@ -334,3 +334,23 @@ $sFooterHeight: 100px;
     margin-top: 10px;
   }
 }
+.starter-speak-1-work {
+  text-align: center;
+  font-weight: 700;
+  font-size: 120px;
+}
+.btn-micro {
+  font-size: 60px;
+  width: 90px;
+  height: 90px;
+  border: solid 1px #000;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  &.bg-red {
+    background-color: $text-red;
+    color: #fff;
+    border-color: $text-red;
+  }
+}
