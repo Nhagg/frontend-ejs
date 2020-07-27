@@ -29,7 +29,7 @@
       class="listen-item-arrange mt-4"
     >
       <button
-        v-for="(text, index) in correctAnswer.split('/')"
+        v-for="(text, index) in correctAnswer.split(breakWork)"
         :key="index"
         class="item-arrange item-selected"
       >
@@ -59,6 +59,7 @@
   </div>
 </template>
 <script>
+let breakWork = '***'
 export default {
   name: 'PracticeArrangeSentence1',
   props: {
@@ -82,11 +83,12 @@ export default {
       )
     },
     listItem() {
-      return this.$shuffler(this.correctAnswer.split('/'))
+      return this.$shuffler(this.correctAnswer.split(breakWork))
     }
   },
   data() {
     return {
+      breakWork,
       userAnswer: [],
       checkedAnswer: false,
       userPoint: false,
@@ -105,7 +107,7 @@ export default {
     },
     checkAnswer() {
       let res = false
-      if (this.userAnswer.join('/') == this.correctAnswer) {
+      if (this.userAnswer.join(breakWork) == this.correctAnswer) {
         res = true
       }
       this.setAnswer(this.item, res ? this.item.score : 0)

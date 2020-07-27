@@ -11,17 +11,24 @@
       <h3
         v-for="(text, index) in $_get(item, 'content.title2', '')
           .toString()
+          .replace('…', '...')
           .split('...')"
         :key="index"
-        class="mt-3"
+        class="mt-5"
       >
-        {{ text.split('***')[0] }}
+        <span
+          class="japan-name d-inline"
+          v-html="$convertNameToHtml(text.split('***')[0])"
+        ></span>
         <input
           v-if="text.split('***').length > 1"
           type="text"
           v-model="userAnswer"
         />
-        {{ text.split('***')[1] }}
+        <span
+          class="japan-name d-inline"
+          v-html="$convertNameToHtml(text.split('***')[1])"
+        ></span>
       </h3>
     </div>
     <div
@@ -34,7 +41,11 @@
       {{ item.content.correct_answer.toString().split('**')[0] }}
     </h2>
     <div v-if="!checkedAnswer" class="mt-5 text-center">
-      <button class="btn btn-check-answer btn-green" @click="checkAnswer">
+      <button
+        class="btn btn-check-answer btn-green"
+        @click="checkAnswer"
+        :disabled="!userAnswer"
+      >
         Kiểm tra
       </button>
     </div>

@@ -10,6 +10,7 @@
         </div>
         <audio ref="myAudio" controls class="d-none">
           <source :src="$getItemAudio(item)" type="audio/mpeg" />
+          <source :src="$getItemAudio()" type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
       </div>

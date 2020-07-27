@@ -348,6 +348,9 @@ export default {
         console.log('activeItem', unit.learn_items[activeItemIndex])
         console.log('unit', unit)
         let res = unit.learn_items[activeItemIndex]
+        if (!res.score) {
+          res.score = 10
+        }
         return res
       }
       return {}

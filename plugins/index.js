@@ -69,11 +69,11 @@ Vue.prototype.$getItemImg = (unit, item = {}, i = 1) => {
   const api = process.env.DOMAIN_API
   return api + '/images/' + unit.type + '/' + item.content['image' + i]
 }
-Vue.prototype.$getItemAudio = (item = { content: {} }) => {
-  if (!item || !item.content) {
-    return ''
-  }
+Vue.prototype.$getItemAudio = (item = {}) => {
   const api = process.env.DOMAIN_API
+  if (!item || !item.content) {
+    return api + '/mp3s/default.mp3'
+  }
   return api + '/mp3s/' + item.content.title2
 }
 Vue.prototype.$playVolume = (text, speed = 0.8) => {
