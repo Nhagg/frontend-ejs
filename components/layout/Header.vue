@@ -15,9 +15,6 @@
                   <b-dropdown-item href="/about-us">
                     Giới thiệu trung tâm
                   </b-dropdown-item>
-                  <b-dropdown-item href="/our-rule">
-                    Nội quy trung tâm
-                  </b-dropdown-item>
                   <b-dropdown-item href="/news">
                     Tin tức
                   </b-dropdown-item>

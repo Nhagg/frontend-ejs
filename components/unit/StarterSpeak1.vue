@@ -15,12 +15,11 @@
         </div>
       </div>
     </div>
-    <div class="mt-20vh text-center">
-      <div class="starter-speak-1-work">
-        {{ item.content.image_text1 }}
-      </div>
-      <div class="h1">
-        {{ item.content.title2 }}
+    <div class="row mt-5">
+      <div class="col-sm-4 offset-4">
+        <div class="ratio-4-4">
+          <img :src="$getItemImg(unit, item, 1)" alt="" @error="$errorImage" />
+        </div>
       </div>
     </div>
   </div>

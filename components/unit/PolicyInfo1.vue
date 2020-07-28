@@ -1,9 +1,13 @@
 <template>
   <div class="container">
-    <div v-if="unit.type == 'policy'" class="mt-20vh text-center">
+    <div v-if="item.content.title1.length < 500" class="mt-20vh text-center">
       <div
         class="h1"
-        v-html="item.content.title1.replace(/\*\*/g, '<br />')"
+        v-html="
+          item.content.title1
+            .replace(/\*\*/g, '<br />')
+            .replace(/\n/g, '<br />')
+        "
       ></div>
       <div class="h2 mt-4">
         {{ $getNativeName(item.content.title2) }}

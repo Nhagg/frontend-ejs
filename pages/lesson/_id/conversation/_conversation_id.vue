@@ -26,7 +26,11 @@
             </div>
             <div class="context-content" v-if="activeContext.id">
               <div class="img-box">
-                <img :src="$getItemImg(unit, activeContext, 1)" alt="" />
+                <img
+                  :src="$getItemImg(unit, activeContext, 1)"
+                  alt=""
+                  @error="$errorImage"
+                />
               </div>
               <div>
                 {{ activeContext.content.image_text1 }}

@@ -39,28 +39,11 @@ export default {
     }
   },
   data() {
-    return {
-      userAnswer: null,
-      listAnswer: this.$shuffler([1, 2, 3, 4])
-    }
+    return {}
   },
   methods: {
     playVolume(speed = 0.8) {
-      console.log(
-        this.$getNativeName(this.item.content.image_text1),
-        this.item.content.image_text1
-      )
-      this.$playVolume(
-        this.$getNativeName(this.item.content.image_text1),
-        speed
-      )
-    },
-    checkAnswer(i) {
-      if (this.userAnswer != null) {
-        return
-      }
-      this.userAnswer = i
-      this.setAnswer(this.item, i === 1 ? this.item.score : 0)
+      this.$playVolume(this.$getNativeName(this.item.content.title1), speed)
     }
   }
 }

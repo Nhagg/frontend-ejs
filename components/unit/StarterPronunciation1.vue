@@ -15,19 +15,19 @@
           <div class="volume-icon mr-3" @click="playVolume">
             <i class="fa fa-volume-up"></i>
           </div>
+          <div
+            class="volume-icon"
+            :class="{ 'text-red': microStatus }"
+            @click="toggleMicro"
+          >
+            <i class="fa fa-microphone-alt"></i>
+          </div>
         </div>
       </div>
     </div>
     <div class="mt-5 text-center">
       <div class="starter-speak-1-work">
         {{ item.content.title2 }}
-      </div>
-      <div
-        class="btn-micro mt-5"
-        :class="{ 'bg-red': microStatus }"
-        @click="toggleMicro"
-      >
-        <i class="fa fa-microphone-alt"></i>
       </div>
     </div>
   </div>
@@ -83,7 +83,7 @@ export default {
     },
     playVolume() {
       this.compareHTML = ''
-      this.$playVolume(this.$getNativeName(this.unit.name_native_language))
+      this.$playVolume(this.$getNativeName(this.item.content.title2), 0.8)
     },
     compareResult(userAnswer, correctAnswer) {
       let ans = correctAnswer.replace(/\./g, '')
@@ -123,7 +123,7 @@ export default {
       return parseInt((point * this.item.score) / lengthCorrectArr)
     },
     checkAnswer() {
-      let nativeName = this.$getNativeName(this.unit.name_native_language)
+      let nativeName = this.$getNativeName(this.item.content.title2)
       this.setAnswer(
         this.item,
         this.compareResult(this.userAnswer, nativeName),

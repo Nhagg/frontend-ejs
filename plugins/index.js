@@ -67,14 +67,26 @@ Vue.prototype.$convertNameToHtml = (text) => {
 }
 Vue.prototype.$getItemImg = (unit, item = {}, i = 1) => {
   const api = process.env.DOMAIN_API
-  return api + '/images/' + unit.type + '/' + item.content['image' + i]
+  const folderUrl = api + '/images/' + unit.type + '/'
+  let imgUrl = item.content['image' + i]
+  imgUrl.replace('.jpg', '.png')
+  if (imgUrl.indexOf('.png') > -1) {
+    return folderUrl + item.content['image' + i]
+  } else {
+    return folderUrl + imgUrl + '.png'
+  }
 }
 Vue.prototype.$getItemAudio = (item = {}) => {
   const api = process.env.DOMAIN_API
+  const folderUrl = api + '/mp3s/'
   if (!item || !item.content) {
-    return api + '/mp3s/default.mp3'
+    return folderUrl + 'default.mp3'
   }
-  return api + '/mp3s/' + item.content.title2
+  if (item.content.title2.indexOf('.mp3') > -1) {
+    return folderUrl + item.content.title2
+  } else {
+    return folderUrl + item.content.title2 + '.mp3'
+  }
 }
 Vue.prototype.$playVolume = (text, speed = 0.8) => {
   console.log('$playVolume', text, speed)

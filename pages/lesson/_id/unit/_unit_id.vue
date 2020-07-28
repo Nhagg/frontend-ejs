@@ -10,7 +10,7 @@
             unit.type == 'policy_dormitory' ||
             unit.type == 'starter'
         "
-        :to="'/course/' + activeCourse"
+        :to="'/course/' + 1"
       >
         <img src="@/assets/img/logo.png" alt="" />
       </router-link>
@@ -359,20 +359,12 @@ export default {
     await store.dispatch('GET_LIST_LEARN_UNIT')
     let lesson = {}
     let unit = {}
-    await Api.get('/api/lessions/' + lessonID)
-      .then((res) => {
-        lesson = res.data
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-    await Api.get('/api/learn_units/' + unitId)
-      .then((res) => {
-        unit = res.data
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+    await Api.get('/api/lessions/' + lessonID).then((res) => {
+      lesson = res.data
+    })
+    await Api.get('/api/learn_units/' + unitId).then((res) => {
+      unit = res.data
+    })
     return {
       lesson,
       unit
@@ -411,7 +403,6 @@ export default {
   },
   watch: {
     activeItem(val) {
-      console.log('activeItemwww', val)
       if (val.type == 'policy_intormation_1') {
         window.setTimeout(() => {
           this.isNext = true
@@ -466,7 +457,7 @@ export default {
             learn_unit_id: this.unitId,
             learn_item_id: 0,
             progress: this.resultPoint(),
-            user_id: this.user.id
+            user_id: this.user.id ? this.user.id : 18
           },
           '/api/tracking'
         )

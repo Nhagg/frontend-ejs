@@ -226,17 +226,16 @@
                 class="fa fa-check-circle"
                 :class="getClassByPercent(unit.progress)"
               ></i>
-              <router-link
-                :to="getUnitLink(unit, unit.learn_unit)"
-                :title="unit.learn_unit.name_forgein_language"
-              >
+              <router-link :to="getUnitLink(unit, unit.learn_unit)">
                 <div
-                  v-html="
-                    $convertNameToHtml(unit.learn_unit.name_native_language)
-                  "
-                  class="japan-name"
+                  v-html="$getNativeName(unit.learn_unit.name_native_language)"
+                  class="one-line-text"
+                  :title="$getNativeName(unit.learn_unit.name_native_language)"
                 ></div>
-                <span class="one-line-text">
+                <span
+                  class="one-line-text"
+                  :title="unit.learn_unit.name_forgein_language"
+                >
                   {{ unit.learn_unit.name_forgein_language }}
                 </span>
               </router-link>

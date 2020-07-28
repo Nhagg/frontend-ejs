@@ -68,6 +68,12 @@ export default {
       if (this.unit.type == 'grammar') {
         return 'Chúc mừng anh/chị học được thêm 1 ngữ pháp mới'
       }
+      if (this.unit.type == 'starter') {
+        return (
+          'Chúc mừng anh/chị học đã hoàn thành ' +
+          this.unit.name_forgein_language
+        )
+      }
       return 'Chúc mừng anh/chị học được thêm 1 từ mới'
     }
   },
