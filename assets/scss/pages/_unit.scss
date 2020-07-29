@@ -30,8 +30,6 @@ $sFooterHeight: 100px;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
   overflow-y: auto;
   .japan-name {
     justify-content: center;
@@ -100,7 +98,7 @@ $sFooterHeight: 100px;
   }
 }
 .item-list-answer {
-  max-width: 600px;
+  max-width: 40%;
   margin: 30px auto 0px;
   .ratio-4-3 {
     :first-child {
@@ -111,7 +109,7 @@ $sFooterHeight: 100px;
     width: 100%;
   }
   .item-answer {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     &:hover {
       cursor: pointer;
       color: $text-green;
@@ -141,7 +139,7 @@ $sFooterHeight: 100px;
     }
   }
   .item-answer {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     &:hover {
       cursor: pointer;
       color: $text-green;
@@ -355,3 +353,4 @@ $sFooterHeight: 100px;
     border-color: $text-red;
   }
 }
+

@@ -16,8 +16,10 @@
         </div>
       </div>
     </div>
-    <div class="item-list-answer pt-4">
-      <img :src="$getItemImg(unit, item, activeAnswer)" alt="" />
+    <div class="item-list-answer">
+      <div class="ratio-4-3">
+        <img :src="$getItemImg(unit, item, activeAnswer)" alt="" />
+      </div>
     </div>
   </div>
 </template>

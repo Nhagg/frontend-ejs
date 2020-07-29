@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="item-list-answer">
-      <div class="item-answer">
+      <div class="ratio-4-3">
         <img :src="$getItemImg(unit, item, 1)" alt="" />
       </div>
     </div>

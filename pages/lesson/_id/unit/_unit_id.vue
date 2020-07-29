@@ -1,5 +1,8 @@
 <template>
-  <div class="container-fluid unit-page">
+  <div
+    class="container-fluid unit-page"
+    :class="{ 'exam-page': unit.type == 'exam' }"
+  >
     <span class="d-none">
       {{ resetStatus }}
     </span>
