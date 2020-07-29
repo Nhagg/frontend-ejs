@@ -23,7 +23,7 @@
         <input
           v-if="text.split('***').length > 1"
           type="text"
-          v-model="userAnswer"
+          v-model="item.userAnswer"
         />
         <span
           class="japan-name d-inline"
@@ -40,11 +40,11 @@
     <h2 v-if="checkedAnswer && userPoint == false" class="text-center mt-4">
       {{ item.content.correct_answer.toString().split('**')[0] }}
     </h2>
-    <div v-if="!checkedAnswer" class="mt-5 text-center">
+    <div v-if="!checkedAnswer && unit.type != 'exam'" class="mt-5 text-center">
       <button
         class="btn btn-check-answer btn-green"
         @click="checkAnswer"
-        :disabled="!userAnswer"
+        :disabled="!item.userAnswer"
       >
         Kiểm tra
       </button>
@@ -73,9 +73,13 @@ export default {
     }
   },
   mounted() {},
+  beforeDestroy() {
+    if (this.unit.type == 'exam') {
+      this.checkAnswer()
+    }
+  },
   data() {
     return {
-      userAnswer: '',
       checkedAnswer: false,
       userPoint: false,
       disabled: false
@@ -95,7 +99,7 @@ export default {
         return
       }
       this.checkedAnswer = true
-      let userAnswer = this.userAnswer
+      let userAnswer = this.item.userAnswer
       let listCorrectAnswers = this.item.content.correct_answer
         .toString()
         .split('**')

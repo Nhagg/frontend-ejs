@@ -9,6 +9,7 @@
           </span>
         </div>
       </div>
+      <div class="col-sm-2">Số câu: {{ getProgress() }}</div>
     </div>
   </div>
 </template>
@@ -28,7 +29,7 @@ export default {
       type: Object,
       default: Object
     },
-    resultPoint: {
+    activeItemIndex: {
       type: Number,
       default: 0
     }
@@ -54,6 +55,13 @@ export default {
       listAnswer: this.$shuffler([1, 2, 3, 4])
     }
   },
-  methods: {}
+  methods: {
+    getProgress() {
+      if (this.activeItemIndex == this.unit.learn_items.length) {
+        return this.activeItemIndex + '/' + this.unit.learn_items.length
+      }
+      return this.activeItemIndex + 1 + '/' + this.unit.learn_items.length
+    }
+  }
 }
 </script>

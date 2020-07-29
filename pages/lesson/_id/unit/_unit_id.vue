@@ -34,7 +34,11 @@
       </div>
     </div>
     <div class="study-content" v-if="unit.id">
-      <CountDown v-if="unit.type == 'exam'" />
+      <CountDown
+        v-if="unit.type == 'exam'"
+        :unit="unit"
+        :active-item-index="activeItemIndex"
+      />
       <NewwordPractice1
         v-if="
           activeItem.type == 'newword_practice_1' ||
@@ -256,11 +260,19 @@
       </div>
       <div v-else class="study-footer-left"></div>
       <div>
+        <button
+          class="btn mr-3"
+          @click="backPage"
+          v-if="activeItem.id && unit.type == 'exam' && activeItemIndex > 0"
+        >
+          <i class="fa fa-arrow-left"></i>
+          Quay lại
+        </button>
         <button class="btn" @click="nextPage" v-if="activeItem.id">
           Tiếp theo
           <i class="fa fa-arrow-right"></i>
         </button>
-        <div v-else>
+        <div v-if="!activeItem.id && unit.type != 'exam'">
           <button @click="leanAgain" class="btn">
             Học lại
             <i class="fa fa-redo"></i>
@@ -447,7 +459,13 @@ export default {
         activeItem.point > 0
       )
     },
+    backPage() {
+      this.activeItemIndex--
+    },
     nextPage() {
+      if (this.unit.type == 'exam') {
+        this.getAnswer
+      }
       this.userAnswer = ''
       this.isNext = false
       if (
@@ -495,7 +513,9 @@ export default {
       this.resetPage()
     },
     getFooterClass() {
-      console.log('getFooterClass', this.activeItem)
+      if (this.unit.type == 'exam') {
+        return ''
+      }
       if (this.activeItem.point != undefined) {
         return this.isCorrect() ? 'correct' : 'incorrect'
       }

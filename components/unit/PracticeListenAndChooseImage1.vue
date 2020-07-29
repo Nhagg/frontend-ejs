@@ -21,12 +21,16 @@
           <div class="item-img ratio-4-3">
             <img :src="$getItemImg(unit, item, i)" alt="" @error="onErrorImg" />
             <i
-              v-if="userAnswer !== null && i === 1"
+              v-if="unit.type != 'exam' && userAnswer !== null && i === 1"
               class="fas fa-check-circle text-success"
             />
             <i
-              v-if="userAnswer === i && i !== 1"
+              v-if="unit.type != 'exam' && userAnswer === i && i !== 1"
               class="fas fa-check-circle text-danger"
+            />
+            <i
+              v-if="unit.type == 'exam' && userAnswer === i"
+              class="fas fa-check-circle text-yellow"
             />
           </div>
         </div>
@@ -68,10 +72,11 @@ export default {
       this.$refs.myAudio.play()
     },
     checkAnswer(i) {
-      if (this.userAnswer != null) {
+      if (this.unit.type != 'exam' && this.userAnswer != null) {
         return
       }
       this.userAnswer = i
+      this.item.userAnswer = i
       this.setAnswer(this.item, i === 1 ? this.item.score : 0)
     }
   }

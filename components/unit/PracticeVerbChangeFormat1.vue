@@ -30,7 +30,10 @@
       <h2 v-if="checkedAnswer && userPoint == false" class="text-center mt-4">
         {{ item.content.correct_answer.toString().split('**')[0] }}
       </h2>
-      <div v-if="!checkedAnswer" class="mt-5 text-center">
+      <div
+        v-if="!checkedAnswer && unit.type != 'exam'"
+        class="mt-5 text-center"
+      >
         <button class="btn btn-check-answer btn-green" @click="checkAnswer">
           Kiểm tra
         </button>

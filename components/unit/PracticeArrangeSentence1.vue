@@ -15,7 +15,7 @@
         @click="() => removeText(index)"
         :disabled="checkedAnswer"
       >
-        {{ userAnswer[index] }}
+        {{ item.userAnswer ? item.userAnswer[index] : '' }}
       </button>
     </div>
     <div
@@ -42,20 +42,21 @@
         :key="index"
         @click="() => selectedText(text)"
         class="item-arrange item-selected"
-        :disabled="userAnswer.find((u) => u == text)"
+        :disabled="item.userAnswer && item.userAnswer.find((u) => u == text)"
       >
         {{ text }}
       </button>
     </div>
-    <div v-if="!checkedAnswer" class="mt-5 text-center">
+    <div v-if="!checkedAnswer && unit.type != 'exam'" class="mt-5 text-center">
       <button
         class="btn btn-green btn-check-answer"
         @click="checkAnswer"
-        :disabled="userAnswer.length != listItem.length"
+        :disabled="item.userAnswer && item.userAnswer.length != listItem.length"
       >
         Kiểm tra
       </button>
     </div>
+    <div class="d-none">{{ resetStatus }}</div>
   </div>
 </template>
 <script>
@@ -86,10 +87,20 @@ export default {
       return this.$shuffler(this.correctAnswer.split(breakWork))
     }
   },
+  mounted() {
+    if (!this.item.userAnswer) {
+      this.item.userAnswer = []
+    }
+  },
+  beforeDestroy() {
+    if (this.unit.type == 'exam') {
+      this.checkAnswer()
+    }
+  },
   data() {
     return {
       breakWork,
-      userAnswer: [],
+      resetStatus: false,
       checkedAnswer: false,
       userPoint: false,
       disabled: false
@@ -97,17 +108,19 @@ export default {
   },
   methods: {
     selectedText(text) {
-      this.userAnswer.push(text)
+      this.item.userAnswer.push(text)
+      this.resetPage()
     },
     removeText(index) {
-      this.userAnswer.splice(index, 1)
+      this.item.userAnswer.splice(index, 1)
+      this.resetPage()
     },
     resetPage() {
       this.resetStatus = !this.resetStatus
     },
     checkAnswer() {
       let res = false
-      if (this.userAnswer.join(breakWork) == this.correctAnswer) {
+      if (this.item.userAnswer.join(breakWork) == this.correctAnswer) {
         res = true
       }
       this.setAnswer(this.item, res ? this.item.score : 0)

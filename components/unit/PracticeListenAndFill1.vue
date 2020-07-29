@@ -20,7 +20,7 @@
         ref="inputListenAndFill1"
         type="text"
         class="form-control ejs-form-control"
-        v-model="userAnswer"
+        v-model="item.userAnswer"
         @keypress="onKeyPress"
         :disabled="checkedAnswer"
       />
@@ -34,11 +34,11 @@
     <h2 v-if="checkedAnswer && userPoint == false" class="text-center mt-4">
       {{ item.content.correct_answer.toString().split('**')[0] }}
     </h2>
-    <div v-if="!checkedAnswer" class="mt-5 text-center">
+    <div v-if="!checkedAnswer && unit.type != 'exam'" class="mt-5 text-center">
       <button
         class="btn btn-check-answer btn-green"
         @click="checkAnswer"
-        :disabled="!userAnswer"
+        :disabled="!item.userAnswer"
       >
         Kiểm tra
       </button>
@@ -69,9 +69,13 @@ export default {
   mounted() {
     setTimeout(this.playAudio(), 2000)
   },
+  beforeDestroy() {
+    if (this.unit.type == 'exam') {
+      this.checkAnswer()
+    }
+  },
   data() {
     return {
-      userAnswer: '',
       userPoint: false,
       checkedAnswer: false
     }
@@ -93,7 +97,9 @@ export default {
         return
       }
       this.checkedAnswer = true
-      let userAnswer = this.userAnswer
+      let userAnswer = this.item.userAnswer
+      console.log(this.item)
+      console.log(this.item.content.correct_answer)
       let listCorrectAnswers = this.item.content.correct_answer
         .toString()
         .split('**')

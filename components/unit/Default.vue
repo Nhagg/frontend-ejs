@@ -15,7 +15,7 @@
           <h2>{{ resultText }}</h2>
         </div>
       </div>
-      <div class="row mt-5">
+      <div class="row">
         <div class="col text-center">
           <div
             class="text-result-point"
@@ -25,7 +25,7 @@
               'text-green': resultPoint > 80
             }"
           >
-            <div>
+            <div v-if="unit.type != 'exam'">
               <h2
                 v-html="$convertNameToHtml(unit.name_native_language)"
                 class="japan-name"
@@ -73,6 +73,9 @@ export default {
           'Chúc mừng anh/chị học đã hoàn thành ' +
           this.unit.name_forgein_language
         )
+      }
+      if (this.unit.type == 'exam') {
+        return 'Chúc mừng anh/chị học đã hoàn thành bài thi'
       }
       return 'Chúc mừng anh/chị học được thêm 1 từ mới'
     }

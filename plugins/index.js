@@ -23,6 +23,9 @@ let replaceSpecialText = (text) => {
 }
 Vue.prototype.$replaceSpecialText = replaceSpecialText
 Vue.prototype.$clearSpecialText = (text) => {
+  if (!text) {
+    return ''
+  }
   text = text.toString().toLowerCase()
   text = text.replace(/（/g, '')
   text = text.replace(/）/g, '')

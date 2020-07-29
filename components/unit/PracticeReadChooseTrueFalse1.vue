@@ -24,27 +24,42 @@
             @click="() => checkAnswer('true')"
             class="item-boolean"
             :class="{
-              'item-true': showAnswer && correctAnswer == 'true',
-              'item-false': showAnswer && correctAnswer == 'false'
+              'item-true':
+                unit.type != 'exam' && showAnswer && correctAnswer == 'true',
+              'item-false':
+                unit.type != 'exam' && showAnswer && correctAnswer == 'false'
             }"
           >
-            <i class="fa fa-check-circle"></i>
+            <i
+              class="fa fa-times-circle"
+              :class="{
+                'text-yellow': unit.type == 'exam' && item.userAnswer == 'true'
+              }"
+            ></i>
             Đúng
           </div>
           <div
             @click="() => checkAnswer('false')"
             class="item-boolean"
             :class="{
-              'item-true': showAnswer && correctAnswer == 'false',
-              'item-false': showAnswer && correctAnswer == 'true'
+              'item-true':
+                unit.type != 'exam' && showAnswer && correctAnswer == 'false',
+              'item-false':
+                unit.type != 'exam' && showAnswer && correctAnswer == 'true'
             }"
           >
-            <i class="fa fa-times-circle"></i>
+            <i
+              class="fa fa-times-circle"
+              :class="{
+                'text-yellow': unit.type == 'exam' && item.userAnswer == 'false'
+              }"
+            ></i>
             Sai
           </div>
         </div>
       </div>
     </div>
+    <div class="d-none">{{ resetPage }}</div>
   </div>
 </template>
 <script>
@@ -52,10 +67,6 @@ export default {
   name: 'PracticeReadChooseTrueFalse1',
   props: {
     setAnswer: {
-      type: Function,
-      default: Function
-    },
-    resetPage: {
       type: Function,
       default: Function
     },
@@ -75,6 +86,7 @@ export default {
   },
   data() {
     return {
+      resetPage: false,
       showAnswer: false,
       userAnswer: null
     }
@@ -84,14 +96,18 @@ export default {
       this.$refs.myAudio.play()
     },
     checkAnswer(answer) {
-      if (this.showAnswer) {
+      if (this.unit.type != 'exam' && this.showAnswer) {
         return
       }
+      this.item.userAnswer = answer
       this.setAnswer(
         this.item,
         this.correctAnswer === answer ? this.item.score : 0
       )
-      this.showAnswer = true
+      if (this.unit.type != 'exam') {
+        this.showAnswer = true
+      }
+      this.resetPage = !this.resetPage
     }
   }
 }
