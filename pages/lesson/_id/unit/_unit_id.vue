@@ -14,6 +14,9 @@
       >
         <img src="@/assets/img/logo.png" alt="" />
       </router-link>
+      <router-link v-if="unit.type == 'exam'" :to="'/exam'">
+        <img src="@/assets/img/logo.png" alt="" />
+      </router-link>
       <router-link v-else :to="'/lesson/' + lessonID">
         <img src="@/assets/img/logo.png" alt="" />
       </router-link>
@@ -24,9 +27,11 @@
         {{ unit.type == 'policy' ? 'Học nội quy' : '' }}
         {{ unit.type == 'policy_dormitory' ? 'Học nội quy' : '' }}
         {{ unit.type == 'starter' ? 'Học chữ cái' : '' }}
+        {{ unit.type == 'exam' ? 'Thi cuối khóa' : '' }}
       </div>
     </div>
     <div class="study-content" v-if="unit.id">
+      <CountDown v-if="unit.type == 'exam'" />
       <NewwordPractice1
         v-if="
           activeItem.type == 'newword_practice_1' ||
@@ -315,6 +320,7 @@ import StarterExample1 from '~/components/unit/StarterExample1'
 import StarterPractice1 from '~/components/unit/StarterPractice1'
 import StarterPronunciation1 from '~/components/unit/StarterPronunciation1'
 import Default from '~/components/unit/Default'
+import CountDown from '~/components/CountDown'
 import Api from '~/services/Api'
 const FREE_TYPE = [
   'newword_speak_1',
@@ -350,6 +356,7 @@ export default {
     StarterExample1,
     StarterPractice1,
     StarterPronunciation1,
+    CountDown,
     Default
   },
   async asyncData({ store, route }) {

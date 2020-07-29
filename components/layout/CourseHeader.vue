@@ -24,8 +24,8 @@
                   </b-dropdown-item>
                 </b-nav-item-dropdown>
                 <b-nav-item-dropdown text="Thi cử">
-                  <b-dropdown-item href="#">Thi hết tháng</b-dropdown-item>
-                  <b-dropdown-item href="#">Thi cuối khóa</b-dropdown-item>
+                  <b-dropdown-item href="/exam">Thi hết tháng</b-dropdown-item>
+                  <b-dropdown-item href="/exam">Thi cuối khóa</b-dropdown-item>
                 </b-nav-item-dropdown>
                 <b-nav-item to="/report">Kết quả học tập</b-nav-item>
                 <b-nav-item-dropdown class="justify-content-end">

@@ -29,6 +29,7 @@ $sFooterHeight: 100px;
   padding-bottom: $sFooterHeight;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   overflow-y: auto;
