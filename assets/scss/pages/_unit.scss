@@ -221,12 +221,20 @@ $sFooterHeight: 100px;
   justify-content: center;
   text-align: center;
   position: relative;
+  img {
+    position: absolute;
+    z-index: 1;
+  }
   > div {
     position: absolute;
     width: 100%;
     text-align: center;
     top: 30px;
     color: #000;
+    z-index: 5;
+  }
+  span {
+    z-index: 10;
   }
 }
 .text-large {
@@ -353,4 +361,14 @@ $sFooterHeight: 100px;
     border-color: $text-red;
   }
 }
-
+.exam-page {
+  .study-footer {
+    .btn {
+      border-radius: 100px;
+      padding: 10px 40px;
+      background-color: $bg-red;
+      border: none;
+      color: #fff;
+    }
+  }
+}

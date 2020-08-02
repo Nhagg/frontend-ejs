@@ -5,8 +5,8 @@
     </h2>
     <div class="row mt-5">
       <div class="col-sm-8 offset-2">
-        <div class="fw-500">Nội quy phòng thi:</div>
-        <ul>
+        <div class="fw-500 fs-20">Nội quy phòng thi:</div>
+        <ul class="mt-3">
           <li>1. Các thí sinh phải đăng nhập đúng tài khoản của mình để thi</li>
           <li>2. Hệ thống sẽ tự tính giờ theo đúng giờ quy định của kỳ thi</li>
           <li>
@@ -18,7 +18,7 @@
         <div><span class="fw-500">Thời gian:</span> {{ getTime() }}</div>
         <div><span class="fw-500">Ngày thi:</span> {{ getDate() }}</div>
         <div class="text-center mt-5">
-          <nuxt-link to="/lesson/1006000/unit/2020100" class="btn btn-danger">
+          <nuxt-link to="/exam/2020100" class="btn btn-md btn-round btn-red">
             Bắt đầu thi
           </nuxt-link>
         </div>
@@ -29,6 +29,7 @@
 <script>
 export default {
   name: 'AboutUs',
+  layout: 'course',
   components: {},
   async mounted() {},
   data() {

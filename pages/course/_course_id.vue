@@ -116,9 +116,7 @@ export default {
   async asyncData({ store, route }) {
     let course_id = route.params.course_id
     course_id = course_id ? course_id : 2
-    if (course_id) {
-      await store.dispatch('SET_ACTIVE_COURSE', course_id)
-    }
+    await store.dispatch('SET_ACTIVE_COURSE', course_id)
     await store.dispatch('GET_LIST_LESSON')
     return {
       viewType: course_id == 1 ? 'list' : 'grid'

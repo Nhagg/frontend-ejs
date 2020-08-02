@@ -3,13 +3,20 @@
     <div class="row">
       <div class="col-sm-8 offset-2">
         <div class="h2 border-bottom-red text-center pb-3">
-          Thời gian còn lại:
-          <span class="h1">
-            {{ time }}
-          </span>
+          <template v-if="activeItemIndex < unit.learn_items.length">
+            Thời gian còn lại:
+            <span class="h1">
+              {{ time }}
+            </span>
+          </template>
+          <template v-else>
+            Kết quả
+          </template>
         </div>
       </div>
-      <div class="col-sm-2">Số câu: {{ getProgress() }}</div>
+      <div class="col-sm-2" v-if="activeItemIndex < unit.learn_items.length">
+        Số câu: {{ getProgress() }}
+      </div>
     </div>
   </div>
 </template>

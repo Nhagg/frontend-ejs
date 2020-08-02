@@ -45,7 +45,16 @@ export const actions = {
       return
     }
     await ApiService.get('/api/lessions').then((res) => {
-      commit('setListLesson', res.data)
+      let data = res.data
+      console.log('dddd', data)
+      data.sort((a, b) => {
+        if (b.type == 'policy') {
+          return 1
+        }
+        return 0
+      })
+      console.log('dddd', data)
+      commit('setListLesson', data)
     })
   },
   async GET_LIST_LEARN_UNIT({ commit, state }) {

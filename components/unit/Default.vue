@@ -12,11 +12,6 @@
     <template v-else>
       <div class="row">
         <div class="col text-center">
-          <h2>{{ resultText }}</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col text-center">
           <div
             class="text-result-point"
             :class="{
@@ -25,6 +20,8 @@
               'text-green': resultPoint > 80
             }"
           >
+            <img src="@/assets/img/result.png" alt="" />
+            <div class="h2">{{ resultText }}</div>
             <div v-if="unit.type != 'exam'">
               <h2
                 v-html="$convertNameToHtml(unit.name_native_language)"
@@ -32,7 +29,9 @@
               ></h2>
               <h2>{{ unit.name_forgein_language }}</h2>
             </div>
-            {{ resultPoint + ' %' }}
+            <span class="result-point">
+              {{ resultPoint + ' %' }}
+            </span>
           </div>
         </div>
       </div>
