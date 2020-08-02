@@ -110,21 +110,20 @@ export default {
       return res ? res : {}
     }
   },
-  mounted() {
+  async mounted() {
+    await this.$store.dispatch('GET_LIST_LESSON')
     this.$scrollToTop()
   },
   async asyncData({ store, route }) {
     let course_id = route.params.course_id
     course_id = course_id ? course_id : 2
     await store.dispatch('SET_ACTIVE_COURSE', course_id)
-    await store.dispatch('GET_LIST_LESSON')
-    return {
-      viewType: course_id == 1 ? 'list' : 'grid'
-    }
+    // await store.dispatch('GET_LIST_LESSON')
+    return {}
   },
   data() {
     return {
-      viewType: 'list'
+      viewType: this.$route.params.course_id == 1 ? 'list' : 'grid'
     }
   },
   methods: {

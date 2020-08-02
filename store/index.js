@@ -41,19 +41,18 @@ export const actions = {
     })
   },
   async GET_LIST_LESSON({ commit, state }) {
+    console.log('GET_LIST_LESSON')
     if (state.listLesson.length) {
       return
     }
     await ApiService.get('/api/lessions').then((res) => {
       let data = res.data
-      console.log('dddd', data)
       data.sort((a, b) => {
-        if (b.type == 'policy') {
-          return 1
+        if (a.type == 'policy') {
+          return b.type == 'policy' ? 1 : -1
         }
-        return 0
+        return 1
       })
-      console.log('dddd', data)
       commit('setListLesson', data)
     })
   },
