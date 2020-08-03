@@ -23,7 +23,7 @@
             <img src="@/assets/img/result.png" alt="" />
             <div>
               <div class="h2">{{ resultText }}</div>
-              <div v-if="unit.type != 'exam'">
+              <div v-if="unit.type != 'exam' && unit.type != 'starter'">
                 <h2
                   v-html="$convertNameToHtml(unit.name_native_language)"
                   class="japan-name"
