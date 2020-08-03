@@ -21,15 +21,17 @@
             }"
           >
             <img src="@/assets/img/result.png" alt="" />
-            <div class="h2">{{ resultText }}</div>
-            <div v-if="unit.type != 'exam'">
-              <h2
-                v-html="$convertNameToHtml(unit.name_native_language)"
-                class="japan-name"
-              ></h2>
-              <h2>{{ unit.name_forgein_language }}</h2>
+            <div>
+              <div class="h2">{{ resultText }}</div>
+              <div v-if="unit.type != 'exam'">
+                <h2
+                  v-html="$convertNameToHtml(unit.name_native_language)"
+                  class="japan-name"
+                ></h2>
+                <h2>{{ unit.name_forgein_language }}</h2>
+              </div>
             </div>
-            <span class="result-point">
+            <span class="result-point pt-5">
               {{ resultPoint + ' %' }}
             </span>
           </div>

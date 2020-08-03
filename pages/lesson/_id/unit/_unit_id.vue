@@ -7,20 +7,7 @@
       {{ resetStatus }}
     </span>
     <div class="study-header">
-      <router-link
-        v-if="
-          unit.type == 'policy' ||
-            unit.type == 'policy_dormitory' ||
-            unit.type == 'starter'
-        "
-        :to="'/course/' + 1"
-      >
-        <img src="@/assets/img/logo.png" alt="" />
-      </router-link>
-      <router-link v-if="unit.type == 'exam'" :to="'/exam'">
-        <img src="@/assets/img/logo.png" alt="" />
-      </router-link>
-      <router-link v-else :to="'/lesson/' + lessonID">
+      <router-link :to="getBackRouter()">
         <img src="@/assets/img/logo.png" alt="" />
       </router-link>
       <div class="study-header-text">
@@ -278,8 +265,16 @@
             <i class="fa fa-redo"></i>
           </button>
           <a
-            v-if="nextUnit.id"
+            v-if="unit.type != 'starter' && nextUnit.id"
             :href="'/lesson/' + lessonID + '/unit/' + nextUnit.id"
+            class="btn ml-3"
+          >
+            Học tiếp
+            <i class="fa fa-arrow-right"></i>
+          </a>
+          <a
+            v-if="unit.type == 'starter' && nextLesson.id"
+            :href="'/lesson/' + nextLesson.id"
             class="btn ml-3"
           >
             Học tiếp
@@ -374,26 +369,8 @@ export default {
     CountDown,
     Default
   },
-  async asyncData({ store, route }) {
-    let unitId = route.params.unit_id
-    let lessonID = route.params.id
-    await store.dispatch('GET_LIST_LESSON')
-    await store.dispatch('GET_LIST_LEARN_UNIT')
-    let lesson = {}
-    let unit = {}
-    await Api.get('/api/lessions/' + lessonID).then((res) => {
-      lesson = res.data
-    })
-    await Api.get('/api/learn_units/' + unitId).then((res) => {
-      unit = res.data
-    })
-    return {
-      lesson,
-      unit
-    }
-  },
   computed: {
-    ...mapState(['listLesson', 'listLearnUnit', 'user', 'activeCourse']),
+    ...mapState(['listLesson', 'user']),
     nextUnit() {
       const { unit, lesson } = this
       let listActiveLearnUnit = lesson.learn_units
@@ -403,11 +380,19 @@ export default {
       }
       return listActiveLearnUnit[unitIndex + 1]
     },
+    nextLesson() {
+      const { listLesson, lesson } = this
+      let listItem = listLesson.filter((l) => l.course.id == lesson.course.id)
+      let itemIndex = listItem.findIndex((u) => u.id == lesson.id)
+      if (itemIndex == -1 || itemIndex == listItem.length - 1) {
+        return {}
+      }
+      return listItem[itemIndex + 1]
+    },
     activeItem() {
       let { unit, activeItemIndex } = this
       if (unit && unit.learn_items && unit.learn_items[activeItemIndex]) {
         console.log('activeItem', unit.learn_items[activeItemIndex])
-        console.log('unit', unit)
         let res = unit.learn_items[activeItemIndex]
         if (!res.score) {
           res.score = 10
@@ -426,16 +411,42 @@ export default {
   watch: {
     activeItem(val) {
       if (val.type == 'policy_intormation_1') {
-        window.setTimeout(() => {
-          this.isNext = true
-        }, 5000)
+        window.setTimeout(
+          () => {
+            this.isNext = true
+          },
+          window.location.hostname == 'localhost' ? 10 : 5000
+        )
       }
     }
   },
-  mounted() {
-    window.setTimeout(() => {
-      this.isNext = true
-    }, 5000)
+  async asyncData({ store, route }) {
+    let unitId = route.params.unit_id
+    let lessonID = route.params.id
+    await store.dispatch('GET_LIST_LESSON')
+    await store.dispatch('GET_LIST_LEARN_UNIT')
+    let lesson = {}
+    let unit = {}
+    await Api.get('/api/lessions/' + lessonID).then((res) => {
+      lesson = res.data
+    })
+    await Api.get('/api/learn_units/' + unitId).then((res) => {
+      unit = res.data
+    })
+    return {
+      lesson,
+      unit
+    }
+  },
+  async mounted() {
+    console.log('unit', this.unit)
+    await this.$store.dispatch('GET_LIST_LESSON')
+    window.setTimeout(
+      () => {
+        this.isNext = true
+      },
+      window.location.hostname == 'localhost' ? 10 : 5000
+    )
   },
   data() {
     return {
@@ -451,6 +462,17 @@ export default {
     }
   },
   methods: {
+    getBackRouter() {
+      let unit = this.unit
+      if (
+        unit.type == 'policy' ||
+        unit.type == 'policy_dormitory' ||
+        unit.type == 'starter'
+      ) {
+        return '/course/1'
+      }
+      return '/lesson/' + this.lessonID
+    },
     isCorrect() {
       const activeItem = this.activeItem
       return (
