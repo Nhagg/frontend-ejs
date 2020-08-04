@@ -1,9 +1,6 @@
 <template>
   <div class="container">
-    <div
-      v-if="unit.type == 'policy' || unit.type == 'policy_dormitory'"
-      class="mt-20vh text-center"
-    >
+    <div v-if="unit.type == 'policy'" class="mt-20vh text-center">
       <div class="h1">Chúc mừng bạn đã hoàn thành nội quy</div>
       <nuxt-link to="/course/1" class="btn btn-green btn-lg mt-5">
         Quay về bài học chính

@@ -41,6 +41,9 @@ export default {
   data() {
     return {}
   },
+  mounted() {
+    setTimeout(this.playVolume(), 2000)
+  },
   methods: {
     playVolume(speed = 0.8) {
       this.$playVolume(this.$getNativeName(this.item.content.title1), speed)

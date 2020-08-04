@@ -15,7 +15,6 @@
         {{ unit.type == 'new_word' ? 'Học từ mới' : '' }}
         {{ unit.type == 'practice' ? 'Luyện tập' : '' }}
         {{ unit.type == 'policy' ? 'Học nội quy' : '' }}
-        {{ unit.type == 'policy_dormitory' ? 'Học nội quy' : '' }}
         {{ unit.type == 'starter' ? 'Học chữ cái' : '' }}
         {{ unit.type == 'exam' ? 'Thi cuối khóa' : '' }}
       </div>
@@ -222,7 +221,7 @@
       />
     </div>
     <div
-      v-if="unit.id && unit.type != 'policy' && unit.type != 'policy_dormitory'"
+      v-if="unit.id && unit.type != 'policy'"
       :class="'study-footer ' + getFooterClass()"
     >
       <div class="study-footer-left" v-if="activeItem.point != undefined">
@@ -283,21 +282,15 @@
         </div>
       </div>
     </div>
-    <div
-      v-if="
-        activeItem.id &&
-          (unit.type == 'policy' || unit.type == 'policy_dormitory')
-      "
-      class="study-footer"
-    >
+    <div v-if="activeItem.id && unit.type == 'policy'" class="study-footer">
       <div class="study-footer-left"></div>
       <div>
         <button
           class="btn btn-green btn-rule-page"
           @click="nextPage"
-          :disabled="!isNext"
+          :disabled="countDownPolicy > 0"
         >
-          Tiếp theo
+          Tiếp theo {{ countDownPolicy ? `(${countDownPolicy})` : '' }}
           <i class="fa fa-arrow-right"></i>
         </button>
       </div>
@@ -411,12 +404,7 @@ export default {
   watch: {
     activeItem(val) {
       if (val.type == 'policy_intormation_1') {
-        window.setTimeout(
-          () => {
-            this.isNext = true
-          },
-          window.location.hostname == 'localhost' ? 10 : 5000
-        )
+        this.createCountDownPolicy()
       }
     }
   },
@@ -441,12 +429,7 @@ export default {
   async mounted() {
     console.log('unit', this.unit)
     await this.$store.dispatch('GET_LIST_LESSON')
-    window.setTimeout(
-      () => {
-        this.isNext = true
-      },
-      window.location.hostname == 'localhost' ? 10 : 5000
-    )
+    this.createCountDownPolicy()
   },
   data() {
     return {
@@ -457,18 +440,34 @@ export default {
       resetStatus: false,
       showResult: false,
       unit: {},
-      isNext: false,
+      countDownPolicy: 5,
       activeItemIndex: 0
     }
   },
   methods: {
+    createCountDownPolicy() {
+      window.setTimeout(() => {
+        this.countDownPolicy = 5
+      }, 0)
+      window.setTimeout(() => {
+        this.countDownPolicy = 4
+      }, 1000)
+      window.setTimeout(() => {
+        this.countDownPolicy = 3
+      }, 2000)
+      window.setTimeout(() => {
+        this.countDownPolicy = 2
+      }, 3000)
+      window.setTimeout(() => {
+        this.countDownPolicy = 1
+      }, 4000)
+      window.setTimeout(() => {
+        this.countDownPolicy = 0
+      }, 5000)
+    },
     getBackRouter() {
       let unit = this.unit
-      if (
-        unit.type == 'policy' ||
-        unit.type == 'policy_dormitory' ||
-        unit.type == 'starter'
-      ) {
+      if (unit.type == 'policy' || unit.type == 'starter') {
         return '/course/1'
       }
       return '/lesson/' + this.lessonID
@@ -489,7 +488,7 @@ export default {
         this.getAnswer
       }
       this.userAnswer = ''
-      this.isNext = false
+      this.countDownPolicy = 5
       if (
         this.activeItem.type == 'grammar_information_2' &&
         this.activeItem.showText != true
