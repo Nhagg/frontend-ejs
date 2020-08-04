@@ -71,13 +71,7 @@ Vue.prototype.$convertNameToHtml = (text) => {
 Vue.prototype.$getItemImg = (unit, item = {}, i = 1) => {
   const api = process.env.DOMAIN_API
   const folderUrl = api + '/images/' + unit.type + '/'
-  let imgUrl = item.content['image' + i]
-  imgUrl.replace('.jpg', '.png')
-  if (imgUrl.indexOf('.png') > -1) {
-    return folderUrl + item.content['image' + i]
-  } else {
-    return folderUrl + imgUrl + '.png'
-  }
+  return folderUrl + item.content['image' + i]
 }
 Vue.prototype.$getItemAudio = (item = {}) => {
   const api = process.env.DOMAIN_API
