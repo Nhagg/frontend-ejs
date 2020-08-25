@@ -295,6 +295,7 @@
         </button>
       </div>
     </div>
+    <SettingSpeed />
   </div>
 </template>
 <script>
@@ -322,6 +323,7 @@ import StarterSpeak1 from '~/components/unit/StarterSpeak1'
 import StarterExample1 from '~/components/unit/StarterExample1'
 import StarterPractice1 from '~/components/unit/StarterPractice1'
 import StarterPronunciation1 from '~/components/unit/StarterPronunciation1'
+import SettingSpeed from '~/components/global/SettingSpeed'
 import Default from '~/components/unit/Default'
 import CountDown from '~/components/CountDown'
 import Api from '~/services/Api'
@@ -360,6 +362,7 @@ export default {
     StarterPractice1,
     StarterPronunciation1,
     CountDown,
+    SettingSpeed,
     Default
   },
   computed: {
@@ -546,7 +549,6 @@ export default {
       return ''
     },
     resultPoint() {
-      console.log('resultPoint')
       let totalPoint = 0
       const listItem = this.unit.learn_items
       let totalScore = 0

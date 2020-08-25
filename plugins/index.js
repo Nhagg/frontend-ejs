@@ -85,7 +85,10 @@ Vue.prototype.$getItemAudio = (item = {}) => {
     return folderUrl + item.content.title2 + '.mp3'
   }
 }
-Vue.prototype.$playVolume = (text, speed = 0.8) => {
+Vue.prototype.$playVolume = (text, speed = 0) => {
+  if (Vue.prototype.$cookies.get('settingSpeed')) {
+    speed = Vue.prototype.$cookies.get('settingSpeed')
+  }
   console.log('$playVolume', text, speed)
   let msg = new SpeechSynthesisUtterance(text)
   msg.lang = 'ja-JP'

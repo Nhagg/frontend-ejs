@@ -1,0 +1,79 @@
+.setting-speed {
+  position: fixed;
+  z-index: 100;
+  top: 45%;
+  right: 0px;
+  .setting-speed-icon {
+    background-color: $text-red;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10px 0 0 10px;
+    i {
+      font-size: 30px;
+    }
+  }
+  .setting-speed-content {
+    position: absolute;
+    right: 75px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 170px;
+    width: 80px;
+    border: solid 1px $text-red;
+    border-radius: 5px;
+    background-color: #fff;
+    &:after {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-top: solid 1px $text-red;
+      border-right: solid 1px $text-red;
+      position: absolute;
+      top: 47%;
+      right: -6px;
+      transform: rotate(45deg);
+      background-color: #fff;
+    }
+    .setting-speed-body {
+      position: relative;
+      height: 170px;
+      padding: 5px 10px;
+      .list-speed-value {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 160px;
+        color: #979797;
+        > div {
+          cursor: pointer;
+          &:hover, &.active {
+            color: $text-red;
+          }
+        }
+      }
+      .speed-progress {
+        position: absolute;
+        transform: rotate(-90deg);
+        width: 150px;
+        right: -60px;
+        top: 70px;
+      }
+      input::-webkit-slider-thumb {
+        background: $text-red;
+      }
+      input::-ms-fill-lower {
+        background: $text-red;
+        color: burlywood;
+      }
+      input::-ms-fill-upper {
+        background: $text-red;
+      }
+    }
+  }
+}

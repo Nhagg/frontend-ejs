@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid unit-page exam-page">
+    <SettingSpeed />
     <span class="d-none">
       {{ resetStatus }}
     </span>

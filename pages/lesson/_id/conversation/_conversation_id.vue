@@ -1,5 +1,6 @@
 <template>
   <div class="page-conversation">
+    <SettingSpeed />
     <span class="d-none">
       {{ resetStatus }}
     </span>
