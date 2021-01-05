@@ -477,6 +477,8 @@ export default {
     },
     isCorrect() {
       const activeItem = this.activeItem
+      console.log('letsasd')
+      console.log(activeItem)
       return (
         activeItem.point != undefined &&
         activeItem.point == activeItem.score &&
