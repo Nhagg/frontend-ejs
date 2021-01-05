@@ -35,7 +35,7 @@
         Đúng
       </div>
       <div
-        @click="() => checkAnswer('ｘ')"
+        @click="() => checkAnswer('x')"
         class="item-boolean"
         :class="{
           'item-true':
