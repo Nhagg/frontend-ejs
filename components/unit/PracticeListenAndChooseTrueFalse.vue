@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col text-center">
         <div class="speak-title">
-          <h2 class="mr-3">Nghe và chọn đúng sai test</h2>
+          <h2 class="mr-3">Nghe và chọn đúng sai</h2>
           <div class="volume-icon" @click="playAudio">
             <i class="fa fa-volume-up"></i>
           </div>
@@ -17,7 +17,7 @@
     </div>
     <div class="list-true-false">
       <div
-        @click="() => checkAnswer('true')"
+        @click="() => checkAnswer('〇')"
         class="item-boolean"
         :class="{
           'item-true':
@@ -35,7 +35,7 @@
         Đúng
       </div>
       <div
-        @click="() => checkAnswer('false')"
+        @click="() => checkAnswer('ｘ')"
         class="item-boolean"
         :class="{
           'item-true':
@@ -75,7 +75,7 @@ export default {
   },
   computed: {
     correctAnswer() {
-      return this.item.content.correct_answer.toString().toLowerCase()
+      return this.item.content.correct_answer.toString().toLowerCase().replace(/(\r\n|\n|\r)/gm, "")
     }
   },
   data() {

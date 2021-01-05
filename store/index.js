@@ -6,7 +6,7 @@ const listCourse = [
   },
   {
     id: 2,
-    name: 'Khóa N5 T'
+    name: 'Khóa N5'
   },
   {
     id: 3,
