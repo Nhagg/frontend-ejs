@@ -105,7 +105,7 @@ export default {
       this.item.userAnswer = answer
       this.setAnswer(
         this.item,
-        this.correctAnswer === answer ? this.item.score : 0
+        this.correctAnswer == answer ? this.item.score : 0
       )
       if (this.unit.type != 'exam') {
         this.showAnswer = true
