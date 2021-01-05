@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col text-center">
         <div class="speak-title">
-          <h2 class="mr-3">Nghe và chọn đúng sai</h2>
+          <h2 class="mr-3">Nghe và chọn đúng sai test</h2>
           <div class="volume-icon" @click="playAudio">
             <i class="fa fa-volume-up"></i>
           </div>
