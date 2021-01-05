@@ -479,7 +479,6 @@ export default {
       const activeItem = this.activeItem
       console.log('active point')
       console.log(activeItem.point)
-      console.log(activeItem)
       return (
         activeItem.point != undefined &&
         activeItem.point == activeItem.score &&
