@@ -96,9 +96,6 @@ export default {
     },
     checkAnswer(answer) {
       answer = answer.toString().toLowerCase()
-      console.log('item score ', this.item.score)
-      console.log('correct ans ', this.correctAnswer)
-      console.log('user ans ', answer)
       if (this.unit.type != 'exam' && this.showAnswer) {
         return
       }

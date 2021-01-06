@@ -388,7 +388,6 @@ export default {
     activeItem() {
       let { unit, activeItemIndex } = this
       if (unit && unit.learn_items && unit.learn_items[activeItemIndex]) {
-        console.log('activeItem', unit.learn_items[activeItemIndex])
         let res = unit.learn_items[activeItemIndex]
         if (!res.score) {
           res.score = 10
@@ -430,7 +429,6 @@ export default {
     }
   },
   async mounted() {
-    console.log('unit', this.unit)
     await this.$store.dispatch('GET_LIST_LESSON')
     this.createCountDownPolicy()
   },
@@ -477,8 +475,6 @@ export default {
     },
     isCorrect() {
       const activeItem = this.activeItem
-      console.log('active point')
-      console.log(activeItem.point)
       return (
         activeItem.point != undefined &&
         activeItem.point == activeItem.score &&
@@ -533,7 +529,6 @@ export default {
       this.activeItemIndex = 0
     },
     setAnswer(item, point, userAnswer = '') {
-      console.log('setAns', point, userAnswer)
       item.point = parseInt(point) ? parseInt(point) : 0
       this.userAnswer = userAnswer
       this.resetPage()
