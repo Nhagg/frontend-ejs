@@ -63,6 +63,10 @@ export default {
       listAnswer: this.$shuffler([1, 2, 3, 4])
     }
   },
+  mounted() {
+    console.log(this.unit)
+    console.log(this.item)
+  },
   methods: {
     checkAnswer(i) {
       if (this.userAnswer != null) {
