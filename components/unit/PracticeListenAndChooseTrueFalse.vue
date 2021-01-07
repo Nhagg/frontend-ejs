@@ -17,7 +17,7 @@
     </div>
     <div class="list-true-false">
       <div
-        @click="() => checkAnswer('o')"
+        @click="() => checkAnswer('ｘ')"
         class="item-boolean"
         :class="{
           'item-true':
@@ -35,7 +35,7 @@
         Đúng
       </div>
       <div
-        @click="() => checkAnswer('ｘ')"
+        @click="() => checkAnswer('〇')"
         class="item-boolean"
         :class="{
           'item-true':
