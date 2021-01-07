@@ -92,6 +92,8 @@ export default {
   },
   methods: {
     playAudio() {
+      console.log('this.$refs', this.$refs)
+      console.log('this.$refs.myAudio', this.$refs.myAudio)
       this.$refs.myAudio.play()
     },
     checkAnswer(answer) {
