@@ -14,7 +14,6 @@
         <div v-for="i in listAnswer" :key="i" class="col-sm-6">
           <div class="item-answer" @click="() => checkAnswer(i)">
             <div class="item-img ratio-4-3">
-              <!--              <img :src="$getItemImg(unit, item, i)" alt="" />-->
               <img :src="this.getImage(i)" alt="" />
               <i
                 v-if="userAnswer !== null && i === 1"
@@ -68,7 +67,6 @@ export default {
     console.log(this.unit)
     console.log(this.item)
     console.log(this.listAnswer)
-    console.log(process)
   },
   methods: {
     getImage(i) {
