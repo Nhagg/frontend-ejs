@@ -14,7 +14,7 @@
         <div v-for="i in listAnswer" :key="i" class="col-sm-6">
           <div class="item-answer" @click="() => checkAnswer(i)">
             <div class="item-img ratio-4-3">
-              <img :src="getImg(i)" alt="" />
+              <img :src="images['image' + i]" alt="" />
               <i
                 v-if="userAnswer !== null && i === 1"
                 class="fas fa-check-circle text-success"
@@ -60,7 +60,9 @@ export default {
     return {
       listTitle: this.$shuffler(listTitle),
       userAnswer: null,
-      listAnswer: this.$shuffler([1, 2, 3, 4])
+      listAnswer: this.$shuffler([1, 2, 3, 4]),
+      images: [],
+      api: process.env.DOMAIN_API
     }
   },
   mounted() {
@@ -68,6 +70,10 @@ export default {
     console.log(this.item)
     console.log(this.listAnswer)
     console.log(process.env.DOMAIN_API)
+    let folderUrl = this.api + '/images/' + this.unit.type + '/'
+    this.listAnswer.forEach((index, i) => {
+      this.images['image' + i] = folderUrl + this.item.content['image' + i]
+    })
   },
   methods: {
     checkAnswer(i) {
@@ -76,12 +82,6 @@ export default {
       }
       this.userAnswer = i
       this.setAnswer(this.item, i === 1 ? this.item.score : 0)
-    },
-    getImg(i) {
-      console.log('key', i)
-      const api = process.env.DOMAIN_API
-      const folderUrl = api + '/images/' + this.unit.type + '/'
-      return folderUrl + this.item.content['image' + i]
     }
   }
 }
