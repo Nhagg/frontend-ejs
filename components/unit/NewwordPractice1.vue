@@ -74,6 +74,7 @@ export default {
     this.listAnswer.forEach((index, i) => {
       this.images['image' + i] = folderUrl + this.item.content['image' + i]
     })
+    console.log(this.images)
   },
   methods: {
     checkAnswer(i) {
