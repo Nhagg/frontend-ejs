@@ -77,7 +77,8 @@ export default {
       this.images['image' + index] =
         folderUrl + this.item.content['image' + index]
     })
-    console.log(this.images)
+    console.log(this.images['image1'])
+    console.log(this.images.image1)
   },
   methods: {
     checkAnswer(i) {
