@@ -66,7 +66,7 @@ export default {
         image2: '',
         image3: '',
         image4: ''
-      },
+      }
     }
   },
   mounted() {
