@@ -78,7 +78,7 @@ export default {
       this.setAnswer(this.item, i === 1 ? this.item.score : 0)
     },
     getImg(i) {
-      console.log(i)
+      console.log('key', i)
       const api = process.env.DOMAIN_API
       const folderUrl = api + '/images/' + this.unit.type + '/'
       return folderUrl + this.item.content['image' + i]
