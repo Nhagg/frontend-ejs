@@ -14,7 +14,7 @@
         <div v-for="i in listAnswer" :key="i" class="col-sm-6">
           <div class="item-answer" @click="() => checkAnswer(i)">
             <div class="item-img ratio-4-3">
-              <img :src="this.getImage(i)" alt="" />
+              <img :src="$getItemImg(unit, item, i)" alt="" />
               <i
                 v-if="userAnswer !== null && i === 1"
                 class="fas fa-check-circle text-success"
@@ -69,12 +69,6 @@ export default {
     console.log(this.listAnswer)
   },
   methods: {
-    getImage(i) {
-      console.log('get img ', i)
-      // const api = process.env.DOMAIN_API
-      // const folderUrl = api + '/images/' + this.unit.type + '/'
-      // return folderUrl + this.item.content['image' + i]
-    },
     checkAnswer(i) {
       if (this.userAnswer != null) {
         return
