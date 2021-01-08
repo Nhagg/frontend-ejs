@@ -67,17 +67,11 @@ export default {
         image3: '',
         image4: ''
       },
-      api: process.env.DOMAIN_API
     }
   },
   mounted() {
-    console.log(this.unit)
-    console.log(this.item)
-    console.log(this.listAnswer)
-    console.log(process.env.DOMAIN_API)
-    let folderUrl = this.api + '/images/' + this.unit.type + '/'
     this.listAnswer.forEach((i) => {
-      this.images['image' + i] = folderUrl + this.item.content['image' + i]
+      this.images['image' + i] = this.$getItemImg(this.unit, this.item, i)
     })
   },
   methods: {
