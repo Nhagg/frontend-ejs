@@ -67,7 +67,7 @@ export default {
     console.log(this.unit)
     console.log(this.item)
     console.log(this.listAnswer)
-    console.log(process)
+    console.log(process.env.DOMAIN_API)
   },
   methods: {
     checkAnswer(i) {
@@ -76,6 +76,11 @@ export default {
       }
       this.userAnswer = i
       this.setAnswer(this.item, i === 1 ? this.item.score : 0)
+    },
+    getImg(i) {
+      const api = process.env.DOMAIN_API
+      const folderUrl = api + '/images/' + this.unit.type + '/'
+      return folderUrl + this.item.content['image' + i]
     }
   }
 }
