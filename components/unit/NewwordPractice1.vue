@@ -62,7 +62,12 @@ export default {
       listTitle: this.$shuffler(listTitle),
       userAnswer: null,
       listAnswer: this.$shuffler([1, 2, 3, 4]),
-      images: {},
+      images: {
+        image1: 'asdasd 1',
+        image2: 'asdassadd 2',
+        image3: 'asdaaaasd 3',
+        image4: 'asdfffffasd 4'
+      },
       api: process.env.DOMAIN_API
     }
   },
