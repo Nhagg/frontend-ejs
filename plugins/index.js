@@ -69,6 +69,7 @@ Vue.prototype.$convertNameToHtml = (text) => {
   return res
 }
 Vue.prototype.$getItemImg = (unit, item = {}, i = 1) => {
+  console.log(i)
   const api = process.env.DOMAIN_API
   const folderUrl = api + '/images/' + unit.type + '/'
   return folderUrl + item.content['image' + i]
