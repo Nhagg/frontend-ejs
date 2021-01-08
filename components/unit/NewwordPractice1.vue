@@ -15,6 +15,7 @@
           <div class="item-answer" @click="() => checkAnswer(i)">
             <div class="item-img ratio-4-3">
               <img :src="images['image' + i]" alt="" />
+              <img :src="images['image1']" alt="" />
               <i
                 v-if="userAnswer !== null && i === 1"
                 class="fas fa-check-circle text-success"
