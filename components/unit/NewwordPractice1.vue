@@ -61,7 +61,7 @@ export default {
       listTitle: this.$shuffler(listTitle),
       userAnswer: null,
       listAnswer: this.$shuffler([1, 2, 3, 4]),
-      images: [],
+      images: {},
       api: process.env.DOMAIN_API
     }
   },
@@ -72,7 +72,10 @@ export default {
     console.log(process.env.DOMAIN_API)
     let folderUrl = this.api + '/images/' + this.unit.type + '/'
     this.listAnswer.forEach((index, i) => {
-      this.images['image' + i] = folderUrl + this.item.content['image' + i]
+      console.log(index)
+      console.log(i)
+      this.images['image' + index] =
+        folderUrl + this.item.content['image' + index]
     })
     console.log(this.images)
   },
