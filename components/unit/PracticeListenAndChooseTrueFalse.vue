@@ -75,7 +75,10 @@ export default {
   },
   computed: {
     correctAnswer() {
-      return this.item.content.correct_answer.toString().toLowerCase().replace(/(\r\n|\n|\r)/gm, "")
+      return this.item.content.correct_answer
+        .toString()
+        .toLowerCase()
+        .replace(/(\r\n|\n|\r)/gm, '')
     }
   },
   data() {

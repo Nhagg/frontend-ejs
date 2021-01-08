@@ -67,6 +67,7 @@ export default {
     console.log(this.unit)
     console.log(this.item)
     console.log(this.listAnswer)
+    console.log(process)
   },
   methods: {
     checkAnswer(i) {
