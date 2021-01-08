@@ -15,7 +15,6 @@
           <div class="item-answer" @click="() => checkAnswer(i)">
             <div class="item-img ratio-4-3">
               <img :src="images['image' + i]" alt="" />
-              <img :src="images['image1']" alt="" />
               <i
                 v-if="userAnswer !== null && i === 1"
                 class="fas fa-check-circle text-success"
@@ -63,10 +62,10 @@ export default {
       userAnswer: null,
       listAnswer: this.$shuffler([1, 2, 3, 4]),
       images: {
-        image1: 'asdasd 1',
-        image2: 'asdassadd 2',
-        image3: 'asdaaaasd 3',
-        image4: 'asdfffffasd 4'
+        image1: '',
+        image2: '',
+        image3: '',
+        image4: ''
       },
       api: process.env.DOMAIN_API
     }
@@ -77,15 +76,9 @@ export default {
     console.log(this.listAnswer)
     console.log(process.env.DOMAIN_API)
     let folderUrl = this.api + '/images/' + this.unit.type + '/'
-    this.listAnswer.forEach((index, i) => {
-      console.log(index)
-      console.log(i)
-      this.images['image' + index] =
-        folderUrl + this.item.content['image' + index]
+    this.listAnswer.forEach((i) => {
+      this.images['image' + i] = folderUrl + this.item.content['image' + i]
     })
-    let i = 1
-    console.log(this.images['image' + i])
-    console.log(this.images.image1)
   },
   methods: {
     checkAnswer(i) {
