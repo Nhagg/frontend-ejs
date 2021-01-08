@@ -66,6 +66,7 @@ export default {
   mounted() {
     console.log(this.unit)
     console.log(this.item)
+    console.log(this.listAnswer)
   },
   methods: {
     checkAnswer(i) {
