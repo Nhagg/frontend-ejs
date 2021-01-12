@@ -77,8 +77,11 @@ export default {
       }
       this.userAnswer = i
       this.item.userAnswer = i
-      console.log(this.item)
-      this.setAnswer(this.item, i === 1 ? this.item.score : 0)
+      console.log(this.item.content.correct_answer)
+      this.setAnswer(
+        this.item,
+        i === parseInt(this.item.content.correct_answer) ? this.item.score : 0
+      )
     }
   }
 }
