@@ -20,18 +20,18 @@
         <div class="item-answer" @click="() => checkAnswer(i)">
           <div class="item-img ratio-4-3">
             <img :src="$getItemImg(unit, item, i)" alt="" @error="onErrorImg" />
-            <i
-              v-if="unit.type != 'exam' && userAnswer !== null && userAnswer === getCorrectAnswer"
-              class="fas fa-check-circle text-success"
-            />
-            <i
-              v-if="unit.type != 'exam' && userAnswer !== null && userAnswer !== getCorrectAnswer"
-              class="fas fa-check-circle text-danger"
-            />
-            <i
-              v-if="unit.type == 'exam' && userAnswer === i"
-              class="fas fa-check-circle text-yellow"
-            />
+<!--            <i-->
+<!--              v-if="unit.type != 'exam' && userAnswer !== null && userAnswer === getCorrectAnswer"-->
+<!--              class="fas fa-check-circle text-success"-->
+<!--            />-->
+<!--            <i-->
+<!--              v-if="unit.type != 'exam' && userAnswer !== null && userAnswer !== getCorrectAnswer"-->
+<!--              class="fas fa-check-circle text-danger"-->
+<!--            />-->
+<!--            <i-->
+<!--              v-if="unit.type == 'exam' && userAnswer === i"-->
+<!--              class="fas fa-check-circle text-yellow"-->
+<!--            />-->
           </div>
         </div>
       </div>
