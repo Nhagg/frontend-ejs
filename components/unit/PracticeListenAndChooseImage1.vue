@@ -21,11 +21,11 @@
           <div class="item-img ratio-4-3">
             <img :src="$getItemImg(unit, item, i)" alt="" @error="onErrorImg" />
             <i
-              v-if="unit.type != 'exam' && userAnswer !== null && i === 1"
+              v-if="unit.type != 'exam' && userAnswer !== null && i === getCorrectAnswer"
               class="fas fa-check-circle text-success"
             />
             <i
-              v-if="unit.type != 'exam' && userAnswer === i && i !== 1"
+              v-if="unit.type != 'exam' && userAnswer === i && i !== getCorrectAnswer"
               class="fas fa-check-circle text-danger"
             />
             <i
@@ -77,11 +77,13 @@ export default {
       }
       this.userAnswer = i
       this.item.userAnswer = i
-      console.log(this.item.content.correct_answer)
       this.setAnswer(
         this.item,
-        i === parseInt(this.item.content.correct_answer) ? this.item.score : 0
+        i === this.getCorrectAnswer() ? this.item.score : 0
       )
+    },
+    getCorrectAnswer() {
+      return parseInt(this.item.content.correct_answer)
     }
   }
 }
