@@ -21,11 +21,11 @@
           <div class="item-img ratio-4-3">
             <img :src="$getItemImg(unit, item, i)" alt="" @error="onErrorImg" />
             <i
-              v-if="unit.type != 'exam' && userAnswer !== null && i === getCorrectAnswer"
+              v-if="unit.type != 'exam' && userAnswer !== null && userAnswer === getCorrectAnswer"
               class="fas fa-check-circle text-success"
             />
             <i
-              v-if="unit.type != 'exam' && userAnswer === i && i !== getCorrectAnswer"
+              v-if="unit.type != 'exam' && userAnswer !== null && userAnswer !== getCorrectAnswer"
               class="fas fa-check-circle text-danger"
             />
             <i
