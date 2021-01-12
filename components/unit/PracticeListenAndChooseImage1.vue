@@ -77,6 +77,7 @@ export default {
       }
       this.userAnswer = i
       this.item.userAnswer = i
+      console.log(this.item)
       this.setAnswer(this.item, i === 1 ? this.item.score : 0)
     }
   }
