@@ -17,13 +17,18 @@
     </div>
     <div class="row mt-5">
       <div v-for="i in listAnswer" :key="i" class="col-sm-4">
-        <div class="item-answer" @click="() => checkAnswer(i)">
+        <div class="item-answer">
           <div class="item-img ratio-4-3">
-            <img :src="$getItemImg(unit, item, i)" alt="" @error="onErrorImg" />
-            <i
-              class="fas fa-check-circle"
-              :class="unit.type != 'exam' && userAnswer === i && i == getCorrectAnswer ? 'text-success' : 'text-danger'"
+            <img
+              :src="$getItemImg(unit, item, i)"
+              alt=""
+              @error="onErrorImg"
+              @click="() => checkAnswer(i)"
             />
+<!--            <i-->
+<!--              class="fas fa-check-circle"-->
+<!--              :class="unit.type != 'exam' && userAnswer === i && i == getCorrectAnswer ? 'text-success' : 'text-danger'"-->
+<!--            />-->
 <!--            <i-->
 <!--              v-if="unit.type != 'exam' && userAnswer === i && i != getCorrectAnswer"-->
 <!--              class="fas fa-check-circle text-danger"-->
