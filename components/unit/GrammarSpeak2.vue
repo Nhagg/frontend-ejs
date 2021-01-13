@@ -4,11 +4,11 @@
       <div class="col text-center">
         <div class="speak-title">
           <div class="text-center mr-3">
+            <h2>{{ item.content.title2 }}</h2>
             <h2
               v-html="$convertNameToHtml(item.content.title1)"
               class="japan-name"
             ></h2>
-            <h2>{{ item.content.title2 }}</h2>
           </div>
           <div
             class="volume-icon"
