@@ -101,12 +101,15 @@ export default {
       console.log(this.item)
       let listCorrectAnswers = this.item.content.correct_answer
         .toString()
+        .replace(/ /g,'')
         .split('**')
+      let listCharacter = listCorrectAnswers.split("")
+      console.log('listCharacter', listCharacter)
       console.log('listCorrectAnswers', listCorrectAnswers)
       if (
-        listCorrectAnswers.find((a) => {
-          console.log(' | a: ', a)
-          this.$clearSpecialText(a) == this.$clearSpecialText(userAnswer)
+        listCorrectAnswers.find((correctAns) => {
+          console.log(' | correctAns: ', correctAns)
+          this.$clearSpecialText(correctAns) == this.$clearSpecialText(userAnswer)
         })
       ) {
         this.setAnswer(this.item, this.item.score)
