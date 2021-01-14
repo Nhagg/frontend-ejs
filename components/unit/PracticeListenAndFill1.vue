@@ -103,11 +103,11 @@ export default {
         .toString()
         .replace(/ /g,'')
         .split('**')
-      let listCharacter = listCorrectAnswers.split("")
-      console.log('listCharacter', listCharacter)
       console.log('listCorrectAnswers', listCorrectAnswers)
       if (
         listCorrectAnswers.find((correctAns) => {
+          let listCharacter = listCorrectAnswers.split("")
+          console.log('listCharacter', listCharacter)
           console.log(' | correctAns: ', correctAns)
           this.$clearSpecialText(correctAns) == this.$clearSpecialText(userAnswer)
         })
