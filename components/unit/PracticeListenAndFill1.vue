@@ -99,14 +99,15 @@ export default {
       this.checkedAnswer = true
       let userAnswer = this.item.userAnswer
       console.log(this.item)
-      console.log(this.item.content.correct_answer)
       let listCorrectAnswers = this.item.content.correct_answer
         .toString()
         .split('**')
+      console.log('listCorrectAnswers', listCorrectAnswers)
       if (
-        listCorrectAnswers.find(
-          (a) => this.$clearSpecialText(a) == this.$clearSpecialText(userAnswer)
-        )
+        listCorrectAnswers.find((a) => {
+          console.log(' | a: ', a)
+          this.$clearSpecialText(a) == this.$clearSpecialText(userAnswer)
+        })
       ) {
         this.setAnswer(this.item, this.item.score)
         this.userPoint = true
