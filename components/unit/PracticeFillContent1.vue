@@ -103,10 +103,12 @@ export default {
       let listCorrectAnswers = this.item.content.correct_answer
         .toString()
         .split('**')
+      console.log(listCorrectAnswers)
       if (
-        listCorrectAnswers.find(
-          (a) => this.$clearSpecialText(a) == this.$clearSpecialText(userAnswer)
-        )
+        listCorrectAnswers.find((a) => {
+          console.log(a)
+          this.$clearSpecialText(a) == this.$clearSpecialText(userAnswer)
+        })
       ) {
         this.userPoint = true
         this.setAnswer(this.item, this.item.score)
