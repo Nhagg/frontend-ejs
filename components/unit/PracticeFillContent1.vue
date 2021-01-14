@@ -103,10 +103,10 @@ export default {
       let listCorrectAnswers = this.item.content.correct_answer
         .toString()
         .split('**')
-      console.log(listCorrectAnswers)
+      console.log('listCorrectAnswers ', listCorrectAnswers)
       if (
         listCorrectAnswers.find((a) => {
-          console.log(a)
+          console.log(' | a: ', a)
           this.$clearSpecialText(a) == this.$clearSpecialText(userAnswer)
         })
       ) {
