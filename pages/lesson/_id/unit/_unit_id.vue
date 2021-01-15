@@ -1,14 +1,14 @@
 <template>
   <div
-    class="container-fluid unit-page"
     :class="{ 'exam-page': unit.type == 'exam' }"
+    class="container-fluid unit-page"
   >
     <span class="d-none">
       {{ resetStatus }}
     </span>
     <div class="study-header">
       <router-link :to="getBackRouter()">
-        <img src="@/assets/img/logo.png" alt="" />
+        <img alt="" src="@/assets/img/logo.png"/>
       </router-link>
       <div class="study-header-text">
         {{ unit.type == 'grammar' ? 'Học ngữ pháp' : '' }}
@@ -19,11 +19,11 @@
         {{ unit.type == 'exam' ? 'Thi cuối khóa' : '' }}
       </div>
     </div>
-    <div class="study-content" v-if="unit.id">
+    <div v-if="unit.id" class="study-content">
       <CountDown
         v-if="unit.type == 'exam'"
-        :unit="unit"
         :active-item-index="activeItemIndex"
+        :unit="unit"
       />
       <NewwordPractice1
         v-if="
@@ -31,9 +31,9 @@
             activeItem.type == 'grammar_practice_1'
         "
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <NewwordPractice2
         v-else-if="
@@ -41,9 +41,9 @@
             activeItem.type == 'grammar_practice_2'
         "
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <NewwordSpeak1
         v-else-if="
@@ -51,9 +51,9 @@
             activeItem.type == 'grammar_speak_1'
         "
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <NewwordPronunciation1
         v-else-if="
@@ -61,9 +61,9 @@
             activeItem.type == 'grammar_pronounciation_1'
         "
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <GrammarInformation2
         v-else-if="
@@ -71,160 +71,160 @@
             activeItem.type == 'grammar_information_2'
         "
         :key="activeItem.id + activeItem.showText"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <GrammarSpeak2
         v-else-if="activeItem.type == 'grammar_speak_2'"
         :key="activeItem.id + activeItem.showText"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <PracticeListenAndFill1
         v-else-if="activeItem.type == 'practice_listen_and_fill_1'"
         :key="activeItem.id"
-        :setAnswer="setAnswer"
-        :resetPage="resetPage"
-        :unit="unit"
         :item="activeItem"
+        :resetPage="resetPage"
+        :setAnswer="setAnswer"
+        :unit="unit"
       />
       <PracticeListenAndChooseImage1
         v-else-if="activeItem.type == 'practice_listen_and_choose_image_1'"
         :key="activeItem.id"
-        :setAnswer="setAnswer"
-        :resetPage="resetPage"
-        :unit="unit"
         :item="activeItem"
+        :resetPage="resetPage"
+        :setAnswer="setAnswer"
+        :unit="unit"
       />
       <PracticeListenAndChooseTrueFalse
         v-else-if="activeItem.type == 'practice_listen_and_choose_true_false'"
         :key="activeItem.id"
-        :setAnswer="setAnswer"
-        :resetPage="resetPage"
-        :unit="unit"
         :item="activeItem"
+        :resetPage="resetPage"
+        :setAnswer="setAnswer"
+        :unit="unit"
       />
       <PracticeFillContent1
         v-else-if="activeItem.type == 'practice_fill_content_1'"
         :key="activeItem.id"
-        :setAnswer="setAnswer"
-        :resetPage="resetPage"
-        :unit="unit"
         :item="activeItem"
+        :resetPage="resetPage"
+        :setAnswer="setAnswer"
+        :unit="unit"
       />
       <PracticeArrangeSentence1
         v-else-if="activeItem.type == 'practice_arrange_sentence_1'"
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <PracticeReadChooseTrueFalse1
         v-else-if="activeItem.type == 'practice_read_choose_true_false_1'"
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <PracticeChooseWorkAndChangeFormat
         v-else-if="activeItem.type == 'practice_choose_word_and_change_fomart'"
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <PracticeReadChooseCorrectAnswer1
         v-else-if="activeItem.type == 'practice_read_choose_correct_answer_1'"
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <PracticeVerbChangeFormat1
         v-else-if="activeItem.type == 'practice_verb_change_format_1'"
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <PracticeSeePictureCompleteScentence1
         v-else-if="
           activeItem.type == 'practice_see_picture_complete_scentence_1'
         "
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <PracticeCombine2SenctenceTrueFalse1
         v-else-if="
           activeItem.type == 'practice_combine_2_senctence_true_false_1'
         "
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <PracticeCompletedScentenceByExistingWords1
         v-else-if="
           activeItem.type == 'practice_completed_scentence_by_existing_words_1'
         "
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <PolicyInfo1
         v-else-if="activeItem.type == 'policy_intormation_1'"
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <StarterSpeak1
         v-else-if="activeItem.type == 'starter_speak_1'"
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <StarterExample1
         v-else-if="activeItem.type == 'starter_example_1'"
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <StarterPractice1
         v-else-if="activeItem.type == 'starter_practice_1'"
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <StarterPronunciation1
         v-else-if="activeItem.type == 'starter_pronounciation_1'"
         :key="activeItem.id"
+        :item="activeItem"
         :setAnswer="setAnswer"
         :unit="unit"
-        :item="activeItem"
       />
       <Default
         v-else
         :key="activeItem.id"
-        :setAnswer="setAnswer"
-        :result-point="resultPoint()"
-        :unit="unit"
         :item="activeItem"
+        :result-point="resultPoint()"
+        :setAnswer="setAnswer"
+        :unit="unit"
       />
     </div>
     <div
       v-if="unit.id && unit.type != 'policy'"
       :class="'study-footer ' + getFooterClass()"
     >
-      <div class="study-footer-left" v-if="activeItem.point != undefined">
+      <div v-if="activeItem.point != undefined" class="study-footer-left">
         <i class="fa fa-check-circle"></i>
         <div v-if="isCorrect()">
           Đáp án chính xác
@@ -247,19 +247,19 @@
       <div v-else class="study-footer-left"></div>
       <div>
         <button
+          v-if="activeItem.id && unit.type == 'exam' && activeItemIndex > 0"
           class="btn mr-3"
           @click="backPage"
-          v-if="activeItem.id && unit.type == 'exam' && activeItemIndex > 0"
         >
           <i class="fa fa-arrow-left"></i>
           Quay lại
         </button>
-        <button class="btn" @click="nextPage" v-if="activeItem.id">
+        <button v-if="activeItem.id" class="btn" @click="nextPage">
           Tiếp theo
           <i class="fa fa-arrow-right"></i>
         </button>
         <div v-if="!activeItem.id && unit.type != 'exam'">
-          <button @click="leanAgain" class="btn">
+          <button class="btn" @click="leanAgain">
             Học lại
             <i class="fa fa-redo"></i>
           </button>
@@ -286,20 +286,20 @@
       <div class="study-footer-left"></div>
       <div>
         <button
+          :disabled="countDownPolicy > 0"
           class="btn btn-green btn-rule-page"
           @click="nextPage"
-          :disabled="countDownPolicy > 0"
         >
           Tiếp theo {{ countDownPolicy ? `(${countDownPolicy})` : '' }}
           <i class="fa fa-arrow-right"></i>
         </button>
       </div>
     </div>
-    <SettingSpeed />
+    <SettingSpeed/>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import {mapState} from 'vuex'
 import NewwordPractice1 from '~/components/unit/NewwordPractice1'
 import NewwordPractice2 from '~/components/unit/NewwordPractice2'
 import NewwordSpeak1 from '~/components/unit/NewwordSpeak1'
@@ -327,6 +327,7 @@ import SettingSpeed from '~/components/global/SettingSpeed'
 import Default from '~/components/unit/Default'
 import CountDown from '~/components/CountDown'
 import Api from '~/services/Api'
+
 const FREE_TYPE = [
   'newword_speak_1',
   'grammar_speak_1',
@@ -368,7 +369,7 @@ export default {
   computed: {
     ...mapState(['listLesson', 'user']),
     nextUnit() {
-      const { unit, lesson } = this
+      const {unit, lesson} = this
       let listActiveLearnUnit = lesson.learn_units
       let unitIndex = listActiveLearnUnit.findIndex((u) => u.id == unit.id)
       if (unitIndex == -1 || unitIndex == listActiveLearnUnit.length - 1) {
@@ -377,7 +378,7 @@ export default {
       return listActiveLearnUnit[unitIndex + 1]
     },
     nextLesson() {
-      const { listLesson, lesson } = this
+      const {listLesson, lesson} = this
       let listItem = listLesson.filter((l) => l.course.id == lesson.course.id)
       let itemIndex = listItem.findIndex((u) => u.id == lesson.id)
       if (itemIndex == -1 || itemIndex == listItem.length - 1) {
@@ -386,7 +387,7 @@ export default {
       return listItem[itemIndex + 1]
     },
     activeItem() {
-      let { unit, activeItemIndex } = this
+      let {unit, activeItemIndex} = this
       if (unit && unit.learn_items && unit.learn_items[activeItemIndex]) {
         let res = unit.learn_items[activeItemIndex]
         if (!res.score) {
@@ -410,7 +411,7 @@ export default {
       }
     }
   },
-  async asyncData({ store, route }) {
+  async asyncData({store, route}) {
     let unitId = route.params.unit_id
     let lessonID = route.params.id
     await store.dispatch('GET_LIST_LESSON')
@@ -499,6 +500,8 @@ export default {
         return
       }
       this.activeItemIndex++
+      console.log(this.unit)
+      console.log(this.activeItemIndex)
       //if this is last page => send pint
       if (this.activeItemIndex == this.unit.learn_items.length) {
         Api.post(
