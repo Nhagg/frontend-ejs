@@ -106,9 +106,9 @@ export default {
       console.log('listCorrectAnswers', listCorrectAnswers)
       if (
         listCorrectAnswers.find((correctAns) => {
-          let listCharacter = listCorrectAnswers.split("")
-          console.log('listCharacter', listCharacter)
           console.log(' | correctAns: ', correctAns)
+          let listCharacter = correctAns.split("")
+          console.log('listCharacter', listCharacter)
           this.$clearSpecialText(correctAns) == this.$clearSpecialText(userAnswer)
         })
       ) {
