@@ -68,6 +68,15 @@ export default {
   },
   mounted() {
     setTimeout(this.playAudio(), 2000)
+    let testStr = "（話／はなし／）を（聞／き／）いて（正／ただ／）しい（絵／え／）を（選／えら／）んでください"
+    console.log(testStr)
+    let listCharacter = testStr.split("")
+    console.log('listCharacter', listCharacter)
+
+    let regex = /（[\w\d]+／/g
+    let kanji = testStr.match(regex)
+
+    console.log(kanji)
   },
   beforeDestroy() {
     if (this.unit.type == 'exam') {
@@ -103,12 +112,9 @@ export default {
         .toString()
         .replace(/ /g,'')
         .split('**')
-      console.log('listCorrectAnswers', listCorrectAnswers)
       if (
         listCorrectAnswers.find((correctAns) => {
-          console.log(' | correctAns: ', correctAns)
-          let listCharacter = correctAns.split("")
-          console.log('listCharacter', listCharacter)
+          // console.log(' | correctAns: ', correctAns)
           this.$clearSpecialText(correctAns) == this.$clearSpecialText(userAnswer)
         })
       ) {
