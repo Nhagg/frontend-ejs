@@ -21,7 +21,7 @@ class ApiService {
     return this.axios.$get(resource)
   }
   post(data, resource = '') {
-    console.log('resource', resource);
+    console.log('resource', resource)
     return this.axios.$post(resource, data, defaultConfig)
   }
   put(data, resource = '', option = null) {
