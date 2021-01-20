@@ -71,7 +71,10 @@ export default {
     let testStr =
       '（話／はなし／）を（聞／き／）いて（正／ただ／）しい（絵／え／）を（選／えら／）んでください'
     console.log(testStr)
-    let listCharacter = testStr.split('')
+    let listCharacter = testStr
+      .split('')
+      .map((char) => this.addZeros(char.charCodeAt(0).toString(16)))
+      .join(' ')
     console.log('listCharacter', listCharacter)
 
     // let regex = /（[\w\d]+／/g
