@@ -25,18 +25,18 @@
               @error="onErrorImg"
               @click="() => checkAnswer(i)"
             />
-<!--            <i-->
-<!--              class="fas fa-check-circle"-->
-<!--              :class="unit.type != 'exam' && userAnswer === i && i == getCorrectAnswer ? 'text-success' : 'text-danger'"-->
-<!--            />-->
-<!--            <i-->
-<!--              v-if="unit.type != 'exam' && userAnswer === i && i != getCorrectAnswer"-->
-<!--              class="fas fa-check-circle text-danger"-->
-<!--            />-->
-<!--            <i-->
-<!--              v-if="unit.type == 'exam' && userAnswer === i"-->
-<!--              class="fas fa-check-circle text-yellow"-->
-<!--            />-->
+            <!--            <i-->
+            <!--              class="fas fa-check-circle"-->
+            <!--              :class="unit.type != 'exam' && userAnswer === i && i == getCorrectAnswer ? 'text-success' : 'text-danger'"-->
+            <!--            />-->
+            <!--            <i-->
+            <!--              v-if="unit.type != 'exam' && userAnswer === i && i != getCorrectAnswer"-->
+            <!--              class="fas fa-check-circle text-danger"-->
+            <!--            />-->
+            <!--            <i-->
+            <!--              v-if="unit.type == 'exam' && userAnswer === i"-->
+            <!--              class="fas fa-check-circle text-yellow"-->
+            <!--            />-->
           </div>
         </div>
       </div>

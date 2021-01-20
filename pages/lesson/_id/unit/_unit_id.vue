@@ -8,7 +8,7 @@
     </span>
     <div class="study-header">
       <router-link :to="getBackRouter()">
-        <img alt="" src="@/assets/img/logo.png"/>
+        <img alt="" src="@/assets/img/logo.png" />
       </router-link>
       <div class="study-header-text">
         {{ unit.type == 'grammar' ? 'Học ngữ pháp' : '' }}
@@ -295,11 +295,11 @@
         </button>
       </div>
     </div>
-    <SettingSpeed/>
+    <SettingSpeed />
   </div>
 </template>
 <script>
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 import NewwordPractice1 from '~/components/unit/NewwordPractice1'
 import NewwordPractice2 from '~/components/unit/NewwordPractice2'
 import NewwordSpeak1 from '~/components/unit/NewwordSpeak1'
@@ -369,7 +369,7 @@ export default {
   computed: {
     ...mapState(['listLesson', 'user']),
     nextUnit() {
-      const {unit, lesson} = this
+      const { unit, lesson } = this
       let listActiveLearnUnit = lesson.learn_units
       let unitIndex = listActiveLearnUnit.findIndex((u) => u.id == unit.id)
       if (unitIndex == -1 || unitIndex == listActiveLearnUnit.length - 1) {
@@ -378,7 +378,7 @@ export default {
       return listActiveLearnUnit[unitIndex + 1]
     },
     nextLesson() {
-      const {listLesson, lesson} = this
+      const { listLesson, lesson } = this
       let listItem = listLesson.filter((l) => l.course.id == lesson.course.id)
       let itemIndex = listItem.findIndex((u) => u.id == lesson.id)
       if (itemIndex == -1 || itemIndex == listItem.length - 1) {
@@ -387,7 +387,7 @@ export default {
       return listItem[itemIndex + 1]
     },
     activeItem() {
-      let {unit, activeItemIndex} = this
+      let { unit, activeItemIndex } = this
       if (unit && unit.learn_items && unit.learn_items[activeItemIndex]) {
         let res = unit.learn_items[activeItemIndex]
         if (!res.score) {
@@ -411,7 +411,7 @@ export default {
       }
     }
   },
-  async asyncData({store, route}) {
+  async asyncData({ store, route }) {
     let unitId = route.params.unit_id
     let lessonID = route.params.id
     await store.dispatch('GET_LIST_LESSON')

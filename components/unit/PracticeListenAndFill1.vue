@@ -110,12 +110,13 @@ export default {
       console.log(this.item)
       let listCorrectAnswers = this.item.content.correct_answer
         .toString()
-        .replace(/ /g,'')
+        .replace(/ /g, '')
         .split('**')
       if (
         listCorrectAnswers.find((correctAns) => {
           // console.log(' | correctAns: ', correctAns)
-          this.$clearSpecialText(correctAns) == this.$clearSpecialText(userAnswer)
+          this.$clearSpecialText(correctAns) ==
+            this.$clearSpecialText(userAnswer)
         })
       ) {
         this.setAnswer(this.item, this.item.score)
