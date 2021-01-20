@@ -73,6 +73,7 @@ export default {
   },
   methods: {
     checkAnswer(i) {
+      console.log(this.item)
       if (this.userAnswer != null) {
         return
       }
