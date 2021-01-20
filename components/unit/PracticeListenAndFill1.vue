@@ -74,7 +74,7 @@ export default {
     console.log('listCharacter', listCharacter)
 
     let regex = /（[\w\d]+／/g
-    let kanji = testStr.match(regex)
+    let kanji = testStr.match(/話[\w\d]+を/g)
 
     console.log(kanji)
   },
