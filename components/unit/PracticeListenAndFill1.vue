@@ -82,8 +82,8 @@ export default {
     }))
     console.log(listCharacterCode)
     let arr = []
-    testStr.split('').forEach((item, i) => {
-      arr[item] = this.addZeros(item.charCodeAt(0).toString(16))
+    testStr.split('').forEach((item) => {
+      arr[this.addZeros(item.charCodeAt(0).toString(16))] = item
     })
     console.log(arr)
   },
