@@ -83,7 +83,7 @@ export default {
     let str = test
       .split('')
       .map((char) => this.addZeros(char.charCodeAt(0).toString(16)))
-      .join('')
+      .join(' ')
     console.log(test)
     console.log(str)
   },
