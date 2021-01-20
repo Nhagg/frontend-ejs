@@ -74,16 +74,8 @@ export default {
     let listCharacter = testStr
       .split('')
       .map((char) => this.addZeros(char.charCodeAt(0).toString(16)))
-      .join(' ')
-    console.log('listCharacter', listCharacter)
-
-    let test = '（話／'
-    let str = test
-      .split('')
-      .map((char) => this.addZeros(char.charCodeAt(0).toString(16)))
-      .join(' ')
-    console.log(test)
-    console.log(str)
+    // .join(' ')
+    console.log(listCharacter)
   },
   beforeDestroy() {
     if (this.unit.type == 'exam') {
