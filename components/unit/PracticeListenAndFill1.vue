@@ -74,12 +74,18 @@ export default {
     let strCode = testStr
       .split('')
       .map((char) => this.addZeros(char.charCodeAt(0).toString(16)))
+      .join(' ')
     console.log(strCode)
     let listCharacterCode = testStr.split('').map((char) => ({
       character: char,
       code: this.addZeros(char.charCodeAt(0).toString(16))
     }))
     console.log(listCharacterCode)
+    let arr = []
+    testStr.split('').forEach((item, i) => {
+      arr[item] = this.addZeros(item.charCodeAt(0).toString(16))
+    })
+    console.log(arr)
   },
   beforeDestroy() {
     if (this.unit.type == 'exam') {
