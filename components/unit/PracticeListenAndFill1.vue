@@ -71,11 +71,15 @@ export default {
     let testStr =
       '（話／はなし／）を（聞／き／）いて（正／ただ／）しい（絵／え／）を（選／えら／）んでください'
     console.log(testStr)
-    let listCharacter = testStr.split('').map((char) => ({
-      char: this.addZeros(char.charCodeAt(0).toString(16))
+    let strCode = testStr
+      .split('')
+      .map((char) => this.addZeros(char.charCodeAt(0).toString(16)))
+    console.log(strCode)
+    let listCharacterCode = testStr.split('').map((char) => ({
+      character: char,
+      code: this.addZeros(char.charCodeAt(0).toString(16))
     }))
-    // .join(' ')
-    console.log(listCharacter)
+    console.log(listCharacterCode)
   },
   beforeDestroy() {
     if (this.unit.type == 'exam') {
