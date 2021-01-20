@@ -68,15 +68,24 @@ export default {
   },
   mounted() {
     setTimeout(this.playAudio(), 2000)
-    // let testStr = "（話／はなし／）を（聞／き／）いて（正／ただ／）しい（絵／え／）を（選／えら／）んでください"
-    // console.log(testStr)
-    // let listCharacter = testStr.split("")
-    // console.log('listCharacter', listCharacter)
-    //
+    let testStr =
+      '（話／はなし／）を（聞／き／）いて（正／ただ／）しい（絵／え／）を（選／えら／）んでください'
+    console.log(testStr)
+    let listCharacter = testStr.split('')
+    console.log('listCharacter', listCharacter)
+
     // let regex = /（[\w\d]+／/g
-    // let kanji = testStr.match(/話[\w\d]+を/g)
-    //
-    // console.log(kanji)
+    let kanji = testStr.match(/話[\w\d]+を/g)
+
+    console.log(kanji)
+
+    let test = '（話／'
+    let str = test
+      .split('')
+      .map((char) => this.addZeros(char.charCodeAt(0).toString(16)))
+      .join('')
+    console.log(test)
+    console.log(str)
   },
   beforeDestroy() {
     if (this.unit.type == 'exam') {
@@ -90,6 +99,9 @@ export default {
     }
   },
   methods: {
+    addZeros(str) {
+      return ('0000' + str).slice(-4)
+    },
     playAudio() {
       this.$refs.myAudio.play()
     },
