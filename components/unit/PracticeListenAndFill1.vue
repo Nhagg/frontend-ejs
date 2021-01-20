@@ -76,7 +76,7 @@ export default {
       .map((char) => this.addZeros(char.charCodeAt(0).toString(16)))
       .join(' ')
     console.log(strCode)
-    let strMatch = strCode.match(/ff08(.*)ff0f/)
+    let strMatch = strCode.match(/ff08(.*?)ff0f/g)
     console.log(strMatch)
     let arr = []
     testStr.split('').forEach((item) => {
