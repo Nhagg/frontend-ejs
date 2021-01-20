@@ -76,11 +76,8 @@ export default {
       .map((char) => this.addZeros(char.charCodeAt(0).toString(16)))
       .join(' ')
     console.log(strCode)
-    let listCharacterCode = testStr.split('').map((char) => ({
-      character: char,
-      code: this.addZeros(char.charCodeAt(0).toString(16))
-    }))
-    console.log(listCharacterCode)
+    let strMatch = strCode.match(/ff08(.*)ff0f/)
+    console.log(strMatch)
     let arr = []
     testStr.split('').forEach((item) => {
       arr[this.addZeros(item.charCodeAt(0).toString(16))] = item
