@@ -68,15 +68,15 @@ export default {
   },
   mounted() {
     setTimeout(this.playAudio(), 2000)
-    let testStr = "（話／はなし／）を（聞／き／）いて（正／ただ／）しい（絵／え／）を（選／えら／）んでください"
-    console.log(testStr)
-    let listCharacter = testStr.split("")
-    console.log('listCharacter', listCharacter)
-
-    let regex = /（[\w\d]+／/g
-    let kanji = testStr.match(/話[\w\d]+を/g)
-
-    console.log(kanji)
+    // let testStr = "（話／はなし／）を（聞／き／）いて（正／ただ／）しい（絵／え／）を（選／えら／）んでください"
+    // console.log(testStr)
+    // let listCharacter = testStr.split("")
+    // console.log('listCharacter', listCharacter)
+    //
+    // let regex = /（[\w\d]+／/g
+    // let kanji = testStr.match(/話[\w\d]+を/g)
+    //
+    // console.log(kanji)
   },
   beforeDestroy() {
     if (this.unit.type == 'exam') {
