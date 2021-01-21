@@ -35,7 +35,7 @@ Vue.prototype.$clearSpecialText = (text) => {
   return text
 }
 Vue.prototype.$getNativeName = (text) => {
-  text = 'この（傘／かさ）は（私／わたし／）のです'
+  text = 'この（傘／かさ／）は（私／わたし／）のです'
   console.log(text)
   if (!text) {
     return ''
