@@ -51,8 +51,6 @@ Vue.prototype.$getNativeName = (text) => {
   return s
 }
 Vue.prototype.$convertNameToHtml = (text) => {
-  text = 'この（傘／かさ／）は（私／わたし／）のです'
-  console.log(text)
   if (!text) {
     return ''
   }
@@ -68,7 +66,6 @@ Vue.prototype.$convertNameToHtml = (text) => {
   })
   res = s.replace(/\(/g, '<span>')
   res = res.replace(/\)/g, '</span>')
-  console.log(res)
   return res
 }
 Vue.prototype.$getItemImg = (unit, item = {}, i = 1) => {
