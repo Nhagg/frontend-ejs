@@ -70,6 +70,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.unit)
     console.log(this.item)
     this.listAnswer.forEach((i) => {
       this.images['image' + i] = this.$getItemImg(this.unit, this.item, i)
