@@ -56,6 +56,7 @@ Vue.prototype.$convertNameToHtml = (text) => {
     return ''
   }
   let res = replaceSpecialText(text)
+  res = res.replace(/\d+./, '')
   let arr = res.split('/')
   let s = ''
   arr.forEach((splitText, index) => {
