@@ -41,6 +41,7 @@ Vue.prototype.$getNativeName = (text) => {
     return ''
   }
   let res = replaceSpecialText(text)
+  console.log('after replaceSpecialText: ', res)
   res = res.replace(/\(/g, '')
   res = res.replace(/\)/g, '')
   let arr = res.split('/')
@@ -54,6 +55,7 @@ Vue.prototype.$getNativeName = (text) => {
   return s
 }
 Vue.prototype.$convertNameToHtml = (text) => {
+  console.log(text)
   if (!text) {
     return ''
   }
@@ -69,6 +71,7 @@ Vue.prototype.$convertNameToHtml = (text) => {
   })
   res = s.replace(/\(/g, '<span>')
   res = res.replace(/\)/g, '</span>')
+  console.log(res)
   return res
 }
 Vue.prototype.$getItemImg = (unit, item = {}, i = 1) => {
