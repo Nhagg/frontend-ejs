@@ -41,10 +41,11 @@ Vue.prototype.$getNativeName = (text) => {
     return ''
   }
   let res = replaceSpecialText(text)
-  console.log('after replaceSpecialText: ', res)
   res = res.replace(/\(/g, '')
   res = res.replace(/\)/g, '')
+  console.log('after replace: ', res)
   let arr = res.split('/')
+  console.log('arr: ', arr)
   let s = ''
   arr.forEach((splitText, index) => {
     if (index % 2 == 0) {
