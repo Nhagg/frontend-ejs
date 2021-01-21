@@ -35,6 +35,8 @@ Vue.prototype.$clearSpecialText = (text) => {
   return text
 }
 Vue.prototype.$getNativeName = (text) => {
+  text = 'この（傘／かさ）は（私／わたし／）のです'
+  console.log(text)
   if (!text) {
     return ''
   }
@@ -48,6 +50,7 @@ Vue.prototype.$getNativeName = (text) => {
       s += splitText
     }
   })
+  console.log('final text: ', s)
   return s
 }
 Vue.prototype.$convertNameToHtml = (text) => {
