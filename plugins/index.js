@@ -35,27 +35,23 @@ Vue.prototype.$clearSpecialText = (text) => {
   return text
 }
 Vue.prototype.$getNativeName = (text) => {
-  text = 'この（傘／かさ／）は（私／わたし／）のです'
-  console.log(text)
   if (!text) {
     return ''
   }
   let res = replaceSpecialText(text)
   res = res.replace(/\(/g, '')
   res = res.replace(/\)/g, '')
-  console.log('after replace: ', res)
   let arr = res.split('/')
-  console.log('arr: ', arr)
   let s = ''
   arr.forEach((splitText, index) => {
     if (index % 2 == 0) {
       s += splitText
     }
   })
-  console.log('final text: ', s)
   return s
 }
 Vue.prototype.$convertNameToHtml = (text) => {
+  text = 'この（傘／かさ／）は（私／わたし／）のです'
   console.log(text)
   if (!text) {
     return ''
