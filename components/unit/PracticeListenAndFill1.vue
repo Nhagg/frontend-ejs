@@ -68,21 +68,6 @@ export default {
   },
   mounted() {
     setTimeout(this.playAudio(), 2000)
-    let testStr =
-      '（話／はなし／）を（聞／き／）いて（正／ただ／）しい（絵／え／）を（選／えら／）んでください'
-    console.log(testStr)
-    let strCode = testStr
-      .split('')
-      .map((char) => this.addZeros(char.charCodeAt(0).toString(16)))
-      .join(' ')
-    console.log(strCode)
-    let strMatch = strCode.match(/ff08(.*?)ff0f/g)
-    console.log(strMatch)
-    let arr = []
-    testStr.split('').forEach((item) => {
-      arr[this.addZeros(item.charCodeAt(0).toString(16))] = item
-    })
-    console.log(arr)
   },
   beforeDestroy() {
     if (this.unit.type == 'exam') {
@@ -119,14 +104,11 @@ export default {
       console.log(this.item)
       let listCorrectAnswers = this.item.content.correct_answer
         .toString()
-        .replace(/ /g, '')
         .split('**')
       if (
-        listCorrectAnswers.find((correctAns) => {
-          // console.log(' | correctAns: ', correctAns)
-          this.$clearSpecialText(correctAns) ==
-            this.$clearSpecialText(userAnswer)
-        })
+        listCorrectAnswers.find(
+          (a) => this.$clearSpecialText(a) == this.$clearSpecialText(userAnswer)
+        )
       ) {
         this.setAnswer(this.item, this.item.score)
         this.userPoint = true
