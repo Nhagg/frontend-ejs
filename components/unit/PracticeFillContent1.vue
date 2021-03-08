@@ -30,7 +30,10 @@
 <!--          v-html="$convertNameToHtml(text.split('***')[1])"-->
 <!--        ></span>-->
 <!--      </h3>-->
-      <h3> asasajsj</h3>
+      <h3>abc</h3>
+      <h3>abc</h3>
+      <h3>abc</h3>
+      <h3>abc</h3>
       <span
         class="japan-name d-inline"
         v-html="$convertNameToHtml(text.split('***')[0])"

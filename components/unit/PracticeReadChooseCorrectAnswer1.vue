@@ -11,12 +11,11 @@
     </div>
     <div class="row mt-5">
       <div class="col-sm-8">
-<!--        <img-->
-<!--          :src="domainAPI + '/images/practice/' + item.title2"-->
-<!--          class="w-100"-->
-<!--          @error="$errorImage"-->
-<!--        />-->
-        <p>きのうのばん（手紙／てがみ／）を（かきます、かきました）</p>
+        <img
+          :src="domainAPI + '/images/practice/' + item.title2"
+          class="w-100"
+          @error="$errorImage"
+        />
       </div>
       <div class="col-sm-3 offset-1">
         <div v-for="i in listAnswer" :key="i" class="item-answer">
