@@ -240,7 +240,7 @@
         <i class="fa fa-check-circle"></i>
         {{
           this.resultPoint() >= 80
-            ? 'Rất tốt. Bạn có thể thọc từ tiếp theo'
+            ? 'Rất tốt. Bạn có thể học từ tiếp theo'
             : 'Bạn nên học lại để có kết quả tốt hơn '
         }}
       </div>
