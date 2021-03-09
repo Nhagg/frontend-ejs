@@ -23,26 +23,13 @@
         <input
           v-if="text.split('***').length > 1"
           type="text"
-          v-model="item.userAnswer"
+          v-model="userAnswer"
         />
         <span
           class="japan-name d-inline"
           v-html="$convertNameToHtml(text.split('***')[1])"
         ></span>
       </h3>
-      <span
-        class="japan-name d-inline"
-        v-html="$convertNameToHtml(text.split('***')[0])"
-      ></span>
-      <input
-        v-if="text.split('***').length > 1"
-        type="text"
-        v-model="item.userAnswer"
-      />
-      <span
-        class="japan-name d-inline"
-        v-html="$convertNameToHtml(text.split('***')[1])"
-      ></span>
     </div>
     <div
       v-if="checkedAnswer && userPoint == false"
@@ -53,11 +40,11 @@
     <h2 v-if="checkedAnswer && userPoint == false" class="text-center mt-4">
       {{ item.content.correct_answer.toString().split('**')[0] }}
     </h2>
-    <div v-if="!checkedAnswer && unit.type != 'exam'" class="mt-5 text-center">
+    <div v-if="!checkedAnswer" class="mt-5 text-center">
       <button
         class="btn btn-check-answer btn-green"
         @click="checkAnswer"
-        :disabled="!item.userAnswer"
+        :disabled="!userAnswer"
       >
         Kiểm tra
       </button>
@@ -86,13 +73,9 @@ export default {
     }
   },
   mounted() {},
-  beforeDestroy() {
-    if (this.unit.type == 'exam') {
-      this.checkAnswer()
-    }
-  },
   data() {
     return {
+      userAnswer: '',
       checkedAnswer: false,
       userPoint: false,
       disabled: false
@@ -112,16 +95,14 @@ export default {
         return
       }
       this.checkedAnswer = true
-      let userAnswer = this.item.userAnswer
+      let userAnswer = this.userAnswer
       let listCorrectAnswers = this.item.content.correct_answer
         .toString()
         .split('**')
-      console.log('listCorrectAnswers ', listCorrectAnswers)
       if (
-        listCorrectAnswers.find((a) => {
-          console.log(' | a: ', a)
-          this.$clearSpecialText(a) == this.$clearSpecialText(userAnswer)
-        })
+        listCorrectAnswers.find(
+          (a) => this.$clearSpecialText(a) == this.$clearSpecialText(userAnswer)
+        )
       ) {
         this.userPoint = true
         this.setAnswer(this.item, this.item.score)
