@@ -113,6 +113,7 @@
         :resetPage="resetPage"
         :setAnswer="setAnswer"
         :unit="unit"
+        :completed-sentences="completedSentences"
       />
       <PracticeArrangeSentence1
         v-else-if="activeItem.type == 'practice_arrange_sentence_1'"
@@ -443,7 +444,8 @@ export default {
       showResult: false,
       unit: {},
       countDownPolicy: 5,
-      activeItemIndex: 0
+      activeItemIndex: 0,
+      completedSentences: []
     }
   },
   methods: {
@@ -489,6 +491,10 @@ export default {
       if (this.unit.type == 'exam') {
         this.getAnswer
       }
+      let completedSentence = this.activeItem
+      completedSentence.userAnswer = this.userAnswer
+      this.completedSentences.push(completedSentence)
+
       this.userAnswer = ''
       this.countDownPolicy = 5
       if (
@@ -500,8 +506,6 @@ export default {
         return
       }
       this.activeItemIndex++
-      console.log(this.unit)
-      console.log(this.activeItemIndex)
       //if this is last page => send pint
       if (this.activeItemIndex == this.unit.learn_items.length) {
         Api.post(

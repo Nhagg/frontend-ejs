@@ -8,6 +8,28 @@
       </div>
     </div>
     <div class="mt-5 text-center">
+      <!-- Completed sentences -->
+      <h3
+        v-for="(completedSentence, index) in completedSentences"
+        :key="`completedSentences-${index}`"
+        class="mt-5"
+      >
+        <div
+          v-for="(text,
+          textIndex) in completedSentence.content.title2.toString().split('…')"
+          :key="`content-title2-${textIndex}`"
+        >
+          <div style="margin-bottom: 35px">
+            <span
+              class="japan-name d-inline"
+              v-html="
+                displayCompletedAnswers(text, completedSentence.userAnswer)
+              "
+            ></span>
+          </div>
+        </div>
+      </h3>
+      <!-- Current question -->
       <h3
         v-for="(text, index) in $_get(item, 'content.title2', '')
           .toString()
@@ -16,19 +38,22 @@
         :key="index"
         class="mt-5"
       >
-        <span
-          class="japan-name d-inline"
-          v-html="$convertNameToHtml(text.split('***')[0])"
-        ></span>
-        <input
-          v-if="text.split('***').length > 1"
-          type="text"
-          v-model="userAnswer"
-        />
-        <span
-          class="japan-name d-inline"
-          v-html="$convertNameToHtml(text.split('***')[1])"
-        ></span>
+        <div>
+          <span
+            class="japan-name d-inline"
+            v-html="$convertNameToHtml(text.split('***')[0])"
+          ></span>
+          <input
+            v-if="text.split('***').length > 1"
+            type="text"
+            v-model="userAnswer"
+            v-on:keypress="onKeyPress"
+          />
+          <span
+            class="japan-name d-inline"
+            v-html="$convertNameToHtml(text.split('***')[1])"
+          ></span>
+        </div>
       </h3>
     </div>
     <div
@@ -59,10 +84,10 @@ export default {
       type: Function,
       default: Function
     },
-    // resetPage: {
-    //   type: Function,
-    //   default: Function
-    // },
+    resetPage: {
+      type: Function,
+      default: Function
+    },
     unit: {
       type: Object,
       default: Object
@@ -70,11 +95,16 @@ export default {
     item: {
       type: Object,
       default: Object
+    },
+    completedSentences: {
+      type: Array,
+      default: Array
     }
   },
   mounted() {},
   data() {
     return {
+      conversation: '',
       userAnswer: '',
       checkedAnswer: false,
       userPoint: false,
@@ -87,7 +117,7 @@ export default {
         this.checkAnswer()
       } else {
         this.item.point = undefined
-        // this.resetPage()
+        this.resetPage()
       }
     },
     checkAnswer() {
@@ -105,10 +135,13 @@ export default {
         )
       ) {
         this.userPoint = true
-        this.setAnswer(this.item, this.item.score)
+        this.setAnswer(this.item, this.item.score, userAnswer)
       } else {
-        this.setAnswer(this.item, 0)
+        this.setAnswer(this.item, 0, userAnswer)
       }
+    },
+    displayCompletedAnswers(text, replaceString) {
+      return text.replace('***', ' ' + replaceString + ' ')
     }
   }
 }
