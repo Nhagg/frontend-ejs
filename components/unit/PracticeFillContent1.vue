@@ -8,30 +8,28 @@
       </div>
     </div>
     <div class="mt-5 text-center">
-      <ul>
-        <li
-          v-for="(text, index) in $_get(item, 'content.title2', '')
-            .toString()
-            .replace('…', '...')
-            .split('...')"
-          :key="index"
-          class="mt-5"
-        >
-          <span
-            class="japan-name d-inline"
-            v-html="$convertNameToHtml(text.split('***')[0])"
-          ></span>
-          <input
-            v-if="text.split('***').length > 1"
-            type="text"
-            v-model="userAnswer"
-          />
-          <span
-            class="japan-name d-inline"
-            v-html="$convertNameToHtml(text.split('***')[1])"
-          ></span>
-        </li>
-      </ul>
+      <h3
+        v-for="(text, index) in $_get(item, 'content.title2', '')
+          .toString()
+          .replace('…', '...')
+          .split('...')"
+        :key="index"
+        class="mt-5"
+      >
+        <span
+          class="japan-name d-inline"
+          v-html="$convertNameToHtml(text.split('***')[0])"
+        ></span>
+        <input
+          v-if="text.split('***').length > 1"
+          type="text"
+          v-model="userAnswer"
+        />
+        <span
+          class="japan-name d-inline"
+          v-html="$convertNameToHtml(text.split('***')[1])"
+        ></span>
+      </h3>
     </div>
     <div
       v-if="checkedAnswer && userPoint == false"
@@ -61,10 +59,10 @@ export default {
       type: Function,
       default: Function
     },
-    resetPage: {
-      type: Function,
-      default: Function
-    },
+    // resetPage: {
+    //   type: Function,
+    //   default: Function
+    // },
     unit: {
       type: Object,
       default: Object
@@ -89,7 +87,7 @@ export default {
         this.checkAnswer()
       } else {
         this.item.point = undefined
-        this.resetPage()
+        // this.resetPage()
       }
     },
     checkAnswer() {
