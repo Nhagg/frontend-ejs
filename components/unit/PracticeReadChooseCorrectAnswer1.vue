@@ -19,11 +19,11 @@
             <div class="item-img ratio-4-2">
               <p>{{ getImageText(i) }}</p>
               <i
-                v-if="userAnswer !== null && i === 1"
+                v-if="userAnswer !== null && i === item.content.correct_answer"
                 class="fas fa-check-circle text-success"
               />
               <i
-                v-if="userAnswer === i && i !== 1"
+                v-if="userAnswer === i && i !== item.content.correct_answer"
                 class="fas fa-times-circle text-danger"
               />
             </div>
@@ -75,7 +75,10 @@ export default {
         return
       }
       this.userAnswer = i
-      this.setAnswer(this.item, i === 1 ? this.item.score : 0)
+      this.setAnswer(
+        this.item,
+        i === this.item.content.correct_answer ? this.item.score : 0
+      )
     },
     getImageText(i) {
       return this.item.content['image_text' + i]
