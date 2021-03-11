@@ -226,7 +226,12 @@
       :class="'study-footer ' + getFooterClass()"
     >
       <div v-if="activeItem.point != undefined" class="study-footer-left">
-        <i class="fa fa-check-circle"></i>
+        <i
+          :class="[
+            { 'fa fa-check-circle': isCorrect() },
+            { 'fa fa-times-circle': !isCorrect() }
+          ]"
+        ></i>
         <div v-if="isCorrect()">
           Đáp án chính xác
         </div>

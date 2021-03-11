@@ -11,24 +11,20 @@
     </div>
     <div class="row mt-5">
       <div class="col-sm-8">
-        <img
-          :src="domainAPI + '/images/practice/' + item.title2"
-          class="w-100"
-          @error="$errorImage"
-        />
+        {{ item.content.title2 }}
       </div>
       <div class="col-sm-3 offset-1">
         <div v-for="i in listAnswer" :key="i" class="item-answer">
           <div class="item-answer" @click="() => checkAnswer(i)">
             <div class="item-img ratio-4-2">
-              <img :src="$getItemImg(unit, item, i)" @error="$errorImage" />
+              <p>{{ getImageText(i) }}</p>
               <i
                 v-if="userAnswer !== null && i === 1"
                 class="fas fa-check-circle text-success"
               />
               <i
                 v-if="userAnswer === i && i !== 1"
-                class="fas fa-check-circle text-danger"
+                class="fas fa-times-circle text-danger"
               />
             </div>
           </div>
@@ -80,7 +76,16 @@ export default {
       }
       this.userAnswer = i
       this.setAnswer(this.item, i === 1 ? this.item.score : 0)
+    },
+    getImageText(i) {
+      return this.item.content['image_text' + i]
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.unit-page .item-img i {
+  top: 0 !important;
+}
+</style>
