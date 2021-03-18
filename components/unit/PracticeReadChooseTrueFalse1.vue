@@ -39,19 +39,19 @@
             Đúng
           </div>
           <div
-            @click="() => checkAnswer('false')"
+            @click="() => checkAnswer('〇')"
             class="item-boolean"
             :class="{
               'item-true':
-                unit.type != 'exam' && showAnswer && correctAnswer == 'false',
+                unit.type != 'exam' && showAnswer && correctAnswer == 'true',
               'item-false':
-                unit.type != 'exam' && showAnswer && correctAnswer == 'true'
+                unit.type != 'exam' && showAnswer && correctAnswer == 'false'
             }"
           >
             <i
               class="fa fa-times-circle"
               :class="{
-                'text-yellow': unit.type == 'exam' && item.userAnswer == 'false'
+                'text-yellow': unit.type == 'exam' && item.userAnswer == 'true'
               }"
             ></i>
             Sai
