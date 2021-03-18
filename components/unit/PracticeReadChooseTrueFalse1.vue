@@ -21,7 +21,7 @@
             {{ item.content.title2 }}
           </h2>
           <div
-            @click="() => checkAnswer('true')"
+            @click="() => checkAnswer('〇')"
             class="item-boolean"
             :class="{
               'item-true':
@@ -39,19 +39,19 @@
             Đúng
           </div>
           <div
-            @click="() => checkAnswer('〇')"
+            @click="() => checkAnswer('ｘ')"
             class="item-boolean"
             :class="{
               'item-true':
-                unit.type != 'exam' && showAnswer && correctAnswer == 'true',
+                unit.type != 'exam' && showAnswer && correctAnswer == 'false',
               'item-false':
-                unit.type != 'exam' && showAnswer && correctAnswer == 'false'
+                unit.type != 'exam' && showAnswer && correctAnswer == 'true'
             }"
           >
             <i
               class="fa fa-times-circle"
               :class="{
-                'text-yellow': unit.type == 'exam' && item.userAnswer == 'true'
+                'text-yellow': unit.type == 'exam' && item.userAnswer == 'false'
               }"
             ></i>
             Sai
